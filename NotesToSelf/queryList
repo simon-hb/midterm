@@ -52,6 +52,9 @@ SELECT name FROM quizzes WHERE name LIKE '%bb%';
 - Select all results for user for quiz
 SELECT taker_id, quiz_id, date_taken, result FROM results WHERE taker_id=17 and quiz_id=61;
 
+calculate results for one quiz based on correct answers
+
+then you can create an insert into statement to push those values into the results table
 
 
 2users
@@ -70,3 +73,20 @@ SUM(is_correct) FROM (
   where UID = 2 and Q1d = 1
 )
 2/res.rows.length = 0.5
+
+
+SELECT sum(is_correct::int) FROM (
+  SELECT quiz_id, taker_id, question_id, is_correct, answer_selected 
+  FROM quiz_question_submissions
+  WHERE taker_id = 1 AND quiz_id = 1 
+  LIMIT (SELECT COUNT(*) from trivia_questions where quiz_id = 1) 
+  -- OFFSET (SELECT COUNT(*) from trivia_questions where quiz_id = 1)*attempt_id)-1)
+) as nested;
+
+
+user completes quiz, get all questions for that quiz id for that user then see how many rows you have for that user and quiz submissions and them attemps = (total_submissions/questions_for_that_quiz)
+
+1 Q 5 q 
+on 1st attempt - 5/5 ==> 1
+pn 2nd attemps - 10/5 ==> 2
+
