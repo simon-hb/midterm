@@ -16,23 +16,24 @@ SELECT sum(is_correct::int) as SUM FROM (
   LIMIT (SELECT COUNT(*) from trivia_questions where quiz_id = 1) 
 ) as nested;`
 
-pool.query (queryString)
-  .then( res => {
+pool.query(queryString)
+  .then(res => {
     const quizResult = res.rows[0].sum;
     let dynObj = {};
     dynObj.result = quizResult;
-    return dynObj
-
-  }).then (dynObj => {
+    return dynObj;
+  }).then(dynObj => {
     console.log("DIS YOUR OBJ", dynObj);
     const insertQuery = `
         INSERT INTO results (taker_id, quiz_id, attempt_id, date_taken, share_link, result, description)
-        VALUES (1, 1, 1, '2020-07-25', 'https://google.com', $1, 'you did wel... kinda!') RETURNING *
+        VALUES (1, 1, 1, '2020-07-25', 'https://google.com', $1, 'you did well... kinda!') RETURNING *;
     `;
     const queryParams = [dynObj.result];
-    pool.query(insertQuery, queryParams)
-    .then( res => console.log(res.rows))
-  })
+    return pool.query(insertQuery, queryParams);
+  }).then(res => {
+    console.log(res.rows);
+    pool.end();
+  }).catch(err => console.log(err));
 
   // Calculate attempts
   // generate share link
