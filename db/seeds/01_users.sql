@@ -1,3 +1,25 @@
--- Users table seeds here (Example)
-INSERT INTO users (name) VALUES ('Alice');
-INSERT INTO users (name) VALUES ('Kira');
+insert into users (username, password, email, name) values ('eorlton0', 'password', 'eorlton0@cloudflare.com', 'Enrika Orlton');
+insert into users (username, password, email, name) values ('ilindwasser1', 'password', 'ilindwasser1@ucoz.com', 'Inglebert Lindwasser');
+insert into users (username, password, email, name) values ('kshakle2', 'password', 'kshakle2@archive.org', 'Kevyn Shakle');
+insert into users (username, password, email, name) values ('jrobilart3', 'password', 'jrobilart3@eventbrite.com', 'Johnna Robilart');
+insert into users (username, password, email, name) values ('bmilham4', 'password', 'bmilham4@mtv.com', 'Beck Milham');
+insert into users (username, password, email, name) values ('gmcgrath5', 'password', 'gmcgrath5@goodreads.com', 'Garik McGrath');
+insert into users (username, password, email, name) values ('fstormont6', 'password', 'fstormont6@elegantthemes.com', 'Fletch Stormont');
+insert into users (username, password, email, name) values ('tcaig7', 'password', 'tcaig7@creativecommons.org', 'Towney Caig');
+insert into users (username, password, email, name) values ('gwainer8', 'password', 'gwainer8@com.com', 'Gabbi Wainer');
+insert into users (username, password, email, name) values ('murlin9', 'password', 'murlin9@ehow.com', 'Meryl Urlin');
+insert into users (username, password, email, name) values ('kandrocka', 'password', 'kandrocka@examiner.com', 'Kermie Androck');
+insert into users (username, password, email, name) values ('gseemmondsb', 'password', 'gseemmondsb@homestead.com', 'Giovanna Seemmonds');
+insert into users (username, password, email, name) values ('kwatersonc', 'password', 'kwatersonc@tripod.com', 'Kissee Waterson');
+insert into users (username, password, email, name) values ('pcoxheadd', 'password', 'pcoxheadd@ibm.com', 'Pet Coxhead');
+insert into users (username, password, email, name) values ('dgoodye', 'password', 'dgoodye@trellian.com', 'Danni Goody');
+insert into users (username, password, email, name) values ('kboundeyf', 'password', 'kboundeyf@foxnews.com', 'Kale Boundey');
+insert into users (username, password, email, name) values ('sblewisg', 'password', 'sblewisg@dagondesign.com', 'Shelia Blewis');
+insert into users (username, password, email, name) values ('dsavaageh', 'password', 'dsavaageh@va.gov', 'Dionis Savaage');
+insert into users (username, password, email, name) values ('bgilfoyi', 'password', 'bgilfoyi@gov.uk', 'Barr Gilfoy');
+insert into users (username, password, email, name) values ('jorpenj', 'password', 'jorpenj@vk.com', 'Jacqui Orpen');
+insert into users (username, password, email, name) values ('arosink', 'password', 'arosink@unicef.org', 'Alfonso Rosin');
+insert into users (username, password, email, name) values ('cwiganl', 'password', 'cwiganl@sciencedaily.com', 'Calli Wigan');
+insert into users (username, password, email, name) values ('cfilasovm', 'password', 'cfilasovm@cocolog-nifty.com', 'Chip Filasov');
+insert into users (username, password, email, name) values ('smerrelln', 'password', 'smerrelln@ifeng.com', 'Sallee Merrell');
+insert into users (username, password, email, name) values ('bwentwortho', 'password', 'bwentwortho@so-net.ne.jp', 'Biron Wentworth');
