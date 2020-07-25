@@ -1,27 +1,50 @@
-Select all public Qs ---- home view
-Select Q by ID --- indiv view
+- Select all public Qs ---- home view
+SELECT name, creator_id FROM quizzes WHERE is_private = false LIMIT 10;
+// SELECT * FROM quizzes WHERE is_private = false;
 
-Select all draft Qs --- user logged in
-Select all published Qs --- user logged in
+- Select Q by ID --- indiv view
+SELECT name, creator_id FROM quizzes WHERE id = 1;
+// SELECT * FROM quizzes WHERE id = 1;
 
-Select likes/dislikes for Q ---- Quiz and filter
+- Select all draft Qs --- user logged in
+SELECT name, creator_id, is_published, is_private FROM quizzes WHERE is_published = false AND creator_id = 5 LIMIT 10;
+// SELECT * FROM quizzes WHERE is_published = false AND creator_id = 5;
+
+- Select all published Qs --- user logged in
+SELECT name, creator_id, is_published, is_private FROM quizzes WHERE is_published = true AND creator_id = 5 LIMIT 10;
+// SELECT * FROM quizzes WHERE is_published = true AND creator_id = 5;
+
+
+- Select likes/dislikes for user ---- Quiz and filter
+SELECT quiz_id, name, creator_id, SUM(is_like::int) as Likes, SUM(is_dislike::int) as Dislikes  FROM quizzes JOIN likes ON quizzes.id = quiz_id WHERE creator_id = 25 GROUP BY name, creator_id, quiz_id LIMIT 10;
+
+
+- Select likes/dislikes for Q ---- Quiz and filter
+SELECT quiz_id, name, creator_id, SUM(is_like::int) as Likes, SUM(is_dislike::int) as Dislikes  FROM quizzes JOIN likes ON quizzes.id = quiz_id WHERE quiz_id = 44 GROUP BY name, creator_id, quiz_id LIMIT 10;
+
 
 Add Q to DB --- button?
 
 Add user --- register
-Get user details by id --- login
 
-Select all Qs for user --- history
+- Get user details by id --- login
+SELECT * from users WHERE id = 22;
+
+- Select all Qs for user --- history
+SELECT users.id, quizzes.name  FROM users JOIN quizzes on creator_id = users.id WHERE users.id = 22;
 
 Select top 3 most liked Qs (images) --- home
 
-Select all questions for Q by ID --- ??
+- Select all questions for Q by ID --- ??
+SELECT id, quiz_id , question FROM trivia_questions WHERE quiz_id = 50;
 
 Select all answers for attempt (Q submission) with Result  --- ??
+
 
 Select quiz by %name%
 
 Select all results for user for quiz
+
 
 
 2users
