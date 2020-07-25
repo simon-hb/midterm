@@ -7,10 +7,10 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-SELECT name, creator_id, is_published, is_private
+SELECT name, created_by_id, is_published, is_private
 FROM quizzes
 WHERE is_published = false
-AND creator_id = 5
+AND created_by_id = 5
 LIMIT 10;
 `;
 const queryParams = [];
