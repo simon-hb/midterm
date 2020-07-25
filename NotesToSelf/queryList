@@ -23,9 +23,11 @@ SELECT quiz_id, name, creator_id, SUM(is_like::int) as Likes, SUM(is_dislike::in
 SELECT quiz_id, name, creator_id, SUM(is_like::int) as Likes, SUM(is_dislike::int) as Dislikes  FROM quizzes JOIN likes ON quizzes.id = quiz_id WHERE quiz_id = 44 GROUP BY name, creator_id, quiz_id LIMIT 10;
 
 
-Add Q to DB --- button?
+- Add Q to DB --- button?
+insert into quizzes (creator_id, name, image_url, description, is_private, is_published, url, subject, level, toughness) values (9, 'Parry''s Clover', 'http://dummyimage.com/176x135.png/ff4444/ffffff', 'Ut at dolor quis odio consequat varius. Integer ac leo.', false, true, '95Mp2w', 'Math', 'Elementary', 'Easy');
 
-Add user --- register
+- Add user --- register
+insert into users (username, password, email, name) values ('bwentwortho', 'password', 'bwentwortho@so-net.ne.jp', 'Biron Wentworth');
 
 - Get user details by id --- login
 SELECT * from users WHERE id = 22;
@@ -33,17 +35,22 @@ SELECT * from users WHERE id = 22;
 - Select all Qs for user --- history
 SELECT users.id, quizzes.name  FROM users JOIN quizzes on creator_id = users.id WHERE users.id = 22;
 
-Select top 3 most liked Qs (images) --- home
+- Select top 3 most liked Qs (images) --- home
+SELECT quiz_id, SUM(is_like::int) AS Likes from likes GROUP BY quiz_id ORDER BY SUM(is_like::int) DESC LIMIT 3;
 
 - Select all questions for Q by ID --- ??
 SELECT id, quiz_id , question FROM trivia_questions WHERE quiz_id = 50;
 
-Select all answers for attempt (Q submission) with Result  --- ??
+- Select all answers for attempt (Q submission) with Result  --- ??
+SELECT quiz_id, question_id, answer_selected FROM quiz_question_submissions WHERE quiz_id = 20 ORDER BY question_id;
 
 
-Select quiz by %name%
 
-Select all results for user for quiz
+- Select quiz by %name%
+SELECT name FROM quizzes WHERE name LIKE '%bb%';
+
+- Select all results for user for quiz
+SELECT taker_id, quiz_id, date_taken, result FROM results WHERE taker_id=17 and quiz_id=61;
 
 
 
