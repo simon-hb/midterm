@@ -84,6 +84,10 @@ SELECT sum(is_correct::int) FROM (
 ) as nested;
 
 
+SELECT quiz_id, taker_id, question_id, is_correct, answer_selected 
+  FROM quiz_question_submissions
+  WHERE taker_id = 1 AND quiz_id = 1;
+
 user completes quiz, get all questions for that quiz id for that user then see how many rows you have for that user and quiz submissions and them attemps = (total_submissions/questions_for_that_quiz)
 
 1 Q 5 q 
