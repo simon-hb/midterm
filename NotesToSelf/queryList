@@ -16,7 +16,7 @@ SELECT name, creator_id, is_published, is_private FROM quizzes WHERE is_publishe
 
 
 - Select likes/dislikes for user ---- Quiz and filter
-SELECT quiz_id, name, creator_id, SUM(is_like::int) as Likes, SUM(is_dislike::int) as Dislikes  FROM quizzes JOIN likes ON quizzes.id = quiz_id WHERE creator_id = 25 GROUP BY name, creator_id, quiz_id LIMIT 10;
+SELECT quiz_id, name, creator_id, SUM(is_like::int) as Likes, SUM(is_dislike::int) as Dislikes  FROM quizzes JOIN likes ON quizzes.id = quiz_id WHERE creator_id = 10 GROUP BY name, creator_id, quiz_id LIMIT 10;
 
 
 - Select likes/dislikes for Q ---- Quiz and filter
