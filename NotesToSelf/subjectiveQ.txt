@@ -1,0 +1,35 @@
+LEGEND
+{} --> question id
+[] --> option id
+
+For Categorizing Subjective Quizzes
+QUIZ ID:1
+Q1 {1}
+C1 -a [1]
+C2  -b [2] x
+C3  -c [3]
+C4  -d [4]
+
+Q2 {2}
+C1 -a [1]
+C2  -b [2]
+C3  -c [3]
+C4  -d [4]
+
+After we collect all answers in an array, get the ones with the max value and if theres one, return the max, if two or more options have the same value, return the latest answer. See examples below:
+ANS Q1C1 & Q2C1 ---> -a
+ANS Q1C1 & Q2C2 ---> [-a, -b] if two or more options have equal weight pick latest result [last index of array]
+
+
+Q   q   oI   o
+1   1   1   option
+1   1   2   option
+
+
+
+Q   q   AI   
+1   1   1 
+1   2   2 
+
+
+

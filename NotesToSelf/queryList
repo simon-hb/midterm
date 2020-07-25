@@ -1,0 +1,22 @@
+Select all public Qs ---- home view
+Select Q by ID --- indiv view
+
+Select all draft Qs --- user logged in
+Select all published Qs --- user logged in
+
+Select likes/dislikes for Q ---- Quiz and filter
+
+Add Q to DB --- button?
+
+Add user --- register
+Get user details by id --- login
+
+Select all Qs for user --- history
+
+Select top 3 most liked Qs (images) --- home
+
+Select all questions for Q by ID --- ??
+
+Select all answers for attempt (Q submission) with Result  --- ??
+
+Select quiz by %name%
