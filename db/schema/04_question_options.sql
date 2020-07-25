@@ -4,6 +4,6 @@ CREATE TABLE question_options (
   quiz_id INTEGER NOT NULL REFERENCES quizzes(id) ON DELETE CASCADE,
   quiz_question_id INTEGER NOT NULL REFERENCES quiz_questions(id) ON DELETE CASCADE,
   answer TEXT NOT NULL,
-  order SMALLINT NOT NULL,
+  option_order SMALLINT NOT NULL,
   is_correct BOOLEAN NOT NULL DEFAULT false
 );
