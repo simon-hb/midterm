@@ -20,3 +20,23 @@ Select all questions for Q by ID --- ??
 Select all answers for attempt (Q submission) with Result  --- ??
 
 Select quiz by %name%
+
+Select all results for user for quiz
+
+
+2users
+U1 create Q1 with Qq1
+
+results
+{1,2,1,20,<1>,Sum(QqS.is-C) [0],asd}
+{2,2,1,21,<2>,Sum(QqS.is-C) [1], asd+}
+
+Select * from results
+where UID = 2 and Q1d = 1
+MAX(result.id)
+
+SUM(is_correct) FROM (
+  Select * from results JOIN quiz_question JOIN trivaQ JOIN QUIZ
+  where UID = 2 and Q1d = 1
+)
+2/res.rows.length = 0.5
