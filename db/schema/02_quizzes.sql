@@ -10,5 +10,8 @@ CREATE TABLE quizzes (
   url VARCHAR(255) NOT NULL,
   subject VARCHAR(255) NOT NULL,
   level VARCHAR(255) NOT NULL,
-  toughness VARCHAR(255) NOT NULL
+  toughness VARCHAR(255) NOT NULL,
+  revision INTEGER,
+  previous_version_id INTEGER,
+  type VARCHAR(255)
 );
