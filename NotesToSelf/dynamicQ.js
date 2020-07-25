@@ -83,3 +83,4 @@ let dynObj = {};
 //   Calculate attempts
 //   generate share link
 //   generate description
+// new line
