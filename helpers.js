@@ -70,6 +70,13 @@ function htmlEncode(str) {
   });
 }
 
+function htmlDecode(str) {
+  return str.replace(/&#([0-9]{1,3});/gi, function(match, numStr) {
+      var num = parseInt(numStr, 10); // read num as normal number
+      return String.fromCharCode(num);
+  });
+}
+
 module.exports = {
   findUser,
   findURLSByUser,
@@ -77,5 +84,6 @@ module.exports = {
   generateRandomString,
   registerNewUser,
   validatePassword,
-  htmlEncode
+  htmlEncode,
+  htmlDecode
 }

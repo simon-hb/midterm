@@ -1,35 +1,36 @@
 
 
 $( document ).ready(function() {
-  console.log( "ready!" );
+  console.log( "register ready!" );
 
   // SHOW/HIDE LOGIN FORM
-  $("#login-button").click(() => {
-    console.log("Clicked")
-    if ($("#login-form-div").css("display") === 'block') {
-      $("#login-form-div").css("display", "none")
+  $("#register-button").click(() => {
+    if ($("#register-form-div").css("display") === 'block') {
+      $("#register-form-div").css("display", "none")
     } else {
-      console.log("trying to unhide")
-      $("#login-form-div").css("display", "block")
+      $("#register-form-div").css("display", "block")
     }
   });
 
 
 
-  $('#login-form').submit( function(event) {
+  $('#register-form').submit( function(event) {
     event.preventDefault();
 
     // console.log(this); // for form body
     // console.log(this.email.value); // value of email element in form - needs name parameter
     // console.log(this.email.value) // value of password element in form - needs name parameter
 
+    const username = this.username.value; // escapes malicious code
     const email = htmlEncode(this.email.value); // escapes malicious code
     const password = this.password.value; // escapes malicious code
-
-    const userLoginData = {email,password};    
+    const name = this.name.value; // escapes malicious code
+    
+    const userLoginData = {name, username, email,password};
+    
     $.ajax({
       type: "POST",
-      url: "/login",
+      url: "/register",
       data: userLoginData,
     })
       .then(function() {
