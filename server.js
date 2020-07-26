@@ -2,13 +2,13 @@
 require('dotenv').config();
 
 // Web server config
-const PORT       = process.env.PORT || 8080;
-const ENV        = process.env.ENV || "development";
-const express    = require("express");
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.ENV || "development";
+const express = require("express");
 const bodyParser = require("body-parser");
-const sass       = require("node-sass-middleware");
-const app        = express();
-const morgan     = require('morgan');
+const sass = require("node-sass-middleware");
+const app = express();
+const morgan = require('morgan');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -52,9 +52,11 @@ app.get("/", (req, res) => {
 
 
 
+// Separate them into separate routes files (see above).
 app.post("/login", (req, res) => {
   console.log("USER TRYING TO LOGIN", req.body);
-  
+  // check if user exists, validate credentials
+  //yes => login; no => error
 });
 
 app.listen(PORT, () => {

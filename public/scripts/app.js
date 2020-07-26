@@ -4,7 +4,8 @@ $(() => {
     url: "/api/users"
   }).done((users) => {
     for(user of users.users) {
-      $("<div>").text(user.name).appendTo($("body"));
+      // $("<div>").text(user.name).appendTo($("body"));
+      console.log(user);
     }
   });
 });
