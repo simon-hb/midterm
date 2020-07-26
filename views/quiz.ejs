@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
+
+  <title>Quiz</title>
+
+  <!-- TEMPLATED CSS -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <!-- tipQuizes CSS -->
+  <link rel="stylesheet" href="/styles/topQuizes.css" type="text/css" />
+
+   <!-- header CSS -->
+   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+
+  <!-- FOR NOW - PORT TO SCSS -->
+  <link rel="stylesheet" href="/styles/index.css" type="text/css" />
+
+  <!-- CSS -->
+  <!-- Add Material font (Roboto) and Material icon as needed -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Add Material CSS, replace Bootstrap CSS -->
+  <link href="../styles/material.min.css" rel="stylesheet">
+
+  <!-- TEMPLATED SCRIPTS -->
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <%- include('partials/_nav') %>
+  </nav>
+
+  <article class="quiz">
+    <h1>Quiz Name</h1>
+    <p class="quizDescription">
+      Pinterest retro palo santo keytar authentic flexitarian. Fanny pack pour-over occupy forage. Skateboard schlitz live-edge VHS hammock, umami chia ramps shaman wayfarers kinfolk brooklyn. Organic brunch single-origin coffee ugh knausgaard mustache listicle affogato marfa. Intelligentsia vape chicharrones freegan, dreamcatcher forage man braid edison bulb.
+    </p>
+    <h2>Question</h2>
+    <ul class="options">
+      <ol>Option</ol>
+      <ol>Option</ol>
+      <ol>Option</ol>
+      <ol>Option</ol>
+    </ul>
+  </article>
+
+
+
+  <!-- MATERIAL HELPERS - Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
+  <script src="../scripts/material.min.js"></script>
+</body>
+
+</html>
