@@ -10,7 +10,6 @@ const queryString = `
 SELECT name, created_by_id, is_published, is_private
 FROM quizzes
 WHERE is_published = true
-AND is_private = false
 LIMIT 10;
 `;
 const queryParams = [];
