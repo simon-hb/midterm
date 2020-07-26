@@ -7,10 +7,12 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-INSERT INTO quizzes (creator_id, name, image_url, description, is_private, is_published, url, subject, level, toughness)
-Values (9, 'Parry''s Clover', 'http://dummyimage.com/176x135.png/ff4444/ffffff', 'Ut at dolor quis odio consequat varius. Integer ac leo.', false, true, '95Mp2w', 'Math', 'Elementary', 'Easy');
+INSERT INTO quizzes (created_by_id, name, image_url, description, is_private, is_published, url, subject, level, toughness, revision, previous_version_id, type)
+VALUES (2, 'TEST QUIZ', 'http://dummyimage.com/183x114.jpg/5fa2dd/ffffff', 'TEST QUIZ TEST QUIZ TEST QUIZ TEST QUIZ', true, true, '83Bx5b', 'Chemistry', 'High School', 'Easy', null, null, null);
 `;
 const queryParams = [];
+
+//this will successfully insert another quiz but does not console.log anything
 
 pool.query(queryString, queryParams)
 .then(res => {

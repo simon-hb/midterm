@@ -8,9 +8,11 @@ const pool = new Pool({
 });
 const queryString = `
 INSERT INTO users (username, password, email, name)
-Values ('bwentwortho', 'password', 'bwentwortho@so-net.ne.jp', 'Biron Wentworth');
+VALUES ('bwentwortho', 'password', 'bwentwortho@so-net.ne.jp', 'Biron Wentworth');
 `;
 const queryParams = [];
+
+//this will successfully insert another user but does not console.log anything
 
 pool.query(queryString, queryParams)
 .then(res => {

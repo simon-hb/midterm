@@ -7,9 +7,9 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-SELECT taker_id, quiz_id, date_taken, result
-FROM results
-WHERE taker_id = 1
+SELECT taken_by_id, quiz_id, (ended_at - started_at) AS duration, is_complete
+FROM quiz_responses
+WHERE taken_by_id = 1
 AND quiz_id = 1;
 `;
 const queryParams = [];
