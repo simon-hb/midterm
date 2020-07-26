@@ -7,13 +7,14 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-INSERT INTO quiz_questions (quiz_id, question_number, question, question_type)
-VALUES (20, 6, 'TEST QUESTION TEST QUESTION TEST QUESTION', 'Multiple Choice');
+DELETE FROM quiz_questions
+WHERE quiz_id = 1
+AND question_number = 5;
 `;
 
 const queryParams = [];
 
-//this will successfully insert another question to quiz but does not console.log anything
+//successfully deletes question. does not console log anything. test by running SELECT COUNT(*) FROM quiz_questions WHERE quiz_id = 1; in psql before and after
 
 pool.query(queryString, queryParams)
 .then(res => {

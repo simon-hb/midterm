@@ -7,13 +7,13 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-INSERT INTO quiz_questions (quiz_id, question_number, question, question_type)
-VALUES (20, 6, 'TEST QUESTION TEST QUESTION TEST QUESTION', 'Multiple Choice');
+DELETE FROM quizzes
+WHERE id = 1;
 `;
 
 const queryParams = [];
 
-//this will successfully insert another question to quiz but does not console.log anything
+//successfully deletes quiz. does not console log anything
 
 pool.query(queryString, queryParams)
 .then(res => {

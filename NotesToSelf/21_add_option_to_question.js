@@ -7,13 +7,13 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-INSERT INTO quiz_questions (quiz_id, question_number, question, question_type)
-VALUES (20, 6, 'TEST QUESTION TEST QUESTION TEST QUESTION', 'Multiple Choice');
+INSERT INTO question_options (quiz_id, quiz_question_id, answer, option_order, is_correct)
+VALUES (20, 5, 'E', 5, 'false');
 `;
 
 const queryParams = [];
 
-//this will successfully insert another question to quiz but does not console.log anything
+//this will successfully insert another option to question but does not console.log anything
 
 pool.query(queryString, queryParams)
 .then(res => {
