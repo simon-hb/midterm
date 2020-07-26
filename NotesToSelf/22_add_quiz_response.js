@@ -13,7 +13,7 @@ VALUES (1, 9, 6, '2020-07-25 05:28:43', '2020-07-25 05:54:08', false, 'TESTLINK'
 
 const queryParams = [];
 
-//this will successfully insert another option to question but does not console.log anything. test with SELECT * FROM quiz_responses WHERE id = 101;. end_date should be default null
+//this will successfully insert another option to question but does not console.log anything. test with SELECT * FROM quiz_responses WHERE id = 101;. end_date should be default null. Start date should be default Now():
 
 pool.query(queryString, queryParams)
 .then(res => {

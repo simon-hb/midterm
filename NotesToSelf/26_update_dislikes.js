@@ -15,7 +15,7 @@ AND user_id = 7;
 
 const queryParams = [];
 
-//successfully updates us_dislike. check by running SELECT is_dislike FROM likes WHERE quiz_id = 1 AND user_id = 7; in psql before and after running this file. and looking at 07_likes in seeds line 7
+//successfully updates is_dislike. check by running SELECT is_dislike FROM likes WHERE quiz_id = 1 AND user_id = 7; in psql before and after running this file. and looking at 07_likes in seeds line 7
 
 pool.query(queryString, queryParams)
 .then(res => {

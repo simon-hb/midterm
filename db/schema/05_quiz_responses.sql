@@ -4,8 +4,8 @@ CREATE TABLE quiz_responses (
   quiz_id INTEGER NOT NULL REFERENCES quizzes(id) ON DELETE CASCADE,
   taken_by_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   attempt_number INTEGER NOT NULL,
-  started_at TIMESTAMP NOT NULL,
-  ended_at TIMESTAMP NOT NULL,
+  started_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  ended_at TIMESTAMP DEFAULT NULL,
   is_complete BOOLEAN NOT NULL DEFAULT false,
   share_link VARCHAR(255) NOT NULL
 );

@@ -15,7 +15,7 @@ const queryParams = [];
 
 pool.query(queryString, queryParams)
 .then(res => {
-  const expectedResult = res.rows;
+  const expectedResult = res.rows[0];
   console.log(expectedResult);
   pool.end();
 });

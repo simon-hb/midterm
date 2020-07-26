@@ -10,7 +10,8 @@ const pool = new Pool({
 const queryString = `
 SELECT *
 FROM quizzes
-WHERE is_private = false;
+WHERE is_private = false
+AND is_published = true;
 `;
 const queryParams = [];
 
