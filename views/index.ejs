@@ -28,6 +28,11 @@
   <!-- TEMPLATED SCRIPTS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+
+
+  <!-- CUSTOM SCRIPTS -->
+  <!-- LOGIN -->
+  <script type="text/javascript" src="/scripts/login.js"></script>
 </head>
 
 <body>
@@ -49,7 +54,7 @@
      <div class="nav-utility-buttons">
       <ul class="nav justify-content-end">
         <li class="nav-item list-group-item-primary">
-          <a class="nav-link" href="#">LOGIN</a>
+          <a class="nav-link" id="login-button" href="#">LOGIN</a>
         </li>
         <li class="nav-item list-group-item-primary">
           <a class="nav-link" href="#">REGISTER</a>
@@ -62,7 +67,24 @@
     </div>
   </nav>
   
-  <div id="login-form"></div>
+  <div id="login-form-div" style="display: none;">
+    <form id="login-form">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 
 
 
@@ -75,8 +97,6 @@
 
   <!-- MATERIAL HELPERS - Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
   <script src="../scripts/material.min.js"></script>

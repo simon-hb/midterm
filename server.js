@@ -50,6 +50,13 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+
+
+app.post("/login", (req, res) => {
+  console.log("USER TRYING TO LOGIN", req.body);
+  
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
