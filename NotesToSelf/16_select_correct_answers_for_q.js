@@ -7,10 +7,13 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-SELECT taken_by_id, quiz_id, (ended_at - started_at) AS duration, is_complete
-FROM quiz_responses
-WHERE taken_by_id = 1
-AND quiz_id = 1;
+SELECT quizzes.name, quiz_questions.question_number, question_options.answer
+FROM question_options
+JOIN quiz_questions ON quiz_questions.id = quiz_question_id
+JOIN quizzes ON quizzes.id = question_options.quiz_id
+WHERE question_options.is_correct = true
+AND quizzes.id = 1
+ORDER BY quiz_questions.question_number;
 `;
 const queryParams = [];
 

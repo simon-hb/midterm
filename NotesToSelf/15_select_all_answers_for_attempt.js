@@ -7,9 +7,8 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-SELECT response_answers.quiz_response_id, response_answers.quiz_question_id, response_answers.answer_id, question_options.answer AS correct_answer
+SELECT response_answers.quiz_response_id, response_answers.quiz_question_id, response_answers.answer_id AS selected_answer
 FROM response_answers
-JOIN question_options ON question_options.id = answer_id
 WHERE quiz_response_id = 2
 ORDER BY quiz_question_id;
 `;
