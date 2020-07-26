@@ -8,7 +8,7 @@ const pool = new Pool({
 });
 const queryString = `
 SELECT id, quiz_id , question
-FROM trivia_questions
+FROM quiz_questions
 WHERE quiz_id = 11;
 `;
 const queryParams = [];

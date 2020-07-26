@@ -7,7 +7,11 @@ const pool = new Pool({
   host: 'localhost',
   database: 'midterm'
 });
-const queryString = `SELECT * FROM quizzes WHERE is_private = false;`;
+const queryString = `
+SELECT *
+FROM quizzes
+WHERE is_private = false;
+`;
 const queryParams = [];
 
 pool.query(queryString, queryParams)

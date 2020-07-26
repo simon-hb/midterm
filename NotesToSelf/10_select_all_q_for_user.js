@@ -9,7 +9,7 @@ const pool = new Pool({
 const queryString = `
 SELECT users.id, quizzes.name
 FROM users
-JOIN quizzes on creator_id = users.id
+JOIN quizzes on created_by_id = users.id
 WHERE users.id = 3;
 `;
 const queryParams = [];
