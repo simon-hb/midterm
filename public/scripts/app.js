@@ -1,3 +1,5 @@
+// CALLED ON views>index.ejs and document on ready queries the db and iterates through the object
+
 $(() => {
   $.ajax({
     method: "GET",

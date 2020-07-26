@@ -1,3 +1,5 @@
+
+
 $( document ).ready(function() {
   console.log( "ready!" );
 
@@ -21,23 +23,20 @@ $( document ).ready(function() {
     // console.log(this.email.value); // value of email element in form - needs name parameter
     // console.log(this.email.value) // value of password element in form - needs name parameter
 
-    const email = this.email.value;
-    const password = this.password.value;
+    const email = htmlEncode(this.email.value); // escapes malicious code
+    const password = this.password.value; // escapes malicious code
 
-    const userLoginData = {email,password};
-    console.log(userLoginData);
-
-    
+    const userLoginData = {email,password};    
     $.ajax({
       type: "POST",
       url: "/login",
       data: userLoginData,
     })
-      .done(function() {
+      .then(function() {
         alert( "second success" );
       })
-      .fail(function() {
-        alert( "error" );
+      .fail(function(error) {
+        console.log( "error", error );
       })
     
   });
@@ -47,3 +46,10 @@ $( document ).ready(function() {
 
 
 }); // document ready
+
+
+function htmlEncode(str) {
+  return String(str).replace(/[^\w. ]/gi, function (c) {
+    return '&#' + c.charCodeAt(0) + ';';
+  });
+}
