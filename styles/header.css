@@ -1,0 +1,18 @@
+section.topQuizes > div {
+  padding: 0 0 4%;
+  height: 45 vh;
+}
+
+section.header {
+  position: relative;
+  text-align: center;
+  height: 30 vh;
+  padding: 0 0 4%;
+}
+
+section.header > h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
