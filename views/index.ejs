@@ -7,16 +7,13 @@
 
   <title>Inquizitive</title>
 
+  <!-- Add Material CSS, replace Bootstrap CSS -->
+  <link href="/vendor/material.min.css" rel="stylesheet">
+
   <!-- TEMPLATED CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
-  <!-- tipQuizes CSS -->
-  <link rel="stylesheet" href="/styles/topQuizes.css" type="text/css" />
-
-   <!-- header CSS -->
-   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
 
   <!-- FOR NOW - PORT TO SCSS -->
   <link rel="stylesheet" href="/styles/index.css" type="text/css" />
@@ -28,12 +25,17 @@
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!-- Add Material CSS, replace Bootstrap CSS -->
-  <link href="/styles/material.min.css" rel="stylesheet">
 
   <!-- TEMPLATED SCRIPTS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+
+
+  <!-- CUSTOM SCRIPTS -->
+  <!-- LOGIN -->
+  <script type="text/javascript" src="/scripts/login.js"></script>
+  <script type="text/javascript" src="/scripts/register.js"></script>
+
 </head>
 
 <body>
@@ -42,12 +44,12 @@
   </nav>
   <div id="login-form"></div>
 
-  <section class="header">
+  <div class="header">
     <h1>inquizitive</h1>
     <div>
       <a href="https://placeholder.com"><img src="https://via.placeholder.com/580X400"></a>
     </div>
-  </section>
+  </div>
 
   <section class="topQuizes">
     <div class="topQ">
@@ -61,19 +63,8 @@
     </div>
   </section>
 
-
-
-
-
-
-
-
-
-
-  <!-- MATERIAL HELPERS - Optional JavaScript -->
+    <!-- MATERIAL HELPERS - Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
   <script src="../scripts/material.min.js"></script>

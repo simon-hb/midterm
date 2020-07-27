@@ -11,4 +11,34 @@ body {
     width: 100%;
     height: 25%
   }
+
+  section.topQuizes > div {
+    height: 15%;
+    padding: 0 0 4%;
+  }
+
+  section.topQuizes > div {
+    padding: 0 0 4%;
+    // height: 45vh;
+  }
+
+  div.header {
+    margin: 0;
+    position: relative;
+    text-align: center;
+    padding: 0 0 4%;
+  }
+
+  div.header > h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .publicQuizes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
