@@ -10,6 +10,8 @@ const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
 
+const {findUserByCookieID} = require("./helpers")
+
 
 const bcrypt = require('bcrypt');
 
@@ -60,7 +62,25 @@ app.use("/register", registersRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  const cookieUserId = req.session.user_id;
+
+  db.query(`SELECT * FROM users;`)
+  .then(data => {
+    const users = data.rows;
+    const checkUser = findUserByCookieID(req.session.user_id, users);
+    const templateVars = {
+      user: checkUser,
+      page: req.url
+    }
+    res.render("index", templateVars);
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  })
+
+
 });
 
 

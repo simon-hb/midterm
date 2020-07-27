@@ -26,7 +26,7 @@ module.exports = (db) => {
 
           if (emailPasswordCheck) {
             // let userID = checkUser.id;
-            console.log(users);
+            // console.log(users);
             req.session.user_id = checkUser.id;
             res.redirect("/");
           }

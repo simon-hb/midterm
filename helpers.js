@@ -24,6 +24,15 @@ const findUser = (emailID, users) => {
   return false;
 }
 
+const findUserByCookieID = (id, users) => {
+  for (const user of users) {
+    if (user.id === id) {
+      return user;
+    }
+  }
+  return false;
+}
+
 // registers new user is database when called
 const registerNewUser = (email, password, users) => {
   const newUserID = generateRandomString();
@@ -79,6 +88,7 @@ function htmlDecode(str) {
 
 module.exports = {
   findUser,
+  findUserByCookieID,
   findURLSByUser,
   generateFormattedDate,
   generateRandomString,
