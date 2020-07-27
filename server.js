@@ -2,13 +2,24 @@
 require('dotenv').config();
 
 // Web server config
-const PORT       = process.env.PORT || 8080;
-const ENV        = process.env.ENV || "development";
-const express    = require("express");
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.ENV || "development";
+const express = require("express");
 const bodyParser = require("body-parser");
-const sass       = require("node-sass-middleware");
-const app        = express();
-const morgan     = require('morgan');
+const sass = require("node-sass-middleware");
+const app = express();
+const morgan = require('morgan');
+
+const {findUserByCookieID} = require("./helpers")
+
+
+const bcrypt = require('bcrypt');
+
+var cookieSession = require('cookie-session')
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}));
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -35,11 +46,17 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
+const loginsRoutes = require("./routes/login");
+const logoutsRoutes = require("./routes/logout");
+const registersRoutes = require("./routes/register");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
+app.use("/login", loginsRoutes(db));
+app.use("/logout", logoutsRoutes(db));
+app.use("/register", registersRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
@@ -47,7 +64,25 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  const cookieUserId = req.session.user_id;
+
+  db.query(`SELECT * FROM users;`)
+  .then(data => {
+    const users = data.rows;
+    const checkUser = findUserByCookieID(req.session.user_id, users);
+    const templateVars = {
+      user: checkUser,
+      page: req.url
+    }
+    res.render("index", templateVars);
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  })
+
+
 });
 
 app.listen(PORT, () => {

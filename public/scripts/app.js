@@ -1,10 +1,13 @@
+// CALLED ON views>index.ejs and document on ready queries the db and iterates through the object
+
 $(() => {
   $.ajax({
     method: "GET",
     url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
+  }).done((quizzes) => {
+    for(quiz of quizzes.quizzes) {
+      $("<div>").text(quiz.name).appendTo($("body"));
+      // console.log(quiz.name);
     }
-  });;
+  });
 });
