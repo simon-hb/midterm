@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $(document).ready(function () {
 
   $("#login-form-div").css("display", "none")
@@ -59,3 +60,39 @@ function htmlEncode(str) {
     return '&#' + c.charCodeAt(0) + ';';
   });
 }
+=======
+$(() => {
+  $("#login").click(function () {
+    $.ajax({
+      method: "GET",
+      url: "/api/users"
+    }).done((users) => {
+      console.log(users);
+      for (user of users.users) {
+        $("login").text(user.name).appendTo($("body"));
+      }
+    });
+  })
+});
+
+
+$(document).ready(() => {
+  $('#login').click(() => {
+    $.ajax({
+      method: "GET",
+      url: "/login",
+      data: {
+        email: $("#email").val(),
+        password: $("#password").val()
+      },
+      success: ((data) => {
+        if (data === 'Correct') {
+          $(".login-form").ejs;
+        } else {
+          alert("Error");
+        }
+      })
+    })
+  })
+})
+>>>>>>> 44271376733bc383268e1ab9119ec4651fd4da4f
