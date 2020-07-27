@@ -76,6 +76,10 @@ app.get("/myDrafts", (req, res) => {
   res.render("drafts")
 })
 
+app.get("/MyPublished", (req, res) => {
+  res.render("myPublished")
+})
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
