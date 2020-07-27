@@ -20,7 +20,7 @@ module.exports = (db) => {
         const checkUser = findUser(req.body.email, users);
         if (checkUser) {
           console.log("CU", checkUser);
-          
+
           const emailPasswordCheck = validatePassword(checkUser, req.body.email, req.body.password);
           console.log("CP", emailPasswordCheck);
 
@@ -30,7 +30,7 @@ module.exports = (db) => {
             req.session.user_id = checkUser.id;
             res.redirect("/");
           }
-        } 
+        }
       })
       .catch(err => {
         res

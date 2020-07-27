@@ -64,6 +64,12 @@ app.get("/", (req, res) => {
 });
 
 
+// DELETE AFTER
+app.get("/quiz", (req, res) => {
+  res.render("quiz")
+})
+
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

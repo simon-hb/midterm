@@ -1,5 +1,3 @@
-
-
 $( document ).ready(function() {
   console.log( "ready!" );
 
@@ -26,7 +24,7 @@ $( document ).ready(function() {
     const email = htmlEncode(this.email.value); // escapes malicious code
     const password = this.password.value; // escapes malicious code
 
-    const userLoginData = {email,password};    
+    const userLoginData = {email,password};
     $.ajax({
       type: "POST",
       url: "/login",
@@ -38,7 +36,7 @@ $( document ).ready(function() {
       .fail(function(error) {
         console.log( "error", error );
       })
-    
+
   });
 
 
