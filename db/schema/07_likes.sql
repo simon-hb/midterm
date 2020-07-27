@@ -4,5 +4,7 @@ CREATE TABLE likes (
   quiz_id INTEGER NOT NULL REFERENCES quizzes(id) ON DELETE CASCADE,
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   is_like BOOLEAN DEFAULT false,
-  is_dislike BOOLEAN DEFAULT false
+  is_dislike BOOLEAN DEFAULT false,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
