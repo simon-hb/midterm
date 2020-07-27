@@ -7,13 +7,15 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-INSERT INTO quiz_questions (quiz_id, question_number, question, question_type)
-VALUES (20, 6, 'TEST QUESTION TEST QUESTION TEST QUESTION', 'Multiple Choice');
+UPDATE likes
+SET is_dislike = true
+WHERE quiz_id = 1
+AND user_id = 7;
 `;
 
 const queryParams = [];
 
-//this will successfully insert another question to quiz but does not console.log anything
+//successfully updates is_dislike. check by running SELECT is_dislike FROM likes WHERE quiz_id = 1 AND user_id = 7; in psql before and after running this file. and looking at 07_likes in seeds line 7
 
 pool.query(queryString, queryParams)
 .then(res => {

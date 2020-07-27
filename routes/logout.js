@@ -6,20 +6,17 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
+
+const { findUser, validatePassword } = require("../helpers");
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM quizzes;`)
-      .then(data => {
-        const quizzes = data.rows;
-        res.json({ quizzes });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+  router.post("/", (req, res) => {
+    console.log("posted logout")
+    req.session.user_id = null;
+    res.redirect("/");
   });
+
   return router;
 };
+

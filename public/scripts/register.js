@@ -32,6 +32,9 @@ $( document ).ready(function() {
       type: "POST",
       url: "/register",
       data: userLoginData,
+      success: function() {   
+        location.reload(); 
+      }
     })
       .then(function() {
         alert( "second success" );

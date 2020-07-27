@@ -7,15 +7,17 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-SELECT *
-FROM quizzes
+DELETE FROM quizzes
 WHERE id = 1;
 `;
+
 const queryParams = [];
+
+//successfully deletes quiz. does not console log anything
 
 pool.query(queryString, queryParams)
 .then(res => {
-  const expectedResult = res.rows[0];
+  const expectedResult = res.rows[0]
   console.log(expectedResult);
   pool.end();
 });

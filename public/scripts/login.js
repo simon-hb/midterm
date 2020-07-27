@@ -1,45 +1,71 @@
+<<<<<<< HEAD
 $( document ).ready(function() {
   console.log( "ready!" );
+=======
+$(document).ready(function () {
+
+  $("#login-form-div").css("display", "none")
+>>>>>>> staging
 
   // SHOW/HIDE LOGIN FORM
-  $("#login-button").click(() => {
-    console.log("Clicked")
+  const showHideLogin = () => {
     if ($("#login-form-div").css("display") === 'block') {
       $("#login-form-div").css("display", "none")
     } else {
-      console.log("trying to unhide")
       $("#login-form-div").css("display", "block")
     }
+  }
+
+
+  $("#login-button").click(() => {
+    showHideLogin()
   });
 
-
-
-  $('#login-form').submit( function(event) {
+  $('#login-form').submit(function (event) {
     event.preventDefault();
-
-    // console.log(this); // for form body
-    // console.log(this.email.value); // value of email element in form - needs name parameter
-    // console.log(this.email.value) // value of password element in form - needs name parameter
-
     const email = htmlEncode(this.email.value); // escapes malicious code
     const password = this.password.value; // escapes malicious code
 
+<<<<<<< HEAD
     const userLoginData = {email,password};
     $.ajax({
+=======
+    const userLoginData = { email, password };
+    const ajaxReq = $.ajax({
+>>>>>>> staging
       type: "POST",
       url: "/login",
       data: userLoginData,
     })
-      .then(function() {
-        alert( "second success" );
+      .done(function (output, status) {
+        const userValidatedHeader = ajaxReq.getResponseHeader('userValidated') === "true";
+        const passwordValidatedHeader = ajaxReq.getResponseHeader('passwordValidated') === "true";
+        
+        console.log()
+
+        if (userValidatedHeader && passwordValidatedHeader) {
+          window.location = '/';
+
+        } else if (!userValidatedHeader) {
+          alert("WHO ARE YOU?!")
+        } else if (!passwordValidatedHeader) {
+          alert("GET YOUR STUFF TOGETHER!")
+        }
       })
+<<<<<<< HEAD
       .fail(function(error) {
         console.log( "error", error );
       })
 
   });
+=======
+      .fail(function (error) {
+        console.log("error", error);
+>>>>>>> staging
 
+      });
 
+  }) // login form on submit
 
 
 

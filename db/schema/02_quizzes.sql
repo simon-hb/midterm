@@ -13,5 +13,7 @@ CREATE TABLE quizzes (
   toughness VARCHAR(255) NOT NULL,
   revision INTEGER,
   previous_version_id INTEGER,
-  type VARCHAR(255)
+  type VARCHAR(255),
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );

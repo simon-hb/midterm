@@ -1,0 +1,115 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">inquizitive</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- NAV OPTIONS FOR PAGES -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="#">Features</a>
+        <a class="nav-item nav-link" href="#">Pricing</a>
+      </div>
+      <% if (!user) {%>
+      <div class="nav-utility-buttons">
+        <ul class="nav justify-content-end">
+          <li class="nav-item list-group-item-primary">
+            <!-- <a class="nav-link" id="login-button" href="/login">LOGIN</a> -->
+            <!-- TO REDIRECT-->
+            <a class="nav-link" id="login-button">LOGIN</a> <!-- FOR SPA-->
+          </li>
+          <li class="nav-item list-group-item-primary">
+            <a class="nav-link" id="register-button" href="#">REGISTER</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><span class="material-icons">search</span></a>
+          </li>
+        </ul>
+      </div>
+      <%} else { %>
+      <div class="nav-utility-buttons">
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="#"><span class="material-icons">search</span></a>
+          </li>
+
+          <li class="nav-item">
+            <form class="form-inline" id="logout-form">
+              <div class="input-group mr-sm-20">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Logged In As: <%= user.name%></div>
+                </div>
+                <button type="submit" class="btn btn-danger">Logout</button>
+              </div>
+            </form>
+          </li>
+        </ul>
+      </div>
+
+      <% } %>
+
+
+
+      <!-- NAV OPTIONS FOR LOGIN/REGISTER/SEARCH -->
+
+
+
+    </div>
+  </nav>
+
+  <div id="login-form-div" style="display: none;">
+    <form id="login-form">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary">LOGIN</button>
+    </form>
+  </div>
+
+
+  <div id="register-form-div" style="display: none;">
+    <form id="register-form">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Please Enter Your Name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Username</label>
+        <input type="text" name="username" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp"
+          placeholder="Enter a Username">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" name="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp"
+          placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+      </div>
+
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck2">
+        <label class="form-check-label" for="exampleCheck2">Check me out</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+  </div>
+</header>

@@ -24,6 +24,15 @@ const findUser = (emailID, users) => {
   return false;
 }
 
+const findUserByCookieID = (id, users) => {
+  for (const user of users) {
+    if (user.id === id) {
+      return user;
+    }
+  }
+  return false;
+}
+
 // registers new user is database when called
 const registerNewUser = (email, password, users) => {
   const newUserID = generateRandomString();
@@ -35,20 +44,11 @@ const registerNewUser = (email, password, users) => {
 
 // validates user's email and password combination and return truthy/falsy
 const validatePassword = (userObj, email, passwordToCheck) => {
-  console.log(userObj);
-  console.log(userObj.email);
-
-  console.log(email);
-  console.log("PWTC:", passwordToCheck);
-
   const encodedUserEmail = htmlEncode(userObj.email);
 
-
-  if (encodedUserEmail === email && passwordToCheck === userObj.password) {
-    console.log("got true")
+  if (encodedUserEmail === email && bcrypt.compareSync(passwordToCheck, userObj.password)) {
     return true;
   }
-  console.log("got false")
   return false;
 }
 
@@ -79,6 +79,7 @@ function htmlDecode(str) {
 
 module.exports = {
   findUser,
+  findUserByCookieID,
   findURLSByUser,
   generateFormattedDate,
   generateRandomString,

@@ -7,13 +7,13 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-INSERT INTO quiz_questions (quiz_id, question_number, question, question_type)
-VALUES (20, 6, 'TEST QUESTION TEST QUESTION TEST QUESTION', 'Multiple Choice');
+INSERT INTO likes (quiz_id, user_id, is_like, is_dislike)
+VALUES (11, 1, false, false);
 `;
 
 const queryParams = [];
 
-//this will successfully insert another question to quiz but does not console.log anything
+//successfully adds row to likes_table. check by running SELECT COUNT(*) FROM likes WHERE quiz_id = 11; in psql before and after running this file. does not console log anything. a row should be added each time a user finishes a quiz
 
 pool.query(queryString, queryParams)
 .then(res => {

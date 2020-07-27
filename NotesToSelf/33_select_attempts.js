@@ -7,9 +7,10 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-SELECT *
-FROM quizzes
-WHERE id = 1;
+SELECT COUNT(*) AS attempts
+FROM quiz_responses
+WHERE quiz_id = 1
+AND taken_by_id = 1;
 `;
 const queryParams = [];
 

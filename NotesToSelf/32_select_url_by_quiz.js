@@ -7,7 +7,7 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-SELECT *
+SELECT url
 FROM quizzes
 WHERE id = 1;
 `;

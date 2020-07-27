@@ -10,6 +10,9 @@ const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
 
+const {findUserByCookieID} = require("./helpers")
+
+
 const bcrypt = require('bcrypt');
 
 var cookieSession = require('cookie-session')
@@ -44,6 +47,7 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const loginsRoutes = require("./routes/login");
+const logoutsRoutes = require("./routes/logout");
 const registersRoutes = require("./routes/register");
 
 // Mount all resource routes
@@ -51,6 +55,7 @@ const registersRoutes = require("./routes/register");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/login", loginsRoutes(db));
+app.use("/logout", logoutsRoutes(db));
 app.use("/register", registersRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
@@ -59,8 +64,23 @@ app.use("/register", registersRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
-});
+  const cookieUserId = req.session.user_id;
+
+  db.query(`SELECT * FROM users;`)
+  .then(data => {
+    const users = data.rows;
+    const checkUser = findUserByCookieID(req.session.user_id, users);
+    const templateVars = {
+      user: checkUser,
+      page: req.url
+    }
+    res.render("index", templateVars);
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  })
 
 
 // DELETE AFTER
@@ -83,6 +103,7 @@ app.get("/MyPublished", (req, res) => {
 app.get("/EditMyQuiz", (req, res) => {
   res.render("editDrafts.ejs")
 })
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

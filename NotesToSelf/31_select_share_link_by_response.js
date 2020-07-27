@@ -7,8 +7,8 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-SELECT *
-FROM quizzes
+SELECT share_link
+FROM quiz_responses
 WHERE id = 1;
 `;
 const queryParams = [];

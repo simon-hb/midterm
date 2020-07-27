@@ -4,10 +4,10 @@ $(() => {
   $.ajax({
     method: "GET",
     url: "/api/users"
-  }).done((users) => {
-    for(user of users.users) {
-      // $("<div>").text(user.name).appendTo($("body"));
-      console.log(user);
+  }).done((quizzes) => {
+    for(quiz of quizzes.quizzes) {
+      $("<div>").text(quiz.name).appendTo($("body"));
+      // console.log(quiz.name);
     }
   });
 });

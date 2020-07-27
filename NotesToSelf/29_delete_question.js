@@ -7,15 +7,18 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-SELECT *
-FROM quizzes
-WHERE id = 1;
+DELETE FROM quiz_questions
+WHERE quiz_id = 1
+AND question_number = 5;
 `;
+
 const queryParams = [];
+
+//successfully deletes question. does not console log anything. test by running SELECT COUNT(*) FROM quiz_questions WHERE quiz_id = 1; in psql before and after
 
 pool.query(queryString, queryParams)
 .then(res => {
-  const expectedResult = res.rows[0];
+  const expectedResult = res.rows[0]
   console.log(expectedResult);
   pool.end();
 });
