@@ -24,6 +24,7 @@ module.exports = (db) => {
         const checkUser = findUser(req.body.email, users);
         if (checkUser) {
           console.log("CU", checkUser);
+          res.set("userValidated", "true"); // if found user set Header
 
           const emailPasswordCheck = validatePassword(checkUser, req.body.email, req.body.password);
           console.log("CP", emailPasswordCheck);
@@ -31,15 +32,25 @@ module.exports = (db) => {
           if (emailPasswordCheck) {
             // let userID = checkUser.id;
             // console.log(users);
+            console.log("password checked and matches");
+
             req.session.user_id = checkUser.id;
-            res.set("userValidated", "true");
+            res.set("passwordValidated", "true");
             res.end();
+          } else { // if user exists but password doesnt match
+            res.set("passwordValidated", "nope"); 
+            console.log("PV HDR", res.get("passwordValidated")); 
+            res.end();
+
           }
         } else {
           res.set("userValidated", "nope");
-          res.end();
           
         }
+        
+        res.send();
+        
+
       })
       .catch(err => {
         res

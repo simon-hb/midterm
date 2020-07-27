@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $(document).ready(function () {
 
   $("#login-form-div").css("display", "none")
@@ -19,11 +18,6 @@ $(document).ready(function () {
 
   $('#login-form').submit(function (event) {
     event.preventDefault();
-
-    // console.log(this); // for form body
-    // console.log(this.email.value); // value of email element in form - needs name parameter
-    // console.log(this.email.value) // value of password element in form - needs name parameter
-
     const email = htmlEncode(this.email.value); // escapes malicious code
     const password = this.password.value; // escapes malicious code
 
@@ -34,21 +28,26 @@ $(document).ready(function () {
       data: userLoginData,
     })
       .done(function (output, status) {
-        if (ajaxReq.getResponseHeader('userValidated') === "true") {
+        const userValidatedHeader = ajaxReq.getResponseHeader('userValidated') === "true";
+        const passwordValidatedHeader = ajaxReq.getResponseHeader('passwordValidated') === "true";
+        
+        console.log()
+
+        if (userValidatedHeader && passwordValidatedHeader) {
           window.location = '/';
-        } else (
-          alert("SERIOUSLY?! GET YOUR PASSWORD RIGHT!")
-        )
 
-
+        } else if (!userValidatedHeader) {
+          alert("WHO ARE YOU?!")
+        } else if (!passwordValidatedHeader) {
+          alert("GET YOUR STUFF TOGETHER!")
+        }
       })
       .fail(function (error) {
         console.log("error", error);
-      })
 
-  });
+      });
 
-
+  }) // login form on submit
 
 
 
@@ -60,39 +59,3 @@ function htmlEncode(str) {
     return '&#' + c.charCodeAt(0) + ';';
   });
 }
-=======
-$(() => {
-  $("#login").click(function () {
-    $.ajax({
-      method: "GET",
-      url: "/api/users"
-    }).done((users) => {
-      console.log(users);
-      for (user of users.users) {
-        $("login").text(user.name).appendTo($("body"));
-      }
-    });
-  })
-});
-
-
-$(document).ready(() => {
-  $('#login').click(() => {
-    $.ajax({
-      method: "GET",
-      url: "/login",
-      data: {
-        email: $("#email").val(),
-        password: $("#password").val()
-      },
-      success: ((data) => {
-        if (data === 'Correct') {
-          $(".login-form").ejs;
-        } else {
-          alert("Error");
-        }
-      })
-    })
-  })
-})
->>>>>>> 44271376733bc383268e1ab9119ec4651fd4da4f
