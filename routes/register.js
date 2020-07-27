@@ -8,6 +8,8 @@
 const express = require('express');
 const router = express.Router();
 
+const bcrypt = require("bcrypt");
+
 const { findUser, htmlDecode } = require("../helpers");
 
 module.exports = (db) => {
@@ -26,8 +28,9 @@ module.exports = (db) => {
       }).then(bodyObject => {
         const canRegister = bodyObject.canRegister;
         const emailStr = htmlDecode(bodyObject.email);
+        const hashedPassword = bcrypt.hashSync(bodyObject.password, 10);
         if (canRegister) {
-          const queryParams = [bodyObject.username,bodyObject.password, emailStr, bodyObject.name]
+          const queryParams = [bodyObject.username,hashedPassword, emailStr, bodyObject.name]
            db.query(`
             insert into users (username, password, email, name) values ($1, $2, $3, $4) RETURNING *;
             `, queryParams).then(data => {

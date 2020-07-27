@@ -85,27 +85,6 @@ app.get("/", (req, res) => {
 
 });
 
-// app.get("/about", (req, res) => {
-//   const cookieUserId = req.session.user_id;
-
-//   db.query(`SELECT * FROM users;`)
-//   .then(data => {
-//     const users = data.rows;
-//     const checkUser = findUserByCookieID(req.session.user_id, users);
-//     const templateVars = {
-//       user: checkUser,
-//       page: req.url
-//     }
-//     res.render("index", templateVars);
-//   })
-//   .catch(err => {
-//     res
-//       .status(500)
-//       .json({ error: err.message });
-//   });
-// })
-
-
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

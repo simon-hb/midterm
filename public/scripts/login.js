@@ -1,8 +1,5 @@
-
-
 $(document).ready(function () {
-  console.log("ready!");
-  
+
   $("#login-form-div").css("display", "none")
 
   // SHOW/HIDE LOGIN FORM
@@ -20,7 +17,6 @@ $(document).ready(function () {
   });
 
   $('#login-form').submit(function (event) {
-    console.log("submitting")
     event.preventDefault();
 
     // console.log(this); // for form body
@@ -31,19 +27,17 @@ $(document).ready(function () {
     const password = this.password.value; // escapes malicious code
 
     const userLoginData = { email, password };
-    var xhr = $.ajax({
+    const ajaxReq = $.ajax({
       type: "POST",
       url: "/login",
       data: userLoginData,
     })
       .done(function (output, status) {
-        // alert( "second success" );
-        console.log(xhr.getResponseHeader("canRedirect"))
-        console.log("submitted");
-
-        if (xhr.getResponseHeader('canRedirect') === '1') {
+        if (ajaxReq.getResponseHeader('userValidated') === "true") {
           window.location = '/';
-        }
+        } else (
+          alert("SERIOUSLY?! GET YOUR PASSWORD RIGHT!")
+        )
 
 
       })
