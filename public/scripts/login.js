@@ -1,22 +1,26 @@
 
 
-$( document ).ready(function() {
-  console.log( "ready!" );
+$(document).ready(function () {
+  console.log("ready!");
+  
+  $("#login-form-div").css("display", "none")
 
   // SHOW/HIDE LOGIN FORM
-  $("#login-button").click(() => {
-    console.log("Clicked")
+  const showHideLogin = () => {
     if ($("#login-form-div").css("display") === 'block') {
       $("#login-form-div").css("display", "none")
     } else {
-      console.log("trying to unhide")
       $("#login-form-div").css("display", "block")
     }
+  }
+
+
+  $("#login-button").click(() => {
+    showHideLogin()
   });
 
-
-
-  $('#login-form').submit( function(event) {
+  $('#login-form').submit(function (event) {
+    console.log("submitting")
     event.preventDefault();
 
     // console.log(this); // for form body
@@ -26,22 +30,27 @@ $( document ).ready(function() {
     const email = htmlEncode(this.email.value); // escapes malicious code
     const password = this.password.value; // escapes malicious code
 
-    const userLoginData = {email,password};    
-    $.ajax({
+    const userLoginData = { email, password };
+    var xhr = $.ajax({
       type: "POST",
       url: "/login",
       data: userLoginData,
-      success: function() {   
-        location.reload();  
-    }
     })
-      .then(function() {
-        alert( "second success" );
+      .done(function (output, status) {
+        // alert( "second success" );
+        console.log(xhr.getResponseHeader("canRedirect"))
+        console.log("submitted");
+
+        if (xhr.getResponseHeader('canRedirect') === '1') {
+          window.location = '/';
+        }
+
+
       })
-      .fail(function(error) {
-        console.log( "error", error );
+      .fail(function (error) {
+        console.log("error", error);
       })
-    
+
   });
 
 
