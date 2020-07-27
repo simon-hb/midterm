@@ -10,7 +10,6 @@ const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
 
-
 const bcrypt = require('bcrypt');
 
 var cookieSession = require('cookie-session')
@@ -73,6 +72,9 @@ app.get("/publicQuizes", (req, res) => {
   res.render("publicQuizes")
 })
 
+app.get("/myDrafts", (req, res) => {
+  res.render("drafts")
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
