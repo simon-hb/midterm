@@ -6,7 +6,7 @@ section.topQuizes > div {
 section.header {
   position: relative;
   text-align: center;
-  height: 30 vh;
+  height: 30vh;
   padding: 0 0 4%;
 }
 
@@ -15,4 +15,9 @@ section.header > h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#navbarNavAltMarkup {
+  display: flex;
+  justify-content: center;
 }
