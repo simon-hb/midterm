@@ -80,6 +80,10 @@ app.get("/MyPublished", (req, res) => {
   res.render("myPublished")
 })
 
+app.get("/EditMyQuiz", (req, res) => {
+  res.render("editDrafts.ejs")
+})
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
