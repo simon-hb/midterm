@@ -65,7 +65,6 @@ app.use("/register", registersRoutes(db));
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   const cookieUserId = req.session.user_id;
-
   db.query(`SELECT * FROM users;`)
   .then(data => {
     const users = data.rows;
@@ -81,8 +80,6 @@ app.get("/", (req, res) => {
       .status(500)
       .json({ error: err.message });
   })
-
-
 });
 
 app.listen(PORT, () => {

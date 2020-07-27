@@ -15,42 +15,25 @@ const { findUser, validatePassword } = require("../helpers");
 module.exports = (db) => {
 
   router.post("/", (req, res) => {
-
-    console.log("inside login route:", req.body);
-
     db.query(`SELECT * FROM users;`)
       .then(data => {
+        const resultObject = {
+          userValidated: false,
+          passwordValidated: false
+        };
         const users = data.rows;
         const checkUser = findUser(req.body.email, users);
         if (checkUser) {
-          console.log("CU", checkUser);
-          res.set("userValidated", "true"); // if found user set Header
-
+          resultObject.userValidated = true;
+          console.log(resultObject);
           const emailPasswordCheck = validatePassword(checkUser, req.body.email, req.body.password);
-          console.log("CP", emailPasswordCheck);
-
           if (emailPasswordCheck) {
-            // let userID = checkUser.id;
-            // console.log(users);
-            console.log("password checked and matches");
-
             req.session.user_id = checkUser.id;
-            res.set("passwordValidated", "true");
-            res.end();
-          } else { // if user exists but password doesnt match
-            res.set("passwordValidated", "nope"); 
-            console.log("PV HDR", res.get("passwordValidated")); 
-            res.end();
-
+            resultObject.passwordValidated = true
           }
-        } else {
-          res.set("userValidated", "nope");
-          
         }
-        
-        res.send();
-        
 
+        res.json(resultObject);
       })
       .catch(err => {
         res

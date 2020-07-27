@@ -16,8 +16,8 @@ const generateFormattedDate = () => {
 // checks to see if user exists and returns the user object if found or falsy value
 const findUser = (emailID, users) => {
   for (const userID in users) {
-    const encodedUserEmail = htmlEncode(users[userID].email)
-    if ( encodedUserEmail === emailID) {
+    const userEmail = users[userID].email;
+    if ( userEmail === emailID) {
       return users[userID];
     }
   }
@@ -44,9 +44,9 @@ const registerNewUser = (email, password, users) => {
 
 // validates user's email and password combination and return truthy/falsy
 const validatePassword = (userObj, email, passwordToCheck) => {
-  const encodedUserEmail = htmlEncode(userObj.email);
+  const userEmail = userObj.email;
 
-  if (encodedUserEmail === email && bcrypt.compareSync(passwordToCheck, userObj.password)) {
+  if (userEmail === email && bcrypt.compareSync(passwordToCheck, userObj.password)) {
     return true;
   }
   return false;
