@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS quiz_questions CASCADE;
+CREATE TABLE quiz_questions (
+  id SERIAL PRIMARY KEY NOT NULL,
+  quiz_id INTEGER NOT NULL REFERENCES quizzes(id) ON DELETE CASCADE,
+  question_number SMALLINT NOT NULL,
+  question TEXT NOT NULL,
+  question_type VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
