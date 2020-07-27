@@ -7,21 +7,6 @@ body {
     color: #244751;
   }
 
-  .topQ {
-    width: 100%;
-    height: 25%
-  }
-
-  section.topQuizes > div {
-    height: 15%;
-    padding: 0 0 4%;
-  }
-
-  section.topQuizes > div {
-    padding: 0 0 4%;
-    // height: 45vh;
-  }
-
   div.header {
     margin: 0;
     position: relative;
@@ -34,12 +19,6 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-
-  .publicQuizes {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 
 }

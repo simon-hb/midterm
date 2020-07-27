@@ -92,6 +92,10 @@ app.get("/publicQuizes", (req, res) => {
   res.render("publicQuizes")
 })
 
+app.get("/", (req, res) => {
+  res.render("index");
+})
+
 app.get("/myDrafts", (req, res) => {
   res.render("drafts")
 })
