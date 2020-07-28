@@ -1,6 +1,19 @@
-.publicQuizes {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.publicQuizesRight {
+  float: right;
 }
 
+.publicQuizesLeft {
+  float: left;
+}
+
+.pubQR {
+  margin: 3% 0 0 3%;
+}
+
+.pubQL {
+  margin: 3% 0 0 3%;
+}
+
+body {
+  background-color: #f3e9dc
+}

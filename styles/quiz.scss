@@ -1,0 +1,60 @@
+body {
+  background-color: #ede7e3;
+}
+
+.content {
+  margin: 4%;
+}
+
+.btn {
+  background-color: #5f506b;
+}
+
+.title {
+  display: block;
+  color: #22333b;
+  border-bottom: .1em solid #81b29a;
+  width: 70%;
+  padding-bottom: 2%;
+  font-size: 2em;
+}
+
+.question {
+  border: .2em solid #81b29a;
+  padding: 4%;
+  margin-bottom: 4%;
+}
+
+h2.title {
+  border-bottom: .1em solid #81b29a;
+  width: 100%;
+  padding-bottom: 2%;
+}
+
+h3.title {
+  border-bottom: none
+}
+
+form.options {
+  margin: 8% 0;
+  color: #22333b;
+}
+
+input[type="radio"] {
+  margin: 2% 0 0;
+}
+
+// show on quiz submission
+section.result {
+  margin-top: 8%;
+  border: .2em solid #81b29a;
+  padding: 4%;
+  margin-bottom: 4%;
+  // display: none;
+}
+
+span.material-icons {
+  float: right;
+  font-size: 3em;
+  color: #e71d36;
+}

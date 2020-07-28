@@ -5,12 +5,20 @@
   <meta charset="utf-8">
   <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
 
-  <title>Quiz</title>
+  <title>PublicQuizes</title>
+
+  <!-- Add Material CSS, replace Bootstrap CSS -->
+  <link href="/vendor/material.min.css" rel="stylesheet">
 
   <!-- TEMPLATED CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="/styles/index.css" type="text/css" /> -->
+  <link rel="stylesheet" href="/styles/quiz.css" type="text/css" />
+
+  <!-- FOR NOW - PORT TO SCSS -->
+  <link rel="stylesheet" href="/customStyles/index.css" type="text/css" />
 
   <!-- CSS -->
   <!-- Add Material font (Roboto) and Material icon as needed -->
@@ -20,11 +28,21 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- Add Material CSS, replace Bootstrap CSS -->
-  <link href="../styles/material.min.css" rel="stylesheet">
+  <!-- <link href="/customStyles/material.min.css" rel="stylesheet"> -->
 
   <!-- TEMPLATED SCRIPTS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+
+
+  <!-- CUSTOM SCRIPTS -->
+  <!-- LOGIN -->
+  <!-- <script type="text/javascript" src="/scripts/register.js"></script>
+  <script type="text/javascript" src="/scripts/login.js"></script>
+  <script type="text/javascript" src="/scripts/logout.js"></script>
+  <script type="text/javascript" src="/scripts/index.js"></script> -->
+
+
 </head>
 
 <body>
@@ -32,35 +50,42 @@
     <%- include('partials/_nav') %>
   </nav>
 
+  <article class="content">
   <!-- Is it a form which a user can submit??? -->
   <article class="quiz">
-    <h1>Quiz Name</h1>
+    <h1 class="title">Quiz Name</h1>
     <p class="quizDescription">
       Pinterest retro palo santo keytar authentic flexitarian. Fanny pack pour-over occupy forage. Skateboard schlitz live-edge VHS hammock, umami chia ramps shaman wayfarers kinfolk brooklyn. Organic brunch single-origin coffee ugh knausgaard mustache listicle affogato marfa. Intelligentsia vape chicharrones freegan, dreamcatcher forage man braid edison bulb.
     </p>
-    <h2>Question</h2>
-    <ul class="options">
-      <ol>Option</ol>
-      <ol>Option</ol>
-      <ol>Option</ol>
-      <ol>Option</ol>
-    </ul>
+    <section class="question">
+    <h2 class="title">Question</h2>
+    <form action="" class="options">
+      <input type="radio"> Option 1<br>
+      <input type="radio"> Option 2<br>
+      <input type="radio"> Option 3<br>
+      <input type="radio"> Option 4
+    </form>
+    <button class="btn btn-primary my-1" id="btn-submit" type="button">SUBMIT</button>
+    <span class="material-icons">favorite</span>
+  </section>
   </article>
 
   <!-- +more questions -->
 
-  <button class="btn btn-primary my-1" type="button">SUBMIT</button>
+
 
 
   <!-- Quiz RESULTS to appear on submission of quiz answers -->
   <section class="result">
-  <h1>Quiz Name</h1>
-  <h3>Your Score</h3>
+  <h1 class="title">Quiz Name</h1>
+  <h3 class="title">Your Score</h3>
   <p class="result">
     Retro migas tote bag, everyday carry jean shorts la croix hella williamsburg blue bottle offal lo-fi disrupt dreamcatcher PBR&B. Cronut umami heirloom subway tile shaman. Pug four dollar toast shabby chic, selvage normcore gochujang vegan chia kombucha. Scenester pabst fixie truffaut schlitz cliche narwhal direct trade. Umami la croix cronut waistcoat literally butcher shoreditch.
   </p>
   <button class="btn btn-secondary my-1" type="button">SHARE</button>
+  <span class="material-icons">favorite</span>
 </section>
+</article>
 
 
 
