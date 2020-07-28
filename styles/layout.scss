@@ -3,24 +3,35 @@
 body {
   background-color: #EEE;
 
-  h1 {
-    color: #244751;
-  }
+    h1 {
+      color: #244751;
+    }
 
-  #search-form {
-    padding: 1em;
-    width: 95vw;
-  }
+    .body-container{
+      padding: 1em;
+      // display: flex;
 
-  #login-form {
-    padding: 1em;
-    width: 95vw;
-  }
+      .individual-card{
+        // display: table-cell;
+        margin: 1em;
+      }
 
-  #registration-form {
-    padding: 1em;
-    width: 95vw;
-  }
+    }
+    
+    #search-form {
+      padding: 1em;
+      width: 95vw;
+    }
+
+    #login-form {
+      padding: 1em;
+      width: 95vw;
+    }
+
+    #registration-form {
+      padding: 1em;
+      width: 95vw;
+    }
 }
 
 @media (min-width: 992px){

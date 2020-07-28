@@ -30,21 +30,24 @@ module.exports = (db) => {
     const queryString = `
     SELECT *
     FROM quizzes
+    JOIN likes ON quizzes.id = likes.quiz_id
     WHERE is_private = false
     AND is_published = true;
+    ORDER BY (SUM(likes.is_like::int) DESC
     `;
 
     const cookieUserId = req.session.user_id;
     const checkUser = findUserByCookieID(cookieUserId, users);
-    console.log(checkUser)
 
     db.query(queryString)
       .then(result => {
-        const quiz = result.rows[0];
+        const quizzes = result.rows;
+        // console.log(quizzes)
         const templateVars = {
           user: checkUser,
-          quiz: quiz
+          quizzes: quizzes
         }
+        console.log("SENDING TO TV", templateVars)
         res.render("quiz.ejs", templateVars);
       })
       .catch((err) => console.log(err));

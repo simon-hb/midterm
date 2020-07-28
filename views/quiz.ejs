@@ -38,9 +38,27 @@
 
 <body>
   <%- include('partials/_header') %>
-<div id="body-container">
+  <div class="body-container row">
+    <div class="card-deck">
 
-</div>
+      <% for (quiz of quizzes) { %>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex align-items-stretch">
+        <div class="card individual-card">
+          <img class="card-img-top" src="<%=quiz.image_url%>" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title"><%= quiz.name %></h5>
+            <p class="card-text"> <%= quiz.description %> </p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+
+      <% } %>
+    </div>
+
+
+  </div>
 
   <!-- MATERIAL HELPERS - Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -50,31 +68,3 @@
 </body>
 
 </html>
-
-
-
-<!-- 
-
-<nav>
-  <%- include('partials/_header') %>
-</nav>
-
-<section class="publicQuizes">
-
-  <div class="pubQuizesRight">
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/170X170/9a8c98/ecf8f8" class="pubQR"></a>
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/170X170/22223b/ecf8f8" class="pubQR"></a>
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/170X170/c9ada7/ecf8f8" class="pubQR"></a>
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/170X170/9a8c98/ecf8f8" class="pubQR"></a>
-  </div>
-
-  <div class="pubQuizesLeft">
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/170X170/9a8c98/ecf8f8" class="pubQL"></a>
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/170X170/22223b/ecf8f8" class="pubQL"></a>
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/170X170/c9ada7/ecf8f8" class="pubQL"></a>
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/170X170/c9ada7/ecf8f8" class="pubQL"></a>
-  </div>
-</section>
-
-
--->
