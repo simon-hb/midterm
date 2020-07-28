@@ -1,30 +1,3 @@
-body {
-  background-color: #ede7e3;
-}
-
-.content {
-  margin: 4%;
-}
-
-.btn {
-  background-color: #5f506b;
-}
-
-.title {
-  display: block;
-  color: #22333b;
-  border-bottom: .1em solid #81b29a;
-  width: 70%;
-  padding-bottom: 2%;
-  font-size: 2em;
-}
-
-.question {
-  border: .2em solid #81b29a;
-  padding: 4%;
-  margin-bottom: 4%;
-}
-
 h2.title {
   border-bottom: .1em solid #81b29a;
   width: 100%;
@@ -45,13 +18,6 @@ input[type="radio"] {
 }
 
 // show on quiz submission
-section.result {
-  margin-top: 8%;
-  border: .2em solid #81b29a;
-  padding: 4%;
-  margin-bottom: 4%;
-  // display: none;
-}
 
 span.material-icons {
   float: right;

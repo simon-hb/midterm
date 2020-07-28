@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
 
-  <title>Inquizitive</title>
+  <title>my Drafts</title>
 
   <!-- Add Material CSS, replace Bootstrap CSS -->
   <link href="/vendor/material.min.css" rel="stylesheet">
@@ -14,10 +14,11 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/index.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/myDrafts.css" type="text/css" />
+
 
   <!-- FOR NOW - PORT TO SCSS -->
-  <link rel="stylesheet" href="/customStyles/index.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="/customStyles/index.css" type="text/css" /> -->
 
   <!-- CSS -->
   <!-- Add Material font (Roboto) and Material icon as needed -->
@@ -39,23 +40,56 @@
   <script type="text/javascript" src="/scripts/register.js"></script>
   <script type="text/javascript" src="/scripts/login.js"></script>
   <script type="text/javascript" src="/scripts/logout.js"></script>
-  <!-- <script type="text/javascript" src="/scripts/index.js"></script> -->
+  <script type="text/javascript" src="/scripts/index.js"></script>
+
 
 </head>
 
 <body>
-  <%- include('partials/_header') %>
-  <div class="homePic">
-    <a href="http://localhost:8080/publicQuizes"><img src="https://via.placeholder.com/375X350/b57fa6/EEE"></a>
-  </div>
-  <div class="topQuizes">
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/375X130/7fb599/EEE" class="quizPic"></a>
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/375X130/997fb5/EEE" class="quizPic"></a>
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/375X130/7fa5b5/EEE" class="quizPic"></a>
-  </div>
+  <nav>
+    <%- include('partials/_header') %>
+  </nav>
+
+  <article class="content">
+  <section class="container">
+  <h1 class="page-title">My Drafts</h1>
+  <section class="quizDraft">
+  <h1 class="title">Quiz Name</h1>
+    <div class="buttons">
+      <button class="btn" id="btn-submit" type="button">EDIT</button>
+      <button class="btn" id="btn-submit" type="button">DELETE</button>
+    </div>
+  </section>
+  <section class="quizDraft">
+    <h1 class="title">Quiz Name</h1>
+      <div class="buttons">
+        <button class="btn" id="btn-submit" type="button">EDIT</button>
+        <button class="btn" id="btn-submit" type="button">DELETE</button>
+      </div>
+    </section>
+    <section class="quizDraft">
+      <h1 class="title">Quiz Name</h1>
+        <div class="buttons">
+          <button class="btn" id="btn-submit" type="button">EDIT</button>
+          <button class="btn" id="btn-submit" type="button">DELETE</button>
+        </div>
+      </section>
+      <section class="quizDraft">
+        <h1 class="title">Quiz Name</h1>
+          <div class="buttons">
+            <button class="btn" id="btn-submit" type="button">EDIT</button>
+            <button class="btn" id="btn-submit" type="button">DELETE</button>
+          </div>
+        </section>
+</section>
+</article>
+
+
 
   <!-- MATERIAL HELPERS - Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
   <script src="../scripts/material.min.js"></script>

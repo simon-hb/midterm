@@ -82,32 +82,74 @@ app.get("/", (req, res) => {
       .json({ error: err.message });
   })
 
+});
 
 // DELETE AFTER
 app.get("/quiz", (req, res) => {
-  res.render("quiz")
+  db.query(`SELECT * FROM users;`)
+  .then(data => {
+    const users = data.rows;
+    const checkUser = findUserByCookieID(req.session.user_id, users);
+    const templateVars = {
+      user: checkUser,
+      page: req.url
+    }
+    res.render("quiz", templateVars);
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  })
 })
 
 app.get("/publicQuizes", (req, res) => {
-  res.render("publicQuizes")
+  db.query(`SELECT * FROM users;`)
+  .then(data => {
+    const users = data.rows;
+    const checkUser = findUserByCookieID(req.session.user_id, users);
+    const templateVars = {
+      user: checkUser,
+      page: req.url
+    }
+    res.render("publicQuizes", templateVars);
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  })
 })
 
-app.get("/", (req, res) => {
-  res.render("index");
-})
-
-app.get("/myDrafts", (req, res) => {
-  res.render("drafts")
+app.get("/myQuizes", (req, res) => {
+  res.render("allUserQuizes")
 })
 
 app.get("/MyPublished", (req, res) => {
   res.render("myPublished")
 })
 
+app.get("/MyDrafts", (req, res) => {
+  db.query(`SELECT * FROM users;`)
+  .then(data => {
+    const users = data.rows;
+    const checkUser = findUserByCookieID(req.session.user_id, users);
+    const templateVars = {
+      user: checkUser,
+      page: req.url
+    }
+    res.render("myDrafts", templateVars);
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  })
+})
+
 app.get("/EditMyQuiz", (req, res) => {
   res.render("editDrafts.ejs")
 })
-});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

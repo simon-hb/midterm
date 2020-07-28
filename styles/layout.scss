@@ -1,24 +1,37 @@
-// See: https://sass-lang.com/
-
 body {
-  background-color: #EEE;
+  background-color: #ede7e3;
+}
 
-  h1 {
-    color: #244751;
-  }
+.container {
+  border: .2em solid #81b29a;
+  padding: 4%;
+  margin: 4% 0;
+}
 
-  div.header {
-    margin: 0;
-    position: relative;
-    text-align: center;
-    padding: 0 0 4%;
-  }
+.content {
+  margin: 4%;
+}
 
-  div.header > h1 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+.btn {
+  background-color: #5f506b;
+  color: #ede7e3;
+}
 
+.title {
+  display: block;
+  color: #22333b;
+  border-bottom: .1em solid #81b29a;
+  width: 70%;
+  padding-bottom: 2%;
+  font-size: 2em;
+}
+
+.page-title {
+  display: block;
+  color: #22333b;
+  border-bottom: .1em solid #81b29a;
+  width: 70%;
+  padding-bottom: 2%;
+  margin-bottom: 15%;
+  font-size: 2em;
 }
