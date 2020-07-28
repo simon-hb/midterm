@@ -2,17 +2,30 @@ const express = require('express');
 const router = express.Router();
 
 
-const { generateRandomString } = require('../helpers')
+const { generateRandomString, findUserByCookieID } = require('../helpers')
+
+
 
 
 module.exports = (db) => {
 
+  let users = [];
+  console.log("USERS INIT", users);
+
+  db.query(`SELECT * FROM users;`)
+    .then(data => {
+      users = data.rows;
+    })
+    .catch(err => {
+      console.log("Error in Quiz Route:",err)
+    })
 
   // GET /quiz -  all public quiz
   router.get("/", (req, res) => {
     // all public quizzes (is_published === true, is_private === false)
     // make a query to db
     //return result as json
+
 
     const queryString = `
     SELECT *
@@ -21,20 +34,35 @@ module.exports = (db) => {
     AND is_published = true;
     `;
 
+    const cookieUserId = req.session.user_id;
+    const checkUser = findUserByCookieID(cookieUserId, users);
+    console.log(checkUser)
+
     db.query(queryString)
-      .then(res => {
-        const expectedResult = res.rows;
-        res.json(expectedResult);
+      .then(result => {
+        const quiz = result.rows[0];
+        const templateVars = {
+          user: checkUser,
+          quiz: quiz
+        }
+        res.render("quiz.ejs", templateVars);
       })
       .catch((err) => console.log(err));
+
   });
 
+
+
+
+
+
+
   // GET - /quiz/generated_random_url (to take quiz)
-  router.get("/:url", (req, res) => { 
+  router.get("/:url", (req, res) => {
 
     // check if user signed in
     // check if quiz is published
-      // if signed in activate quiz, otherwise disabled
+    // if signed in activate quiz, otherwise disabled
     // if user owns it - add edit quiz button ejs
 
     const queryString = `
@@ -86,7 +114,6 @@ module.exports = (db) => {
     //create quiz response
     // then create response answer, each time they finish an answer
     //when done, update quiz response, is_complete to true, ended_at = now(), reveal share_link, reveal score, message?
-
   })
 
 
@@ -129,5 +156,5 @@ module.exports = (db) => {
 
 
 
-return router;
+  return router;
 } // module exports
