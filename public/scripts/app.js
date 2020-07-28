@@ -7,7 +7,7 @@ $(() => {
   }).done((quizzes) => {
     for(quiz of quizzes.quizzes) {
       $("<div>").text(quiz.name).appendTo($("body"));
-      // console.log(quiz.name);
+      // $("<div>").append("<img src=" + quiz.image_url + " />").append("<h2>" + quiz.name + "</h2>")
     }
   });
 });
