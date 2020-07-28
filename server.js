@@ -50,6 +50,7 @@ const loginsRoutes = require("./routes/login");
 const logoutsRoutes = require("./routes/logout");
 const registersRoutes = require("./routes/register");
 const searchRoutes = require("./routes/search");
+const quizRoutes = require("./routes/quiz");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -59,6 +60,7 @@ app.use("/login", loginsRoutes(db));
 app.use("/logout", logoutsRoutes(db));
 app.use("/register", registersRoutes(db));
 app.use("/search", searchRoutes(db));
+app.use("/quiz", quizRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
@@ -72,11 +74,7 @@ app.get("/", (req, res) => {
   .then(data => {
     const users = data.rows;
     const checkUser = findUserByCookieID(req.session.user_id, users);
-    const templateVars = {
-      user: checkUser,
-      page: req.url
-    }
-    res.render("index", templateVars);
+    res.render("index", checkUser);
   })
   .catch(err => {
     res
@@ -86,5 +84,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+//   console.log(`Example app listening on port ${PORT}`);
 });

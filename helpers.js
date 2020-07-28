@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 
 // generates random 6 character alphanumeric strings; used for new url and new user
 const generateRandomString = () => {
-  return Math.random().toString(36).substring(2, 8);
+  return Math.random().toString(36).substring(2, 6);
 }
 
 const generateFormattedDate = () => {
