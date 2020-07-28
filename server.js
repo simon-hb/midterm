@@ -44,7 +44,7 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
+const appsRoutes = require("./routes/app");
 const widgetsRoutes = require("./routes/widgets");
 const loginsRoutes = require("./routes/login");
 const logoutsRoutes = require("./routes/logout");
@@ -53,7 +53,7 @@ const searchRoutes = require("./routes/search");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
+app.use("/api/app", appsRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/login", loginsRoutes(db));
 app.use("/logout", logoutsRoutes(db));
@@ -66,6 +66,7 @@ app.use("/search", searchRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
+
   const cookieUserId = req.session.user_id;
   db.query(`SELECT * FROM users;`)
   .then(data => {

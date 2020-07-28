@@ -32,7 +32,6 @@ module.exports = (db) => {
             resultObject.passwordValidated = true
           }
         }
-
         res.json(resultObject);
       })
       .catch(err => {

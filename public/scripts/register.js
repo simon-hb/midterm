@@ -4,6 +4,10 @@ $( document ).ready(function() {
 
   // SHOW/HIDE LOGIN FORM
   $("#register-button").click(() => {
+
+    $("#search-form-div").css("display", "none");
+    $("#login-form-div").css("display", "none");
+
     if ($("#register-form-div").css("display") === 'block') {
       $("#register-form-div").css("display", "none")
     } else {

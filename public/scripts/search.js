@@ -3,6 +3,10 @@ $(document).ready(function () {
 
   // SHOW/HIDE LOGIN FORM
   $("#search-icon").click(() => {
+
+    $("#login-form-div").css("display", "none");
+    $("#register-form-div").css("display", "none");
+
     if ($("#search-form-div").css("display") === 'block') {
       $("#search-form-div").css("display", "none")
     } else {
