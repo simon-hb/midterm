@@ -26,8 +26,10 @@ module.exports = (db) => {
 
         return req.body;
       }).then(bodyObject => {
+
+        console.log("USER OBJ",bodyObject)
         const canRegister = bodyObject.canRegister;
-        const emailStr = htmlDecode(bodyObject.email);
+        const emailStr = bodyObject.email;
         const hashedPassword = bcrypt.hashSync(bodyObject.password, 10);
         if (canRegister) {
           const queryParams = [bodyObject.username, hashedPassword, emailStr, bodyObject.name]

@@ -37,8 +37,15 @@ $(document).ready(function () {
       type: "POST",
       url: "/search",
       data: queryObj
-    }).then(() => {
+    }).then((data) => {
       console.log("post response recvd");
+      console.log(data);
+      $("#search-form-div").css("display", "none")
+      $("#body-container").empty();
+
+      for (quiz of data){
+        $("#body-container").append("<div class='quiz'>").append("<img src=" + quiz.image_url + " />").append("<h2>" + quiz.name + "</h2>")
+      }
     })
       .fail(function(error) {
         console.log( "error", error );

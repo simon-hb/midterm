@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- Add Material CSS, replace Bootstrap CSS -->
-  <link href="/customStyles/material.min.css" rel="stylesheet">
+  <link href="/vendor/material-4.1.1/css/material.min.css" rel="stylesheet">
 
   <!-- TEMPLATED SCRIPTS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -38,13 +38,13 @@
 
 <body>
   <%- include('partials/_header') %>
-
+<div id="body-container"></div>
 
   <!-- MATERIAL HELPERS - Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
-  <script src="../scripts/material.min.js"></script>
+  <script src="vendor/material-4.1.1/js/material.min.js"></script>
 </body>
 
 </html>
