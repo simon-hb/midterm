@@ -8,9 +8,9 @@ const pool = new Pool({
 });
 const queryString = `
 UPDATE likes
-SET is_dislike = true
+SET is_like = false
 WHERE quiz_id = 1
-AND user_id = 7;
+AND user_id = 6;
 `;
 
 const queryParams = [];

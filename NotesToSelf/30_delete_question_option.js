@@ -8,8 +8,7 @@ const pool = new Pool({
 });
 const queryString = `
 DELETE FROM question_options
-WHERE quiz_id = 1
-AND quiz_question_id = 1
+WHERE quiz_question_id = 1
 AND option_order = 1;
 `;
 

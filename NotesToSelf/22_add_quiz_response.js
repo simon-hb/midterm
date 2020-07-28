@@ -7,8 +7,8 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-INSERT INTO quiz_responses (quiz_id, taken_by_id, attempt_number, started_at, ended_at, is_complete, share_link)
-VALUES (1, 9, 6, '2020-07-25 05:28:43', '2020-07-25 05:54:08', false, 'TESTLINK');
+INSERT INTO quiz_responses (quiz_id, taken_by_id, attempt_number, started_at, ended_at, share_link)
+VALUES (1, 9, 6, '2020-07-25 05:28:43', '2020-07-25 05:54:08', 'TESTLINK');
 `;
 
 const queryParams = [];
