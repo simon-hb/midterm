@@ -21,6 +21,15 @@
 .nav {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: left;
   width: 100vw;
+  padding: 4%;
+}
+
+ul.nav {
+  padding: 0;
+}
+
+#button {
+  font-size: 1em;
 }
