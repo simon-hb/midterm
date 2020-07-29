@@ -39,32 +39,22 @@
 <body>
   <%- include('partials/_header') %>
   <div id="body-container" class="body-container row">
-    <div class="card-deck">
-
-      <% for (quiz of quizzes) { %>
-
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
-        <div class="card individual-card">
-          <img class="card-img-top" src="<%=quiz.image_url%>" alt="<%= quiz.name %>">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title"><%= quiz.name %></h5>
-            <p class="card-text"> <%= quiz.description %> </p>
-            <a href="http://<%= host %>/quiz/<%= quiz.url %>" class="btn btn-primary mt-auto">Take Quiz</a>
-          </div>
-        </div>
-      </div>
-
-      <% } %>
+    <div class="jumbotron">
+      <h1 class="display-4">Hello, world!</h1>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <hr class="my-4">
+      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
     </div>
-
-
+      
+    
   </div>
 
   <!-- MATERIAL HELPERS - Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
-  <script src="vendor/material-4.1.1/js/material.min.js"></script>
+  <script src="/vendor/material-4.1.1/js/material.min.js"></script>
 </body>
 
 </html>

@@ -34,10 +34,12 @@ $(() => {
         console.log( "error", error );
       })
 
+  }) // on take quiz form submit
 
 
+  
 
-  }) // on click
+
 
 }); // document ready
 

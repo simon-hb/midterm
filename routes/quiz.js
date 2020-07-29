@@ -19,38 +19,19 @@ module.exports = (db) => {
       console.log("Error in Quiz Route getting users:", err)
     })
 
-  // GET /quiz -  all public quiz
-  router.get("/", (req, res) => {
-    // all public quizzes (is_published === true, is_private === false)
-    // make a query to db
-    //return result as json
-    db.query(` 
-          SELECT quizzes.*, SUM(is_like::int) AS rating
-          FROM likes
-          RIGHT JOIN quizzes ON quizzes.id = likes.quiz_id
-          WHERE is_private = false
-          AND is_published = true
-          GROUP BY quizzes.id
-          ORDER BY SUM(is_like::int) DESC
-    `)
-      .then(data => {
-        quizzes = data.rows;
-        const cookieUserId = req.session.user_id;
-        const checkUser = findUserByCookieID(cookieUserId, users);
 
-        const templateVars = {
-          user: checkUser,
-          quizzes: quizzes,
-          host: req.get('host')
-        }
-        res.render("quiz", templateVars);
-      })
-      .catch(err => {
-        console.log("Error in Quiz Route Getting published quizzes:", err)
-      })
 
-  }); // GET /
-
+  // GET - /quiz/new (for create new quiz page)
+  router.get("/new", (req, res) => {
+    // when user accesses this page, we need to render
+    // createNewQuiz.ejs ??
+    const cookieUserId = req.session.user_id;
+    const checkUser = findUserByCookieID(cookieUserId, users);
+    const templateVars = {
+      user: checkUser
+    }
+    res.render("makeQuiz", templateVars);
+  });
 
   // // GET - /quiz/generated_random_url (to take quiz)
   router.get("/:url", (req, res) => {
@@ -127,23 +108,37 @@ module.exports = (db) => {
       .catch((err) => console.log(err));
   })
 
-  // GET - /quiz/new (for create new quiz page)
-  router.get("/new", (req, res) => {
-    // when user accesses this page, we need to render
-    // createNewQuiz.ejs ??
-    const cookieUserId = req.session.user_id;
-    db.query(`SELECT * FROM users;`)
+   // GET /quiz -  all public quiz
+   router.get("/", (req, res) => {
+    // all public quizzes (is_published === true, is_private === false)
+    // make a query to db
+    //return result as json
+    db.query(` 
+          SELECT quizzes.*, SUM(is_like::int) AS rating
+          FROM likes
+          RIGHT JOIN quizzes ON quizzes.id = likes.quiz_id
+          WHERE is_private = false
+          AND is_published = true
+          GROUP BY quizzes.id
+          ORDER BY SUM(is_like::int) DESC
+    `)
       .then(data => {
-        const users = data.rows;
-        const checkUser = findUserByCookieID(req.session.user_id, users);
-        res.render("createQuiz", checkUser);
+        quizzes = data.rows;
+        const cookieUserId = req.session.user_id;
+        const checkUser = findUserByCookieID(cookieUserId, users);
+
+        const templateVars = {
+          user: checkUser,
+          quizzes: quizzes,
+          host: req.get('host')
+        }
+        res.render("quiz", templateVars);
       })
       .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+        console.log("Error in Quiz Route Getting published quizzes:", err)
       })
-  });
+
+  }); // GET /
 
 
 
