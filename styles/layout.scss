@@ -1,7 +1,17 @@
+// FONTS:
+// font-family: 'Merriweather', serif;
+// font-family: 'Raleway', sans-serif;
+
 body {
   background-color:#eee4e1;
-  padding-top: 15%;
+  padding-top: 11%;
   width: 100vw;
+  font-family: 'Merriweather', serif;
+}
+
+
+.card-deck {
+  padding: 15% 0;
 }
 
 .container {
@@ -16,7 +26,8 @@ body {
 
 .btn {
   background-color: #5f506b;
-  color: #eee4e1
+  color: #eee4e1;
+  font-family: 'Raleway', sans-serif;
 }
 
 .title {
@@ -39,40 +50,78 @@ body {
     h1 {
       color: #244751;
     }
-
-    .body-container{
-      padding: 1em;
-      // display: flex;
-
-      .individual-card{
-        // display: table-cell;
-        margin: 1em;
-      }
-
-    }
-
-    #search-form {
-      padding: 1em;
-      width: 95vw;
-    }
-
-    #login-form {
-      padding: 1em;
-      width: 95vw;
-    }
-
-    #registration-form {
-      padding: 1em;
-      width: 95vw;
-    }
 }
 
-@media (min-width: 992px){
-  .navbar-expand-lg .navbar-collapse {
-      -ms-flex-preferred-size: auto;
-      display: -ms-flexbox!important;
-      display: flex!important;
-      flex-basis: auto;
-      justify-content: space-between;
-    }
+#search-form {
+  padding: 1em;
+  width: 95vw;
+}
+
+#login-form {
+  padding: 1em;
+  width: 95vw;
+}
+
+#registration-form {
+  padding: 1em;
+  width: 95vw;
+}
+
+
+.header-img-container {
+  position: relative;
+  text-align: center;
+  color: #eee4e1;
+
+img.img-fluid {
+  width: 100%;
+  height: 45vh;
+}
+
+.text-block {
+  width: 85%;
+  height: 70%;
+  opacity: 0.6;
+  display: block;
+  background-color:  #eee4e1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+
+  div.header-text {
+    opacity: 100%;
+    justify-content: center;
+
+  h1 {
+    display: inline-block;
+    font-family: 'Raleway', sans-serif;
+    color:  #5f506b;
+    font-weight: 600;
+    text-align: center;
+    z-index: 10;
+    border-bottom: .1em solid #5f506b;
+    padding: 0 10%;
   }
+
+  h2 {
+    color:  #5f506b;
+    font-weight: 600;
+    text-align: center;
+    z-index: 10;
+  }
+}
+}
+}
+
+
+  @media (min-width: 992px){
+    .navbar-expand-lg .navbar-collapse {
+        -ms-flex-preferred-size: auto;
+        display: -ms-flexbox!important;
+        display: flex!important;
+        flex-basis: auto;
+        justify-content: space-between;
+      }
+    }

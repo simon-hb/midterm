@@ -1,15 +1,20 @@
 #body-container {
   width: 100%;
+  padding: 1em;
+
+  .individual-card{
+    width: 100vw;
+    border: .2em solid #81b29a;
+
+    .card-title {
+      font-family: 'Raleway', sans-serif;
+    }
+
+  }
 }
 
 .card-deck {
   background-color :#eee4e1;
-}
-
-.card.individual-card {
-  width: 100vw;
-  // overflow: hidden;
-  border: .2em solid #81b29a;
 }
 
 .responsive {

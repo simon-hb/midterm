@@ -31,5 +31,27 @@ ul.nav {
 }
 
 #button {
-  font-size: 1em;
+  font-size: .75em;
+  color: #eee4e1;
+  background-color: transparent;
+  font-family: 'Raleway', sans-serif;
+}
+
+.navbar-brand {
+  font-weight: 600;
+}
+
+.nav-link {
+  background-color: #eee4e1;
+  color: #5f506b;
+  font-weight: 600;
+  font-family: 'Raleway', sans-serif;
+}
+
+.button {
+  background-color: transparent;
+}
+
+#login-button {
+  color: #5f506b;
 }
