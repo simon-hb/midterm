@@ -44,14 +44,14 @@
         <h5 class="card-title"><%= quiz[0].name %></h5>
         <p class="card-text"><%= quiz[0].description %></p>
       </div>
-
+      <form id="submitQuiz">
       <div class="list-group list-group-flush" id="accordion<%= 0 %>">
 
         <% for (let i=0; i < questions.length; i++) { %>
 
         <div class="expansion-panel list-group-item">
           <a aria-controls="collapse<%= i %>" aria-expanded="false" class="expansion-panel-toggler collapsed"
-            data-toggle="collapse" href="#collapse<%= i %>" id="heading<%= i %>">
+            data-toggle="collapse" name="<%= questions[i].id %>" href="#collapse<%= i %>" id="heading<%= i %>">
             #<%= questions[i].question_number %> <%= questions[i].question %>
 
             <div class="expansion-panel-icon ml-3 text-black-secondary">
@@ -61,35 +61,41 @@
           </a>
           <div aria-labelledby="heading<%= i %>" class="collapse" data-parent="#accordion<% 0 %>" id="collapse<%= i %>">
             <div class="expansion-panel-body">
-              <div class="btn-group-vertical" data-toggle="buttons" role="group">
+              <div id="options-group">
+              
 
                 <% for (let j=0; j < options.length; j++) { %>
 
                   <% if (questions[i].id === options[j].quiz_question_id) { %>
-                    <label class="btn btn-outline btn-sm">
-                      <input autocomplete="off" name="options1" type="radio">
-                      <i><%= options[j].answer %></i>
-                    </label>                    
-                    <% } %>
+                    
+                    
+                    <div class="custom-control custom-radio">
+                      <input type="radio" data-quizid="<%= quiz[0].id %>" data-optionid="<%= options[j].id %>"  data-userid="<%= user.id %>" data-questionid="<%= questions[i].question_number %>" id="customRadioInline<%= i %><%= j %>" name="customRadio<%= i %>" class="custom-control-input">
+                      <label class="custom-control-label" for="customRadioInline<%= i %><%= j %>"><%= options[j].answer %></label>
+                    </div>
 
-                <% } %>
-
+                      <% } %>
+                      
+                      <% } %>
               </div>
             </div>
           </div>
         </div>
         
         <% } %>
-        <button class="btn btn-success my-1" type="button">SUBMIT</button>
+        <button class="btn btn-success my-1" type="submit">SUBMIT</button>
       </div>
+      </form>
     </div>
+  </div>
+    
   </div>
 
   <!-- MATERIAL HELPERS - Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
-  <script src="vendor/material-4.1.1/js/material.min.js"></script>
+  <script src="/vendor/material-4.1.1/js/material.min.js"></script>
 </body>
 
 </html>
