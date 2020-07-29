@@ -12,7 +12,6 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     console.log("REQ BODY", req.body);
 
-    let whereOrAnd;
     const queryParams = [];
     let queryString = `
       SELECT quizzes.*, SUM(likes.is_like::int) AS likes

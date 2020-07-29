@@ -250,10 +250,3 @@ module.exports = (db) => {
   return router;
 } // module exports
 
-
-
-{/* <label class="btn btn-outline btn-sm">
-                      <input autocomplete="off" name="options1" type="radio">
-                      <i><%= options[j].answer %></i>
-                    </label>   */}
-

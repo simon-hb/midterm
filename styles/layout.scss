@@ -16,6 +16,19 @@ body {
         margin: 1em;
       }
 
+      .home-feature-img{
+        background-image: url("https://cdn.pixabay.com/photo/2016/12/15/20/28/classroom-1910011_1280.jpg");
+        min-height: 35em;
+        background-size:     cover;
+        background-repeat:   no-repeat;
+        background-position: center center;
+        box-shadow: inset 0 0 0 1000px rgba(0,0,0,.48);
+
+      }
+      .rounded {
+        border-radius: 0.5em;
+      }
+
     }
     
     #search-form {

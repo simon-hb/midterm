@@ -38,13 +38,41 @@
 
 <body>
   <%- include('partials/_header') %>
-<div id="body-container"></div>
+  <div id="body-container">
 
-  <!-- MATERIAL HELPERS - Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
-  <script src="vendor/material-4.1.1/js/material.min.js"></script>
+    <div class="home-feature-img jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-2 text-center text-light">Fluid jumbotron</h1>
+        <p class="display-3 text-center text-light font-weight-light">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+      </div>
+    </div>
+
+    <div class="card-deck">
+      <% for (quiz of quizzes) { %>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-4 d-flex align-items-stretch">
+        <div class="card individual-card">
+          <img class="card-img-top" src="<%=quiz.image_url%>" alt="<%= quiz.name %>">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title"><%= quiz.name %></h5>
+            <p class="card-text"> <%= quiz.description %> </p>
+            <a href="http://<%= host %>/quiz/<%= quiz.url %>" class="btn btn-primary mt-auto">Take Quiz</a>
+          </div>
+        </div>
+      </div>
+
+      <% } %>
+    </div>
+
+
+    </div>
+    <button class="fixed-bottom btn btn-secondary my-1 btn-block rounded" type="button">See All Quizzes</button>
+
+    <!-- MATERIAL HELPERS - Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
+    <script src="vendor/material-4.1.1/js/material.min.js"></script>
 </body>
 
 </html>

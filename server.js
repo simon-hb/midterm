@@ -55,8 +55,8 @@ const quizRoutes = require("./routes/quiz");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/app", appsRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
+
+// app.use("/api/app", appsRoutes(db)); // use for api-esques functionality where user gets JSON back
 app.use("/login", loginsRoutes(db));
 app.use("/logout", logoutsRoutes(db));
 app.use("/register", registersRoutes(db));
@@ -69,13 +69,46 @@ app.use("/quiz", quizRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-
   const cookieUserId = req.session.user_id;
+  const templateVars = {
+    user: false,
+    quizzes: []
+  }
   db.query(`SELECT * FROM users;`)
   .then(data => {
     const users = data.rows;
-    const user = findUserByCookieID(req.session.user_id, users);
-    res.render("index", {user});
+    return  user = findUserByCookieID(req.session.user_id, users);
+  }).then((user)=> {
+    templateVars.user = user;
+
+    const queryParams = [];
+    let queryString = `
+      SELECT quizzes.*, SUM(likes.is_like::int) AS likes
+      FROM quizzes
+      JOIN subjects ON subjects.id = subject_id
+      JOIN levels ON levels.id = level_id
+      JOIN toughness_options ON toughness_options.id = toughness_id
+      JOIN likes ON quizzes.id = likes.quiz_id
+      WHERE quizzes.is_private = false AND quizzes.is_published = true
+      GROUP BY quizzes.id
+      ORDER BY likes DESC
+      LIMIT 6;
+      `;
+
+      db.query(queryString, queryParams)
+
+      .then(result => {
+        const expectedResult = result.rows;
+
+        templateVars.quizzes = expectedResult;
+        templateVars.host = req.get('host')
+        console.log(templateVars)
+        // Render home with top quizzes
+        res.render("index", templateVars);
+      })
+
+
+
   })
   .catch(err => {
     res
