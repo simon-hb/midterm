@@ -1,23 +1,25 @@
-section.topQuizes > div {
-  padding: 0 0 4%;
-  height: 45 vh;
+.form {
+  padding: 5%;
 }
 
-section.header {
-  position: relative;
-  text-align: center;
-  height: 30vh;
-  padding: 0 0 4%;
+.form:first-child {
+  padding-top: 20%;
 }
 
-section.header > h1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#navbarNavAltMarkup {
+.nav-right {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.nav-left {
+  display: flex;
+  flex-direction:row;
+  justify-content: start;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

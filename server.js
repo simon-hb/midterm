@@ -121,7 +121,7 @@ app.get("/publicQuizes", (req, res) => {
   })
 })
 
-app.get("/myQuizes", (req, res) => {
+app.get("/MyQuizes", (req, res) => {
   res.render("allUserQuizes")
 })
 

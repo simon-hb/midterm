@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark sticky-tops">
     <a class="navbar-brand" href="http://localhost:8080/">inQ</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,13 +8,23 @@
     <!-- NAV OPTIONS FOR PAGES -->
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="http://localhost:8080/">Home<span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="http://localhost:8080/publicQuizes">Quizes</a>
+        <!-- <a class="nav-item nav-link active" href="http://localhost:8080/">Home<span class="sr-only">(current)</span></a> -->
+        <!-- <button class="btn btn-flat" type="button" href="http://localhost:8080/publicQuizes">Quizes</a> -->
         <!-- <a class="nav-item nav-link" href="#">Pricing</a> -->
       </div>
       <% if (!user) {%>
       <div class="nav-utility-buttons">
-        <ul class="nav justify-content-end">
+        <ul class="nav">
+          <div class="nav-left">
+          <li class="nav-item">
+            <a class="nav-link" id="search-button" href="#">SEARCH</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="search-button" href="#">QUIZZES</a>
+          </li>
+        </div>
+        <div class="nav-right">
+          <!-- <li class="btn btn-flat" type="button" href="http://localhost:8080/publicQuizes">Quizes</li> -->
           <li class="nav-item list-group-item-primary">
             <!-- <a class="nav-link" id="login-button" href="/login">LOGIN</a> -->
             <!-- TO REDIRECT-->
@@ -23,31 +33,31 @@
           <li class="nav-item list-group-item-primary">
             <a class="nav-link" id="register-button" href="#">REGISTER</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><span class="material-icons">search</span></a>
-          </li>
+        </div>
         </ul>
       </div>
       <%} else { %>
       <div class="nav-utility-buttons">
-        <ul class="nav justify-content-end">
+        <ul class="nav">
+          <div class="nav-left">
           <li class="nav-item">
-            <a class="nav-link" href="#"><span class="material-icons">search</span></a>
+            <a class="nav-link" id="search-button" href="#">SEARCH</a>
           </li>
-
+        </div>
+        <div class="nav-right">
           <li class="nav-item">
             <form class="form-inline" id="logout-form">
               <div class="input-group mr-sm-20">
                 <div class="input-group-prepend">
                   <div class="input-group-text">Logged In As: <%= user.name%></div>
                 </div>
-                <button type="submit" class="btn btn-danger">Logout</button>
+                <button type="submit" class="btn btn-danger">LOGOUT</button>
+              </div>
               </div>
             </form>
           </li>
         </ul>
       </div>
-
       <% } %>
 
 
@@ -61,6 +71,7 @@
 
   <div id="login-form-div" style="display: none;">
     <form id="login-form">
+      <div class="form">
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -71,17 +82,19 @@
         <label for="exampleInputPassword1">Password</label>
         <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
       </div>
-      <div class="form-group form-check">
+      <!-- <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
+      </div> -->
       <button type="submit" class="btn btn-primary">LOGIN</button>
+    </div>
     </form>
   </div>
 
 
   <div id="register-form-div" style="display: none;">
     <form id="register-form">
+      <div class="form">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Please Enter Your Name">
@@ -103,13 +116,14 @@
         <input type="password" name="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
       </div>
 
-      <div class="form-group form-check">
+      <!-- <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck2">
         <label class="form-check-label" for="exampleCheck2">Check me out</label>
-      </div>
+      </div> -->
 
       <button type="submit" class="btn btn-primary">Submit</button>
 
+      </div>
     </form>
   </div>
 </header>
