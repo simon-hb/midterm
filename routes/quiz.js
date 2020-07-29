@@ -1,21 +1,22 @@
 const express = require('express');
 const router = express.Router();
 
+const format = require('pg-format');
 
-const { generateRandomString, findUserByCookieID } = require('../helpers')
+
+const { generateRandomString, findUserByCookieID } = require('../helpers');
+const { response } = require('express');
 
 
 module.exports = (db) => {
 
   let users = [];
-  console.log("USERS INIT", users);
-
   db.query(`SELECT * FROM users;`)
     .then(data => {
       users = data.rows;
     })
     .catch(err => {
-      console.log("Error in Quiz Route:", err)
+      console.log("Error in Quiz Route getting users:", err)
     })
 
   // GET /quiz -  all public quiz
@@ -42,12 +43,10 @@ module.exports = (db) => {
           quizzes: quizzes,
           host: req.get('host')
         }
-        console.log("SENDING TO TV", templateVars)
-        // res.json({quizzes});
         res.render("quiz", templateVars);
       })
       .catch(err => {
-        console.log("Error in Quiz Route:", err)
+        console.log("Error in Quiz Route Getting published quizzes:", err)
       })
 
   }); // GET /
@@ -86,7 +85,7 @@ module.exports = (db) => {
         templateVars.quiz = quizData.rows;
 
         templateVars.user = checkUser;
-        
+
       }).then(result => {
         const queryString = `
           SELECT quiz_questions.*
@@ -119,8 +118,6 @@ module.exports = (db) => {
             db.query(queryString, queryParams)
               .then(optionsData => {
                 templateVars.options = optionsData.rows;
-
-                console.log("THIS OUR QUIZ", templateVars);
                 res.render("takeQuiz", templateVars);
               })
 
@@ -154,8 +151,57 @@ module.exports = (db) => {
   // on submit 
   router.post("/:url", (req, res) => {
 
+    console.log(req.body);
+
     const url = req.params.url;
-    const queryParams = []
+
+    const submissionDetails = req.body.userSubmission;
+
+    let attempts;
+    db.query(`SELECT COUNT(*) FROM quiz_responses
+    WHERE taken_by_id = $1;
+    `, [submissionDetails[0].userId])
+      .then(data => {
+        attempts = Number(data.rows[0].count);
+        thisAttempt = attempts + 1;
+        console.log("ATTEMPT:", thisAttempt);
+      }).then(() => {
+        const testLink = `http://${req.get('host')}/user${submissionDetails[0].userId}/quiz${submissionDetails[0].quizId}`;
+        console.log(testLink);
+        const queryString = `
+          INSERT INTO quiz_responses (quiz_id, taken_by_id, attempt_number, share_link)
+          VALUES ($1, $2, $3,$4) RETURNING id;
+        `;
+
+        const queryParams = [submissionDetails[0].quizId, submissionDetails[0].userId, thisAttempt,testLink]
+        db.query(queryString, queryParams)
+        .then(data => {
+          const responseId = data.rows[0].id;
+          const allSubmissions = [];
+          for (submission of submissionDetails){
+            allSubmissions.push([responseId, submission.optionId])
+          }
+
+
+          const queryString = format(`INSERT INTO response_answers (quiz_response_id, answer_id)
+          Values %L RETURNING *`, allSubmissions);
+          db.query(queryString)
+          .then(() => {
+            console.log(data.rows);
+          })
+
+
+
+        })
+
+
+
+      })
+      .catch(err => {
+        console.log("Error in Quiz Route getting users:", err)
+      });
+
+
 
 
 
