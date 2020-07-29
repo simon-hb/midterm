@@ -1,6 +1,8 @@
 // CALLED ON views>index.ejs and document on ready queries the db and iterates through the object
 $(() => {
 
+  
+
   $("#submitQuiz").submit(function (event) {
     event.preventDefault();
     
@@ -18,6 +20,8 @@ $(() => {
 
     });
     
+
+
     console.log(data_array)
 
 
