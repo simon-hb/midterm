@@ -1,6 +1,7 @@
 body {
-  background-color: #ede7e3;
+  background-color:#eee4e1;
   padding-top: 15%;
+  width: 100vw;
 }
 
 .container {
@@ -13,10 +14,10 @@ body {
   margin: 4%;
 }
 
-// .btn {
-//   background-color: #5f506b;
-//   color: #ede7e3;
-// }
+.btn {
+  background-color: #5f506b;
+  color: #eee4e1
+}
 
 .title {
   display: block;
@@ -35,4 +36,43 @@ body {
   padding-bottom: 2%;
   margin-bottom: 15%;
   font-size: 2em;
+    h1 {
+      color: #244751;
+    }
+
+    .body-container{
+      padding: 1em;
+      // display: flex;
+
+      .individual-card{
+        // display: table-cell;
+        margin: 1em;
+      }
+
+    }
+
+    #search-form {
+      padding: 1em;
+      width: 95vw;
+    }
+
+    #login-form {
+      padding: 1em;
+      width: 95vw;
+    }
+
+    #registration-form {
+      padding: 1em;
+      width: 95vw;
+    }
 }
+
+@media (min-width: 992px){
+  .navbar-expand-lg .navbar-collapse {
+      -ms-flex-preferred-size: auto;
+      display: -ms-flexbox!important;
+      display: flex!important;
+      flex-basis: auto;
+      justify-content: space-between;
+    }
+  }

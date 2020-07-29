@@ -7,17 +7,15 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-SELECT quiz_id, SUM(is_like::int) AS likes
-FROM likes
-GROUP BY quiz_id
-ORDER BY SUM(is_like::int) DESC
-LIMIT 3;
+INSERT INTO levels (name)
+VALUES ('Kindergarten');
 `;
+
 const queryParams = [];
 
 pool.query(queryString, queryParams)
 .then(res => {
-  const expectedResult = res.rows;
+  const expectedResult = res.rows[0]
   console.log(expectedResult);
   pool.end();
 });

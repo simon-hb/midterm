@@ -1,61 +1,47 @@
 $(document).ready(function () {
-
   $("#login-form-div").css("display", "none")
 
   // SHOW/HIDE LOGIN FORM
-  const showHideLogin = () => {
+  $("#login-button").click(() => {
+
+    $("#search-form-div").css("display", "none");
+    $("#register-form-div").css("display", "none");
+
     if ($("#login-form-div").css("display") === 'block') {
       $("#login-form-div").css("display", "none")
     } else {
       $("#login-form-div").css("display", "block")
     }
-  }
 
-
-  $("#login-button").click(() => {
-    showHideLogin()
   });
 
   $('#login-form').submit(function (event) {
     event.preventDefault();
-    const email = htmlEncode(this.email.value); // escapes malicious code
-    const password = this.password.value; // escapes malicious code
 
+    const email = this.email.value;
+    const password = this.password.value;
     const userLoginData = { email, password };
+
     const ajaxReq = $.ajax({
       type: "POST",
       url: "/login",
       data: userLoginData,
     })
-      .done(function (output, status) {
-        const userValidatedHeader = ajaxReq.getResponseHeader('userValidated') === "true";
-        const passwordValidatedHeader = ajaxReq.getResponseHeader('passwordValidated') === "true";
+      .done(function (data) {
+        const userValidated = data.userValidated;
+        const passwordValidated = data.passwordValidated;
 
-        console.log()
-
-        if (userValidatedHeader && passwordValidatedHeader) {
+        if (userValidated && passwordValidated) {
           window.location = '/';
-
-        } else if (!userValidatedHeader) {
+        } else if (!userValidated) {
           alert("WHO ARE YOU?!")
-        } else if (!passwordValidatedHeader) {
+        } else if (!passwordValidated) {
           alert("GET YOUR STUFF TOGETHER!")
         }
       })
       .fail(function (error) {
         console.log("error", error);
-
       });
-
   }) // login form on submit
 
-
-
 }); // document ready
-
-
-function htmlEncode(str) {
-  return String(str).replace(/[^\w. ]/gi, function (c) {
-    return '&#' + c.charCodeAt(0) + ';';
-  });
-}

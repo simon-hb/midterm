@@ -17,9 +17,6 @@
   <link rel="stylesheet" href="/styles/index.css" type="text/css" />
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
 
-  <!-- FOR NOW - PORT TO SCSS -->
-  <link rel="stylesheet" href="/customStyles/index.css" type="text/css" />
-
   <!-- CSS -->
   <!-- Add Material font (Roboto) and Material icon as needed -->
   <link
@@ -28,7 +25,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- Add Material CSS, replace Bootstrap CSS -->
-  <!-- <link href="/customStyles/material.min.css" rel="stylesheet"> -->
+  <link href="/vendor/material-4.1.1/css/material.min.css" rel="stylesheet">
 
   <!-- TEMPLATED SCRIPTS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -40,26 +37,19 @@
   <script type="text/javascript" src="/scripts/register.js"></script>
   <script type="text/javascript" src="/scripts/login.js"></script>
   <script type="text/javascript" src="/scripts/logout.js"></script>
-  <!-- <script type="text/javascript" src="/scripts/index.js"></script> -->
+  <script type="text/javascript" src="/scripts/search.js"></script>
 
 </head>
 
 <body>
   <%- include('partials/_header') %>
-  <div class="homePic">
-    <a href="http://localhost:8080/publicQuizes"><img src="https://via.placeholder.com/375X350/b57fa6/EEE"></a>
-  </div>
-  <div class="topQuizes">
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/375X130/7fb599/EEE" class="quizPic"></a>
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/375X130/997fb5/EEE" class="quizPic"></a>
-    <a href="http://localhost:8080/quiz"><img src="https://via.placeholder.com/375X130/7fa5b5/EEE" class="quizPic"></a>
-  </div>
+<div id="body-container"></div>
 
   <!-- MATERIAL HELPERS - Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
-  <script src="../scripts/material.min.js"></script>
+  <script src="vendor/material-4.1.1/js/material.min.js"></script>
 </body>
 
 </html>

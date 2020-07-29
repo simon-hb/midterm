@@ -34,6 +34,7 @@ app.use(morgan('dev'));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -44,19 +45,23 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
+const appsRoutes = require("./routes/app");
 const widgetsRoutes = require("./routes/widgets");
 const loginsRoutes = require("./routes/login");
 const logoutsRoutes = require("./routes/logout");
 const registersRoutes = require("./routes/register");
+const searchRoutes = require("./routes/search");
+const quizRoutes = require("./routes/quiz");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
+app.use("/api/app", appsRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/login", loginsRoutes(db));
 app.use("/logout", logoutsRoutes(db));
 app.use("/register", registersRoutes(db));
+app.use("/search", searchRoutes(db));
+app.use("/quiz", quizRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
@@ -64,92 +69,20 @@ app.use("/register", registersRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
+
   const cookieUserId = req.session.user_id;
-
   db.query(`SELECT * FROM users;`)
   .then(data => {
     const users = data.rows;
-    const checkUser = findUserByCookieID(req.session.user_id, users);
-    const templateVars = {
-      user: checkUser,
-      page: req.url
-    }
-    res.render("index", templateVars);
+    const user = findUserByCookieID(req.session.user_id, users);
+    res.render("index", {user});
   })
   .catch(err => {
     res
       .status(500)
       .json({ error: err.message });
   })
-
 });
-
-// DELETE AFTER
-app.get("/quiz", (req, res) => {
-  db.query(`SELECT * FROM users;`)
-  .then(data => {
-    const users = data.rows;
-    const checkUser = findUserByCookieID(req.session.user_id, users);
-    const templateVars = {
-      user: checkUser,
-      page: req.url
-    }
-    res.render("quiz", templateVars);
-  })
-  .catch(err => {
-    res
-      .status(500)
-      .json({ error: err.message });
-  })
-})
-
-app.get("/publicQuizes", (req, res) => {
-  db.query(`SELECT * FROM users;`)
-  .then(data => {
-    const users = data.rows;
-    const checkUser = findUserByCookieID(req.session.user_id, users);
-    const templateVars = {
-      user: checkUser,
-      page: req.url
-    }
-    res.render("publicQuizes", templateVars);
-  })
-  .catch(err => {
-    res
-      .status(500)
-      .json({ error: err.message });
-  })
-})
-
-app.get("/MyQuizes", (req, res) => {
-  res.render("allUserQuizes")
-})
-
-app.get("/MyPublished", (req, res) => {
-  res.render("myPublished")
-})
-
-app.get("/MyDrafts", (req, res) => {
-  db.query(`SELECT * FROM users;`)
-  .then(data => {
-    const users = data.rows;
-    const checkUser = findUserByCookieID(req.session.user_id, users);
-    const templateVars = {
-      user: checkUser,
-      page: req.url
-    }
-    res.render("myDrafts", templateVars);
-  })
-  .catch(err => {
-    res
-      .status(500)
-      .json({ error: err.message });
-  })
-})
-
-app.get("/EditMyQuiz", (req, res) => {
-  res.render("editDrafts.ejs")
-})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

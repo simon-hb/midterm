@@ -7,11 +7,11 @@ const pool = new Pool({
   database: 'midterm'
 });
 const queryString = `
-SELECT quiz_id, name, created_by_id, SUM(is_like::int) as likes, SUM((NOT is_like)::int) as dislikes 
-FROM quizzes
-JOIN likes ON quizzes.id = quiz_id
-WHERE quiz_id = 1
-GROUP BY name, created_by_id, quiz_id;
+SELECT quiz_id, (SUM(is_like::int) - SUM((NOT is_like)::int)) AS rating
+FROM likes
+GROUP BY quiz_id
+ORDER BY SUM(is_like::int) DESC
+LIMIT 3;
 `;
 const queryParams = [];
 

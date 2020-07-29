@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/styles/header.css" type="text/css" />
+
 <header>
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark sticky-tops">
     <a class="navbar-brand" href="http://localhost:8080/">inQ</a>
@@ -125,5 +127,9 @@
 
       </div>
     </form>
+  <div class="partials-container">
+    <%- include('_login') %>
+    <%- include('_register') %>
+    <%- include('_search') %>
   </div>
 </header>

@@ -1,10 +1,13 @@
 
 
 $( document ).ready(function() {
-  console.log( "register ready!" );
 
   // SHOW/HIDE LOGIN FORM
   $("#register-button").click(() => {
+
+    $("#search-form-div").css("display", "none");
+    $("#login-form-div").css("display", "none");
+
     if ($("#register-form-div").css("display") === 'block') {
       $("#register-form-div").css("display", "none")
     } else {
@@ -12,19 +15,14 @@ $( document ).ready(function() {
     }
   });
 
-
-
   $('#register-form').submit( function(event) {
     event.preventDefault();
 
-    // console.log(this); // for form body
-    // console.log(this.email.value); // value of email element in form - needs name parameter
-    // console.log(this.email.value) // value of password element in form - needs name parameter
 
-    const username = this.username.value; // escapes malicious code
-    const email = htmlEncode(this.email.value); // escapes malicious code
-    const password = this.password.value; // escapes malicious code
-    const name = this.name.value; // escapes malicious code
+    const username = this.username.value;
+    const email = this.email.value;
+    const password = this.password.value;
+    const name = this.name.value;
     
     const userLoginData = {name, username, email,password};
     
@@ -45,15 +43,4 @@ $( document ).ready(function() {
     
   });
 
-
-
-
-
 }); // document ready
-
-
-function htmlEncode(str) {
-  return String(str).replace(/[^\w. ]/gi, function (c) {
-    return '&#' + c.charCodeAt(0) + ';';
-  });
-}

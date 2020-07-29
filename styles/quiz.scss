@@ -1,26 +1,32 @@
-h2.title {
-  border-bottom: .1em solid #81b29a;
+#body-container {
   width: 100%;
-  padding-bottom: 2%;
 }
 
-h3.title {
-  border-bottom: none
+.card-deck {
+  background-color :#eee4e1;
 }
 
-form.options {
-  margin: 8% 0;
-  color: #22333b;
+.card.individual-card {
+  width: 100vw;
+  // overflow: hidden;
+  border: .2em solid #81b29a;
 }
 
-input[type="radio"] {
-  margin: 2% 0 0;
+.responsive {
+  max-width: 100%;
+  height: auto;
+  margin: 5%;
 }
 
-// show on quiz submission
+.card-body {
+  column-gap: 0;
+}
 
-span.material-icons {
-  float: right;
-  font-size: 3em;
-  color: #e71d36;
+h5 {
+  border-bottom: .1em solid #81b29a;
+}
+
+a.btn {
+  background-color: #5f506b;
+  color: #ede7e3;
 }

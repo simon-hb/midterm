@@ -1,5 +1,3 @@
-
-
 $( document ).ready(function() {
 
   $('#logout-form').submit( function(event) {
@@ -15,17 +13,6 @@ $( document ).ready(function() {
         console.log( "error", error );
       })
     
-  });
-
-
-
-
+  }); 
 
 }); // document ready
-
-
-function htmlEncode(str) {
-  return String(str).replace(/[^\w. ]/gi, function (c) {
-    return '&#' + c.charCodeAt(0) + ';';
-  });
-}
