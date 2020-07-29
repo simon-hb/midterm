@@ -1,19 +1,14 @@
 // CALLED ON views>index.ejs and document on ready queries the db and iterates through the object
 $(() => {
-  // $.ajax({
-  //   method: "GET",
-  //   url: "/quiz"
-  // }).done((quizzes) => {
-  //   // console.log(quizzes)
-  //   for(quiz of quizzes) {
-
-  //     $("<div>").text(quiz.name).appendTo($("#body-container"));
-  //     // $("<div>").append("<img src=" + quiz.image_url + " />").append("<h2>" + quiz.name + "</h2>")
-  //   }
-    
-  // });
-
-
-  
 
 });
+
+
+
+//const escape =  function(str) {
+//   let div = document.createElement('div');
+//   div.appendChild(document.createTextNode(str));
+//   return div.innerHTML;
+// };
+
+/* <p>${escape(tweet.content.text)}</p> */

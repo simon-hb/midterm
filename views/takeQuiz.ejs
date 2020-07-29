@@ -39,25 +39,50 @@
 <body>
   <%- include('partials/_header') %>
   <div id="body-container" class="body-container row">
-    <div class="card-deck">
-
-      <% for (quiz of quizzes) { %>
-
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex align-items-stretch">
-        <div class="card individual-card">
-          <img class="card-img-top" src="<%=quiz.image_url%>" alt="<%= quiz.name %>">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title"><%= quiz.name %></h5>
-            <p class="card-text"> <%= quiz.description %> </p>
-            <a href="http://<%= host %>/quiz/<%= quiz.url %>" class="btn btn-primary mt-auto">Take Quiz</a>
-          </div>
-        </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= quiz[0].name %></h5>
+        <p class="card-text"><%= quiz[0].description %></p>
       </div>
 
-      <% } %>
+      <div class="list-group list-group-flush" id="accordion<%= 0 %>">
+
+        <% for (let i=0; i < questions.length; i++) { %>
+
+        <div class="expansion-panel list-group-item">
+          <a aria-controls="collapse<%= i %>" aria-expanded="false" class="expansion-panel-toggler collapsed"
+            data-toggle="collapse" href="#collapse<%= i %>" id="heading<%= i %>">
+            #<%= questions[i].question_number %> <%= questions[i].question %>
+
+            <div class="expansion-panel-icon ml-3 text-black-secondary">
+              <i class="collapsed-show material-icons">keyboard_arrow_down</i>
+              <i class="collapsed-hide material-icons">keyboard_arrow_up</i>
+            </div>
+          </a>
+          <div aria-labelledby="heading<%= i %>" class="collapse" data-parent="#accordion<% 0 %>" id="collapse<%= i %>">
+            <div class="expansion-panel-body">
+              <div class="btn-group-vertical" data-toggle="buttons" role="group">
+
+                <% for (let j=0; j < options.length; j++) { %>
+
+                  <% if (questions[i].id === options[j].quiz_question_id) { %>
+                    <label class="btn btn-outline btn-sm">
+                      <input autocomplete="off" name="options1" type="radio">
+                      <i><%= options[j].answer %></i>
+                    </label>                    
+                    <% } %>
+
+                <% } %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <% } %>
+        <button class="btn btn-success my-1" type="button">SUBMIT</button>
+      </div>
     </div>
-
-
   </div>
 
   <!-- MATERIAL HELPERS - Optional JavaScript -->
