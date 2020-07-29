@@ -186,7 +186,7 @@ module.exports = (db) => {
           const queryString = format(`INSERT INTO response_answers (quiz_response_id, answer_id)
           Values %L RETURNING *`, allSubmissions);
           db.query(queryString)
-          .then(() => {
+          .then((data) => {
             console.log(data.rows);
           })
 
