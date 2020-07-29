@@ -108,8 +108,8 @@ module.exports = (db) => {
       .catch((err) => console.log(err));
   })
 
-   // GET /quiz -  all public quiz
-   router.get("/", (req, res) => {
+  // GET /quiz -  all public quiz
+  router.get("/", (req, res) => {
     // all public quizzes (is_published === true, is_private === false)
     // make a query to db
     //return result as json
@@ -146,48 +146,91 @@ module.exports = (db) => {
   // on submit 
   router.post("/:url", (req, res) => {
 
-    console.log(req.body);
-
     const url = req.params.url;
 
     const submissionDetails = req.body.userSubmission;
 
     let attempts;
+    let submissionResult = {};
     db.query(`SELECT COUNT(*) FROM quiz_responses
-    WHERE taken_by_id = $1;
-    `, [submissionDetails[0].userId])
+    WHERE taken_by_id = $1
+    AND quiz_id = $2;
+    `, [submissionDetails[0].userId, submissionDetails[0].quizId])
       .then(data => {
         attempts = Number(data.rows[0].count);
         thisAttempt = attempts + 1;
-        console.log("ATTEMPT:", thisAttempt);
       }).then(() => {
         const testLink = `http://${req.get('host')}/user${submissionDetails[0].userId}/quiz${submissionDetails[0].quizId}`;
-        console.log(testLink);
         const queryString = `
           INSERT INTO quiz_responses (quiz_id, taken_by_id, attempt_number, share_link)
           VALUES ($1, $2, $3,$4) RETURNING id;
         `;
+        const queryParams = [submissionDetails[0].quizId, submissionDetails[0].userId, thisAttempt, testLink]
+        // NOTETOKAUSH : ADD A .then() here for cleaner promise tree and to avoid to nested db requests
 
-        const queryParams = [submissionDetails[0].quizId, submissionDetails[0].userId, thisAttempt,testLink]
+
         db.query(queryString, queryParams)
-        .then(data => {
-          const responseId = data.rows[0].id;
-          const allSubmissions = [];
-          for (submission of submissionDetails){
-            allSubmissions.push([responseId, submission.optionId])
-          }
+          .then(data => {
+            const responseId = data.rows[0].id;
+            const allSubmissions = [];
+            for (submission of submissionDetails) {
+              allSubmissions.push([responseId, submission.optionId])
+            }
 
-
-          const queryString = format(`INSERT INTO response_answers (quiz_response_id, answer_id)
+            const queryString = format(`INSERT INTO response_answers (quiz_response_id, answer_id)
           Values %L RETURNING *`, allSubmissions);
-          db.query(queryString)
-          .then((data) => {
-            console.log(data.rows);
+            db.query(queryString)
+              .then((data) => {
+                const correctAnswers = `
+            (SELECT question_options.answer, question_options.id AS qo_id, quiz_questions.id AS q_id
+            FROM question_options
+            JOIN quiz_questions ON quiz_questions.id = quiz_question_id
+            JOIN quizzes ON quizzes.id = quiz_questions.quiz_id
+            JOIN quiz_responses ON quizzes.id = quiz_responses.quiz_id
+            WHERE question_options.is_correct = true
+            AND quiz_responses.id = $1
+            ORDER BY quiz_questions.question_number)
+            `;
+
+                const selectedAnswers = `
+            (SELECT quiz_responses.taken_by_id AS taker_id, response_answers.quiz_response_id, quizzes.name, quiz_questions.question_number, question_options.option_order AS selected_option, question_options.answer AS selected_answer, question_options.is_correct, quiz_questions.id, quiz_responses.share_link
+            FROM response_answers
+            JOIN quiz_responses ON quiz_responses.id = response_answers.quiz_response_id
+            JOIN question_options ON question_options.id = response_answers.answer_id
+            JOIN quiz_questions ON quiz_questions.id = question_options.quiz_question_id
+            JOIN quizzes ON quizzes.id = quiz_questions.quiz_id
+            WHERE quiz_response_id = $1
+            ORDER BY quiz_questions.question_number)
+            `
+                const queryString = `
+            SELECT sa.*, ca.qo_id
+            FROM ${selectedAnswers} sa
+            LEFT JOIN ${correctAnswers} ca
+            ON sa.id=ca.q_id
+            `
+
+                db.query(queryString, [data.rows[0].quiz_response_id])
+                  .then((data) => {
+                    submissionResult = data.rows;
+
+                  }).then(() => {
+
+                    const queryString = `
+                    SELECT COUNT(*)
+                    FROM quiz_questions
+                    WHERE quiz_id = $1
+                    `;
+                    const queryParams = [submissionDetails[0].quizId]
+
+                    db.query(queryString, queryParams)
+                      .then((data) => {
+                        const totalQ = data.rows[0].count;
+                        submissionResult.totalQuestions = totalQ;
+                        res.json({ submissionResult, totalQ })
+                      })
+                  })
+              })
           })
-
-
-
-        })
 
 
 
