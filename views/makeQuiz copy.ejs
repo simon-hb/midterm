@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
+
+  <title>Inquizitive - Public Quizzes</title>
+
+
+  <!-- CSS -->
+  <!-- Add Material font (Roboto) and Material icon as needed -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Add Material CSS, replace Bootstrap CSS -->
+  <link href="/vendor/material-4.1.1/css/material.min.css" rel="stylesheet">
+
+  <!-- TEMPLATED CSS -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+
+  <!-- TEMPLATED SCRIPTS -->
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/makequiz.js"></script>
+
+
+  <!-- CUSTOM SCRIPTS -->
+  <!-- LOGIN -->
+  <script type="text/javascript" src="/scripts/register.js"></script>
+  <script type="text/javascript" src="/scripts/login.js"></script>
+  <script type="text/javascript" src="/scripts/logout.js"></script>
+  <script type="text/javascript" src="/scripts/search.js"></script>
+
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+  <div id="body-container" class="body-container row">
+    <div class="jumbotron">
+      <h1 class="display-4">Hello, world!</h1>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+        featured content or information.</p>
+      <hr class="my-4">
+      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+      <form id="makequiz">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Select a Subject</label>
+          </div>
+          <select name="subject" class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="1">English</option>
+            <option value="2">Math</option>
+            <option value="3">Science</option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Select a Level</label>
+          </div>
+          <select name="level" class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="1">HighSchool</option>
+            <option value="2">Mid</option>
+            <option value="3">Adult</option>
+          </select>
+        </div>
+
+        <div class="input-group mb-5">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Select a Toughness Group</label>
+          </div>
+          <select name="level" class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="1">HighSchool</option>
+            <option value="2">Mid</option>
+            <option value="3">Adult</option>
+          </select>
+        </div>
+        <hr>
+
+        <div id="questions">
+
+          <div id="question1">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Question Title</span>
+              </div>
+              <input name="question1Title" type="text" class="form-control" aria-label="Default"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <div class="form-group optionsinputgroup">
+
+              <fieldset id="group1">
+                <div class="input-group optioninput">
+                  <span class="input-group-addon opt-group1">
+                    <input type="radio" name="correctanswer" value="1">
+                  </span>
+                  <input name="question1" type="text" class="form-control" placeholder="Write an answer">
+                </div>
+
+                <div class="input-group optioninput">
+                  <span class="input-group-addon opt-group1">
+                    <input type="radio" name="correctanswer" value="2">
+                  </span>
+                  <input name="question1" type="text" class="form-control" placeholder="Write an answer">
+                </div>
+
+                <div class="input-group optioninput">
+                  <span class="input-group-addon opt-group1">
+                    <input type="radio" name="correctanswer" value="3">
+                  </span>
+                  <input name="question1" type="text" class="form-control" placeholder="Write an answer">
+                </div>
+
+                <div class="input-group optioninput opt-group1">
+                  <span class="input-group-addon">
+                    <input type="radio" name="correctanswer" value="4">
+                  </span>
+                  <input name="question1" type="text" class="form-control" placeholder="Write an answer">
+                </div>
+              </fieldset>
+            </div>
+
+          </div>
+          
+          <div id="question2">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Question Title</span>
+              </div>
+              <input name="question2Title" type="text" class="form-control" aria-label="Default"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <div class="form-group-2 optionsinputgroup2">
+
+              <fieldset id="group2">
+                <div class="input-group optioninput2">
+                  <span class="input-group-addon opt-group1">
+                    <input type="radio" name="correctanswer" value="5">
+                  </span>
+                  <input name="question2" type="text" class="form-control" placeholder="Write an answer">
+                </div>
+
+                <div class="input-group optioninput2">
+                  <span class="input-group-addon opt-group1">
+                    <input type="radio" name="correctanswer" value="6">
+                  </span>
+                  <input name="question2" type="text" class="form-control" placeholder="Write an answer">
+                </div>
+
+                <div class="input-group optioninput2">
+                  <span class="input-group-addon opt-group1">
+                    <input type="radio" name="correctanswer" value="7">
+                  </span>
+                  <input name="question2" type="text" class="form-control" placeholder="Write an answer">
+                </div>
+
+                <div class="input-group optioninput2">
+                  <span class="input-group-addon">
+                    <input type="radio" name="correctanswer" value="8">
+                  </span>
+                  <input name="question2" type="text" class="form-control" placeholder="Write an answer">
+                </div>
+              </fieldset>
+            </div>
+
+          </div>
+          
+
+        </div>
+
+
+        <div class="row d-flex justify-content-end">
+
+          <button class="btn btn-float align-self-end btn-primary my-1" id="add-question" type="button"><i
+              class="material-icons">add</i></button>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Primary</button>
+      </form>
+    </div>
+
+
+  </div>
+
+  <!-- MATERIAL HELPERS - Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
+  <script src="/vendor/material-4.1.1/js/material.min.js"></script>
+</body>
+
+</html>
