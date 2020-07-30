@@ -1,10 +1,31 @@
 // CALLED ON views>index.ejs and document on ready queries the db and iterates through the object
 $(() => {
 
+// check for user in db (registered?)
+// not registered => error message (+ toggle registration form)
+// then redirect to quiz page ?
+// registered =>
+// check for cookies
+// if user logged in => res.render("takeQuiz" / "createQuiz") on backend? or window.location = /"url" on front end
+// if not => stay on the same page and send error message (+ toggle the login form)
+// then redirect to quiz page ?
+
+  $("take-quiz").click(() => {
+
+  })
+  $("create-quiz").click(() => {
+
+  })
+
+
+
+
+
   $("#submitQuiz").submit(function (event) {
     event.preventDefault();
 
     // NOTETOKAUSH: get userID and if not logged in, prompt login
+
     const iterate = $("#submitQuiz input:checked");
     const data_array = new Array();
     iterate.each(function () {
