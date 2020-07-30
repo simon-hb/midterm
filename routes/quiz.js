@@ -19,17 +19,30 @@ module.exports = (db) => {
       console.log("Error in Quiz Route getting users:", err)
     })
 
-
-
   // GET - /quiz/new (for create new quiz page)
   router.get("/new", (req, res) => {
     // when user accesses this page, we need to render
     // createNewQuiz.ejs ??
+
+    // app.get('/', (req, res) => {
+
+    //   if (req.session.user_id) {
+    //     res.redirect('/urls');
+    //   } else {
+    //     res.redirect('login');
+    //   }
+    // });
+
+
     const cookieUserId = req.session.user_id;
     const checkUser = findUserByCookieID(cookieUserId, users);
     const templateVars = {
       user: checkUser
     }
+    // checks if user is logged in
+    // if (!cookieUserId) {
+    //   res.send("sorry, user needs to be logged in to create a quiz!")
+    // } else {
     res.render("makeQuiz", templateVars);
   });
 
@@ -37,14 +50,14 @@ module.exports = (db) => {
   router.get("/:url", (req, res) => {
 
     const templateVars = {
+      userID: req.session.user_id,
       user: false,
       quiz: {},
       questions: {},
       options: {}
     };
 
-
-    // check if user signed in  
+    // check if user signed in
     // check if quiz is published
     // if signed in activate quiz, otherwise disabled
     // if user owns it - add edit quiz button ejs
@@ -113,7 +126,7 @@ module.exports = (db) => {
     // all public quizzes (is_published === true, is_private === false)
     // make a query to db
     //return result as json
-    db.query(` 
+    db.query(`
           SELECT quizzes.*, SUM(is_like::int) AS rating
           FROM likes
           RIGHT JOIN quizzes ON quizzes.id = likes.quiz_id
@@ -143,7 +156,7 @@ module.exports = (db) => {
 
 
   // POST - /quiz/generated_random_url (to submit answers)
-  // on submit 
+  // on submit
   router.post("/:url", (req, res) => {
 
     const url = req.params.url;
@@ -264,7 +277,7 @@ module.exports = (db) => {
       // allow them to post using sql query
       // generaterandomstring using function for their new url
       // make post request /randomstring
-      // querystring add quiz, all the other steps below 
+      // querystring add quiz, all the other steps below
 
       /*
       queryParam = [];

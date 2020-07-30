@@ -7,7 +7,7 @@
 
   <title>Inquizitive - Public Quizzes</title>
 
-  
+
 
   <!-- CSS -->
   <!-- Add Material font (Roboto) and Material icon as needed -->
@@ -51,7 +51,7 @@
           <div class="card-body d-flex flex-column">
             <h5 class="card-title"><%= quiz.name %></h5>
             <p class="card-text"> <%= quiz.description %> </p>
-            <a href="http://<%= host %>/quiz/<%= quiz.url %>" class="btn btn-primary mt-auto">Take Quiz</a>
+            <a href="http://<%= host %>/quiz/<%= quiz.url %>" class="btn btn-primary mt-auto take-quiz" id="take-quiz">Take Quiz</a>
           </div>
         </div>
       </div>

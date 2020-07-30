@@ -56,7 +56,7 @@ const quizRoutes = require("./routes/quiz");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 
-// app.use("/api/app", appsRoutes(db)); // use for api-esques functionality where user gets JSON back
+app.use("/api/app", appsRoutes(db)); // use for api-esques functionality where user gets JSON back
 app.use("/login", loginsRoutes(db));
 app.use("/logout", logoutsRoutes(db));
 app.use("/register", registersRoutes(db));

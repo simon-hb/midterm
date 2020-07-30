@@ -4,7 +4,7 @@ body {
   background-color: #ede7e3;
 
   .btn {
-    background-color: #fe938c!important;
+    background-color: #ff6b6b!important;
   }
 
 
@@ -37,11 +37,11 @@ body {
     }
 
     #login-button {
-      background-color: #fe938c;
+      background-color: #ff6b6b;
     }
 
     #register-button {
-      background-color: #fe938c;
+      background-color: #ff6b6b;
     }
 
     .partials-container{
@@ -108,6 +108,11 @@ body {
       //   width: 100vw;
       // }
 
+    }
+
+    .card-img-top {
+      max-width: 350px;
+      max-height: 150px;
     }
 
     #search-form {
