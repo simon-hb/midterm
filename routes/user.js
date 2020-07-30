@@ -1,5 +1,7 @@
-// GET /user - user's page for all their quizzes
-  // db query for all user's quizzes and can be passed as template vars to ejs
+const express = require('express');
+const router = express.Router();
 
+router.get("/user/:username/quiz/:quizId", (req, res) => {
+  
 
-//GET /user/quiz
+})

@@ -238,7 +238,7 @@ module.exports = (db) => {
               if (optionsOrder.indexOf(r) === -1) optionsOrder.push(r);
             }
             for (option of question.options) {
- 
+
               let oneOption = [];
               const quiz_question_id = result.rows[0].id;
               oneOption.push(quiz_question_id);
@@ -265,7 +265,7 @@ module.exports = (db) => {
             console.log("question options", result.rows);
 
             const err = false;
-            const responseObject = {err, quizLink, name }
+            const responseObject = { err, quizLink, name }
             res.json(responseObject);
 
           })
@@ -276,7 +276,7 @@ module.exports = (db) => {
 
         const quizLink = "";
         const name = "";
-        const responseObject = {err, quizLink, name }
+        const responseObject = { err, quizLink, name }
         res.json(responseObject)
       })
 
@@ -293,7 +293,6 @@ module.exports = (db) => {
     const url = req.params.url;
 
     const submissionDetails = req.body.userSubmission;
-
     let attempts;
     let submissionResult = {};
     db.query(`SELECT COUNT(*) FROM quiz_responses
@@ -304,7 +303,7 @@ module.exports = (db) => {
         attempts = Number(data.rows[0].count);
         thisAttempt = attempts + 1;
       }).then(() => {
-        const testLink = `http://${req.get('host')}/user${submissionDetails[0].userId}/quiz${submissionDetails[0].quizId}`;
+        const testLink = `http://${req.get('host')}/user/${submissionDetails[0].username}/quiz/${submissionDetails[0].quizId}`;
         const queryString = `
           INSERT INTO quiz_responses (quiz_id, taken_by_id, attempt_number, share_link)
           VALUES ($1, $2, $3,$4) RETURNING id;
@@ -369,9 +368,10 @@ module.exports = (db) => {
 
                     db.query(queryString, queryParams)
                       .then((data) => {
+                        err = false
                         const totalQ = data.rows[0].count;
                         submissionResult.totalQuestions = totalQ;
-                        res.json({ submissionResult, totalQ })
+                        res.json({ submissionResult, totalQ, testLink, err })
                       })
                   })
               })
