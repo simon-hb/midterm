@@ -145,6 +145,7 @@ module.exports = (db) => {
 
     const loggedInUser = req.session.user_id;
     const basicFormData = req.body.serialized;
+    let quizLink = "";
 
     queryParams = [];
     queryString = `
@@ -171,6 +172,8 @@ module.exports = (db) => {
 
     const url = generateRandomString();
     queryParams.push(url);
+    quizLink = `http://${req.get('host')}/quiz/${url}`
+
 
     const subject_id = basicFormData.subject;
     queryParams.push(subject_id);
@@ -225,16 +228,17 @@ module.exports = (db) => {
           const allOptions = [];
 
           for (question of req.body.questions) {
-            
+
 
             let j = 0;
 
+            const optionsOrder = [];
+            while (optionsOrder.length < question.options.length) {
+              let r = Math.floor(Math.random() * question.options.length) + 1;
+              if (optionsOrder.indexOf(r) === -1) optionsOrder.push(r);
+            }
             for (option of question.options) {
-              const optionsOrder = [];
-              while (optionsOrder.length < 4) {
-                var r = Math.floor(Math.random() * 4) + 1;
-                if (optionsOrder.indexOf(r) === -1) optionsOrder.push(r);
-              }
+ 
               let oneOption = [];
               const quiz_question_id = result.rows[0].id;
               oneOption.push(quiz_question_id);
@@ -245,7 +249,7 @@ module.exports = (db) => {
               option_order = optionsOrder[j];
               oneOption.push(option_order);
 
-                j === 0 ? is_correct = true : is_correct = false;
+              j === 0 ? is_correct = true : is_correct = false;
               oneOption.push(is_correct);
 
               allOptions.push(oneOption);
@@ -258,12 +262,22 @@ module.exports = (db) => {
           Values %L RETURNING *`, allOptions);
 
           db.query(queryString).then(result => {
-            console.log("question options", result.rows)
+            console.log("question options", result.rows);
+
+            const err = false;
+            const responseObject = {err, quizLink, name }
+            res.json(responseObject);
+
           })
         })
 
       }).catch(err => {
         console.log("Error adding quiz with questions and options to DB", err);
+
+        const quizLink = "";
+        const name = "";
+        const responseObject = {err, quizLink, name }
+        res.json(responseObject)
       })
 
     // we'll be adding a new quiz to the quiz table, (steps above), similar process for questions and question option

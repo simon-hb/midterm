@@ -86,7 +86,47 @@ $(() => {
       data: data
     }).then((response) => {
       // NOTETOKAUSH: notify user
-      console.log("i'm back")
+      console.log(response);
+
+      $("#jumbotron").empty();
+
+      if (response.err){
+
+        
+        $("#jumbotron").append('<img src="https://i.giphy.com/media/l46CqxtAEdguUgC2I/200.webp" /> '); // image
+
+        $("#jumbotron").append("<h1 class='display-4'>Oops... something went wrong</h1>") // h5 sorry
+
+        $("#jumbotron").append('<p class="lead">Unfortunately, we could not add your quiz to our database, try again and if the problem persists you can reach out to an admin with the following error code</p>') // paragraph text
+
+        $("#jumbotron").append(`<p class="lead">${response.err.code}</p>`);
+
+        
+      }else{
+        
+        $("#jumbotron").append('<img src="https://media.tenor.com/images/e643701b8766212d14f9c3b4bdb6e38c/tenor.gif" /> '); // image
+
+        $("#jumbotron").append("<h1 class='display-4'>Congrats!</h1>") // h5
+
+        $("#jumbotron").append('<p class="lead">We have added your quiz to our database. <br> Click the buttons below to copy the link to your clipboard and visit the quiz you just created. Have fun sharing the quiz with your friends and don\'t forget to ask them to send you a link to their results!</p>') // paragraph text
+
+        $("#jumbotron").append('<div class="row" id="share-buttons"></div>')
+
+
+        $("#share-buttons").append('<button class="btn btn-flat-info my-1" id="copy-to-clipboard" type="button">Copy to Clipboard</button>')
+        $("#share-buttons").append(`<a href="${response.quizLink}"><button class="btn btn-success my-1" type="button">View Quiz</button></a>`)
+        
+
+        $("#copy-to-clipboard").click(()=> {
+          copyToClipboard(response.quizLink);
+        })
+        
+      }
+
+
+
+
+
     })
       .fail(function (error) {
         console.log("Post create quiz request to DB error", error);
@@ -94,6 +134,7 @@ $(() => {
 
   })
 
+  
 
 
 
@@ -104,3 +145,15 @@ const escape = function (str) {
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
+
+function copyToClipboard(text) {
+  var input = document.body.appendChild(document.createElement("input"));
+  input.value = text;
+  input.focus();
+  input.select();
+  document.execCommand('copy');
+  input.parentNode.removeChild(input);
+
+  const button = document.getElementById('copy-to-clipboard')
+  button.textContent = 'copied';
+}
