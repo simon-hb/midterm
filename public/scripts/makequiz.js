@@ -1,3 +1,4 @@
+// NOTETOKAUSH: add required tags
 $(() => {
   let optionNumber = 1;
   let questionNumber = 2;
@@ -60,6 +61,7 @@ $(() => {
 
   $('#makequiz').submit((event) => {
     event.preventDefault();
+
 
     // NOTETOKAUSH: construct custom object to send to DB
     // data: {
