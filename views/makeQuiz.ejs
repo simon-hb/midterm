@@ -54,7 +54,7 @@
             <span class="input-group-text" id="inputGroup-sizing-default">Quiz Name</span>
           </div>
           <input name="quizname" type="text" class="form-control" aria-label="Default"
-            aria-describedby="inputGroup-sizing-default" >
+            aria-describedby="inputGroup-sizing-default" required >
         </div>
 
         <div class="input-group mb-3">
@@ -62,7 +62,7 @@
             <span class="input-group-text" id="inputGroup-sizing-default">Quiz Description</span>
           </div>
           <input name="quizdescription" type="text" class="form-control" aria-label="Default"
-            aria-describedby="inputGroup-sizing-default" >
+            aria-describedby="inputGroup-sizing-default" required>
         </div>
 
         <div class="input-group mb-3">
@@ -70,7 +70,7 @@
             <label class="input-group-text" for="inputGroupSelect01">Select a Subject</label>
           </div>
           <div class="form-group">
-            <select name="subject" class="custom-select" >
+            <select name="subject" class="custom-select" required>
               <option value="">Pick a subject</option>
               <option value="1">English</option>
               <option value="2">Math</option>
@@ -86,7 +86,7 @@
             <label class="input-group-text" for="inputGroupSelect02">Select a Level</label>
           </div>
           <div class="form-group">
-            <select name="level" class="custom-select" >
+            <select name="level" class="custom-select" required>
               <option value="">Pick a level</option>
               <option value="1">Elementary School</option>
               <option value="2">Middle School</option>
@@ -102,7 +102,7 @@
             <label class="input-group-text" for="inputGroupSelect03">Select a Toughness Group</label>
           </div>
           <div class="form-group">
-            <select name="toughness" class="custom-select" >
+            <select name="toughness" class="custom-select" required>
               <option value="">Pick a toughness</option>
               <option value="1">Easy</option>
               <option value="2">Medium</option>
@@ -113,15 +113,15 @@
         </div>
 
         <input class="mt-3 form-control" type="text" name="image_url"
-          placeholder="Enter an image url here" value="https://place-hold.it/350x150" >
-        
+          placeholder="Enter an image url here" value="https://previews.123rf.com/images/microone/microone1611/microone161100331/66410951-quizzes-school-exam-quiz-vector-abstract-background-questionnaire-quiz-study-illustration.jpg" required>
+    
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <label class="input-group-text" for="inputGroupSelect03">Make Publically Accessible</label>
             </div>
             <div class="form-group">
-              <select name="is_private" class="custom-select" >
+              <select name="is_private" class="custom-select" required>
                 <option value="">Select</option>
                 <option value="false">Yes</option>
                 <option value="true">No</option>
@@ -135,7 +135,7 @@
               <label class="input-group-text" for="inputGroupSelect03">Publish</label>
             </div>
             <div class="form-group">
-              <select name="is_published" class="custom-select" >
+              <select name="is_published" class="custom-select" required>
                 <option value="">Select</option>
                 <option value="true">Yes</option>
                 <option value="false">No</option>
@@ -158,19 +158,19 @@
 
               <div id="individual-question">
                 <input class="form-control form-control-lg" type="text"
-                  placeholder="Title for Question 1" >
+                  placeholder="Title for Question 1" required>
               </div>
 
 
               <div id="options">
                 <input class="mt-3 form-control custom-success" type="text"
-                  placeholder="Enter your correct answer here" >
+                  placeholder="Enter your correct answer here" required>
                 <input class="mt-3 form-control" type="text"
-                  placeholder="Enter an incorrect answer here" >
+                  placeholder="Enter an incorrect answer here" required>
                 <input class="mt-3 form-control" type="text"
-                  placeholder="Enter an incorrect answer here" >
+                  placeholder="Enter an incorrect answer here" required>
                 <input class="mt-3 form-control" type="text"
-                  placeholder="Enter an incorrect answer here" >
+                  placeholder="Enter an incorrect answer here" required>
               </div>
               </div>
             </div>

@@ -11,15 +11,15 @@ $(() => {
 
         <div id="individual-question">
           <input class="form-control form-control-lg" type="text"
-            placeholder="Title for Question ${questionNumber}" >
+            placeholder="Title for Question ${questionNumber}" required>
         </div>
 
 
         <div id="options">
-          <input class="mt-3 form-control custom-success" type="text" placeholder="Enter your correct answer here" >
-          <input class="mt-3 form-control" type="text" placeholder="Enter an incorrect answer here" >
-          <input class="mt-3 form-control" type="text" placeholder="Enter an incorrect answer here" >
-          <input class="mt-3 form-control" type="text" placeholder="Enter an incorrect answer here" >
+          <input class="mt-3 form-control custom-success" type="text" placeholder="Enter your correct answer here" required>
+          <input class="mt-3 form-control" type="text" placeholder="Enter an incorrect answer here" required>
+          <input class="mt-3 form-control" type="text" placeholder="Enter an incorrect answer here" required>
+          <input class="mt-3 form-control" type="text" placeholder="Enter an incorrect answer here" required>
         </div>
         </div>
       </div>
