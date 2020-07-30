@@ -25,7 +25,6 @@ module.exports = (db) => {
         const checkUser = findUser(req.body.email, users);
         if (checkUser) {
           resultObject.userValidated = true;
-          console.log(resultObject);
           const emailPasswordCheck = validatePassword(checkUser, req.body.email, req.body.password);
           if (emailPasswordCheck) {
             req.session.user_id = checkUser.id;

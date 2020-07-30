@@ -66,6 +66,7 @@ module.exports = (db) => {
       ORDER BY rating DESC;
       `;
 
+      
       db.query(queryString, queryParams)
       .then(result => {
 
