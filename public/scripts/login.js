@@ -3,11 +3,16 @@ $(document).ready(function () {
 
   // SHOW/HIDE LOGIN FORM
   $("#login-button").click(() => {
+    
+    $("#search-form-div").css("display", "none");
+    $("#register-form-div").css("display", "none");
+
     if ($("#login-form-div").css("display") === 'block') {
       $("#login-form-div").css("display", "none")
     } else {
       $("#login-form-div").css("display", "block")
     }
+
   });
 
   $('#login-form').submit(function (event) {

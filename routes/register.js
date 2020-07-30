@@ -11,6 +11,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 
 const { findUser } = require("../helpers");
+const { response } = require('express');
 
 module.exports = (db) => {
   router.post("/", (req, res) => {
@@ -22,29 +23,26 @@ module.exports = (db) => {
         req.body.canRegister = false;
         if (!checkUser) {
           req.body.canRegister = true;
-        }
+        } 
 
         return req.body;
       }).then(bodyObject => {
+
         const canRegister = bodyObject.canRegister;
-        const emailStr = htmlDecode(bodyObject.email);
+        const emailStr = bodyObject.email;
         const hashedPassword = bcrypt.hashSync(bodyObject.password, 10);
+
         if (canRegister) {
           const queryParams = [bodyObject.username, hashedPassword, emailStr, bodyObject.name]
           db.query(`
             insert into users (username, password, email, name) values ($1, $2, $3, $4) RETURNING *;
-            `, queryParams).then(data => {
-          }).then(() => {
-            db.query(`SELECT * FROM users;`)
-              .then(data => {
-                const users = data.rows;
-                const lastUser = users[users.length - 1];
-                console.log(lastUser)
-                req.session.user_id = lastUser.id;
-                res.redirect("/")
-              })
-          })
-        }
+            `, queryParams)
+            .then(response => {
+              const user = response.rows[0];
+              req.session.user_id = user.id;
+              res.redirect("/");
+            })
+          }
       })
       .catch(err => {
         res

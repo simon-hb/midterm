@@ -1,9 +1,0 @@
-@media (min-width: 992px){
-.navbar-expand-lg .navbar-collapse {
-    -ms-flex-preferred-size: auto;
-    display: -ms-flexbox!important;
-    display: flex!important;
-    flex-basis: auto;
-    justify-content: space-between;
-  }
-}

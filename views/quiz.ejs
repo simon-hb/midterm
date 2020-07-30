@@ -5,7 +5,9 @@
   <meta charset="utf-8">
   <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
 
-  <title>Inquizitive</title>
+  <title>Inquizitive - Public Quizzes</title>
+
+  
 
   <!-- CSS -->
   <!-- Add Material font (Roboto) and Material icon as needed -->
@@ -24,7 +26,7 @@
 
   <!-- TEMPLATED SCRIPTS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/quiz.js"></script>
 
 
   <!-- CUSTOM SCRIPTS -->
@@ -38,19 +40,12 @@
 
 <body>
   <%- include('partials/_header') %>
-  <div id="body-container">
-
-    <div class="home-feature-img jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-2 text-center text-light">inquizitive</h1>
-        <p class="display-3 text-center text-light font-weight-light"><br>for all you wiz's <br> ace our quizzes</p>
-      </div>
-    </div>
-
+  <div id="body-container" class="body-container row">
     <div class="card-deck" id="quiz-cards">
+
       <% for (quiz of quizzes) { %>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-4 d-flex align-items-stretch">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
         <div class="card individual-card">
           <img class="card-img-top" src="<%=quiz.image_url%>" alt="<%= quiz.name %>">
           <div class="card-body d-flex flex-column">
@@ -66,13 +61,12 @@
 
 
   </div>
-  <a href="/quiz"><button class="fixed-bottom btn btn-secondary my-1 btn-block rounded" type="button">See All Quizzes</button></a>
 
-    <!-- MATERIAL HELPERS - Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
-    <script src="vendor/material-4.1.1/js/material.min.js"></script>
+  <!-- MATERIAL HELPERS - Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
+  <script src="vendor/material-4.1.1/js/material.min.js"></script>
 </body>
 
 </html>

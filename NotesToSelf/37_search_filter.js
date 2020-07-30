@@ -39,10 +39,11 @@ queryString += `
   GROUP BY quizzes.id
   `
 
-if (options.rating) {
-  queryParams.push(`${options.rating}`);
-  queryString += `HAVING (SUM(likes.is_like::int) - SUM((NOT likes.is_like)::int)) >= $${queryParams.length}`
-}
+// To be used if we can normalize rating
+// if (options.rating) {
+//   queryParams.push(`${options.rating}`);
+//   queryString += `HAVING (SUM(likes.is_like::int) - SUM((NOT likes.is_like)::int)) >= $${queryParams.length}`
+// }
 
 queryString += `
 ORDER BY ratings DESC

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
+
+  <title>Inquizitive - Public Quizzes</title>
+
+  
+  <!-- CSS -->
+  <!-- Add Material font (Roboto) and Material icon as needed -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Add Material CSS, replace Bootstrap CSS -->
+  <link href="/vendor/material-4.1.1/css/material.min.css" rel="stylesheet">
+
+  <!-- TEMPLATED CSS -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+
+  <!-- TEMPLATED SCRIPTS -->
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/quiz.js"></script>
+
+
+  <!-- CUSTOM SCRIPTS -->
+  <!-- LOGIN -->
+  <script type="text/javascript" src="/scripts/register.js"></script>
+  <script type="text/javascript" src="/scripts/login.js"></script>
+  <script type="text/javascript" src="/scripts/logout.js"></script>
+  <script type="text/javascript" src="/scripts/search.js"></script>
+
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+  <div id="body-container" class="body-container row">
+    <div class="card-deck" id="quiz-cards"></div>
+    <div class="mx-auto sticky-top quiz-header">
+      <div class="card ">
+        <div class="card-body">
+          <h5 class="card-title"><%= quiz[0].name %></h5>
+          <p class="card-text"><%= quiz[0].description %></p>
+          <h5 id="result-header"></h5>
+        </div>
+      </div>
+    </div>
+      <form id="submitQuiz">
+        <input id="urlLink" data-quizurl="<%= quiz.url %>" style="display: none;">
+        <div class="list-group list-group-flush" id="accordion<%= 0 %>">
+
+          <% for (let i=0; i < questions.length; i++) { %>
+
+          <div class="expansion-panel list-group-item">
+            <a aria-controls="collapse<%= i %>" aria-expanded="false" class="expansion-panel-toggler collapsed"
+              data-toggle="collapse" name="<%= questions[i].id %>" href="#collapse<%= i %>" id="heading<%= i %>">
+              #<%= questions[i].question_number %> <%= questions[i].question %>
+
+              <div class="expansion-panel-icon ml-3 text-black-secondary">
+                <i class="collapsed-show material-icons">keyboard_arrow_down</i>
+                <i class="collapsed-hide material-icons">keyboard_arrow_up</i>
+              </div>
+            </a>
+            <div aria-labelledby="heading<%= i %>" class="collapse" data-parent="#accordion<% 0 %>"
+              id="collapse<%= i %>">
+              <div class="expansion-panel-body">
+                <div id="options-group">
+
+
+                  <% for (let j=0; j < options.length; j++) { %>
+
+                  <% if (questions[i].id === options[j].quiz_question_id) { %>
+
+
+                  <div class="custom-control custom-radio">
+                    <input type="radio" data-quizid="<%= quiz[0].id %>" data-optionid="<%= options[j].id %>"
+                      data-userid="<%= user.id %>" data-questionid="<%= questions[i].question_number %>"
+                      id="customRadioInline<%= i %><%= j %>" name="customRadio<%= i %>" class="custom-control-input">
+                    <label class="custom-control-label"
+                      for="customRadioInline<%= i %><%= j %>"><%= options[j].answer %></label>
+                  </div>
+
+                  <% } %>
+
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <% } %>
+          <button class="btn btn-success my-1 fixed-bottom btn-block" type="submit">SUBMIT</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- MATERIAL HELPERS - Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
+  <script src="/vendor/material-4.1.1/js/material.min.js"></script>
+</body>
+
+</html>
