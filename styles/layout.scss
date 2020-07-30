@@ -3,7 +3,7 @@
 body {
   background-color: #EEE;
 
-    
+
     .list-group{
       margin-bottom: 3em;
     }
@@ -14,8 +14,17 @@ body {
       z-index: 999;
       width: 100%;
     }
-    h1 {
-      color: #244751;
+
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {
+      position: fixed;
+      // padding:  1em 0 0;
+
+      .nav-link {
+        padding: .5em .5em;
+      }
+      .navbar-brand {
+        padding: .5em 1em;
+      }
     }
 
     .partials-container{
@@ -23,10 +32,23 @@ body {
     }
 
     #body-container{
-      padding: 1em 2.5em;
-      flex-direction: column;
+      padding: 5em 2.5em;
+      // flex-direction: column;
       width: 100vw;
       margin: 0;
+
+      .card-body {
+        margin: 2.5em 0;
+      }
+
+      #heading {
+        width: 100%;
+      }
+
+      .display-2 {
+        border-bottom: .05em solid white;
+        padding: .5em 0;
+      }
 
       .quiz-header{
         width: 100%;
@@ -38,20 +60,24 @@ body {
       }
 
       .home-feature-img{
-        background-image: url("https://cdn.pixabay.com/photo/2016/12/15/20/28/classroom-1910011_1280.jpg");
+        background-image: url("https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1741&q=80");
         min-height: 35em;
         background-size:     cover;
         background-repeat:   no-repeat;
         background-position: center center;
         box-shadow: inset 0 0 0 1000px rgba(0,0,0,.48);
-
+        // margin: 3em 2em;
       }
       .rounded {
         border-radius: 0.5em;
       }
 
+      // #accordion {
+      //   width: 100vw;
+      // }
+
     }
-    
+
     #search-form {
       padding: 1em;
       width: 95vw;
