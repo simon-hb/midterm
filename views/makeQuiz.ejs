@@ -24,7 +24,7 @@
 
   <!-- TEMPLATED SCRIPTS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/quiz.js"></script>
+  <script type="text/javascript" src="/scripts/makequiz.js"></script>
 
 
   <!-- CUSTOM SCRIPTS -->
@@ -41,13 +41,114 @@
   <div id="body-container" class="body-container row">
     <div class="jumbotron">
       <h1 class="display-4">Hello, world!</h1>
-      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+        featured content or information.</p>
       <hr class="my-4">
       <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+      <form id="makequiz">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Select a Subject</label>
+          </div>
+          <select name="subject" class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="1">English</option>
+            <option value="2">Math</option>
+            <option value="3">Science</option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Select a Level</label>
+          </div>
+          <select name="level" class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="1">HighSchool</option>
+            <option value="2">Mid</option>
+            <option value="3">Adult</option>
+          </select>
+        </div>
+
+        <div class="input-group mb-5">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Select a Toughness Group</label>
+          </div>
+          <select name="level" class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="1">HighSchool</option>
+            <option value="2">Mid</option>
+            <option value="3">Adult</option>
+          </select>
+        </div>
+        <hr>
+        <div id="questions">
+
+        
+        <div id="question1">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Question Title</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
+
+          <div class="form-group optionsinputgroup">
+
+
+            <div class="input-group optioninput">
+              <span class="input-group-addon">
+                <input type="radio" name="correctanswer" value="1">
+              </span>
+              <input name="option1" type="text" class="form-control" placeholder="Write an answer">
+            </div>
+
+            <div class="input-group optioninput">
+              <span class="input-group-addon">
+                <input type="radio" name="correctanswer" value="2">
+              </span>
+              <input name="option2" type="text" class="form-control" placeholder="Write an answer">
+            </div>
+            
+            <div class="input-group optioninput">
+              <span class="input-group-addon">
+                <input type="radio" name="correctanswer" value="1">
+              </span>
+              <input name="option1" type="text" class="form-control" placeholder="Write an answer">
+            </div>
+            
+            <div class="input-group optioninput">
+              <span class="input-group-addon">
+                <input type="radio" name="correctanswer" value="2">
+              </span>
+              <input name="option2" type="text" class="form-control" placeholder="Write an answer">
+            </div>
+
+
+
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="row d-flex justify-content-end">
+
+        <button class="btn btn-float align-self-end btn-primary my-1" id="add-question"type="button"><i class="material-icons">add</i></button>
+      </div>
+
+
+      </form>
     </div>
-      
-    
+
+
   </div>
 
   <!-- MATERIAL HELPERS - Optional JavaScript -->
