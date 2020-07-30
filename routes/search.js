@@ -8,8 +8,22 @@
 const express = require('express');
 const router = express.Router();
 
+const {findUserByCookieID} = require("../helpers")
+
 module.exports = (db) => {
+
+
+  let users = [];
+  db.query(`SELECT * FROM users;`)
+    .then(data => {
+      users = data.rows;
+    })
+    .catch(err => {
+      console.log("Error in Quiz Route getting users:", err)
+    })
+
   router.post("/", (req, res) => {
+
     console.log("REQ BODY", req.body);
 
     // queryParams
@@ -54,9 +68,19 @@ module.exports = (db) => {
 
       db.query(queryString, queryParams)
       .then(result => {
+
         const expectedResult = result.rows;
-        //send recvd data to ajax post as JSON
-        res.json(expectedResult)
+        console.log(expectedResult)
+        const checkUser = findUserByCookieID(req.session.user_id, users)
+        
+        // Render home with search results
+          const templateVars = {
+            user: checkUser,
+            quizzes: expectedResult,
+            host: req.get('host')
+          }
+          console.log(templateVars)
+        res.json(expectedResult);
       })
       .catch((err) => console.log(err));
   });

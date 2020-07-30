@@ -7,11 +7,6 @@
 
   <title>Inquizitive</title>
 
-  <!-- TEMPLATED CSS -->
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
   <!-- CSS -->
   <!-- Add Material font (Roboto) and Material icon as needed -->
   <link
@@ -21,6 +16,11 @@
 
   <!-- Add Material CSS, replace Bootstrap CSS -->
   <link href="/vendor/material-4.1.1/css/material.min.css" rel="stylesheet">
+
+  <!-- TEMPLATED CSS -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
   <!-- TEMPLATED SCRIPTS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div class="card-deck">
+    <div class="card-deck" id="quiz-cards">
       <% for (quiz of quizzes) { %>
 
       <div class="col-12 col-sm-6 col-md-4 col-lg-4 d-flex align-items-stretch">

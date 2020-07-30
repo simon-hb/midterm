@@ -1,4 +1,31 @@
 $(document).ready(function () {
+
+  const escape =  function(str) {
+    let div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
+
+
+  const makeQuizCard = (quizObject) => {
+
+    const quizCardElement = `
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
+    <div class="card individual-card">
+      <img class="card-img-top" src="${quizObject.image_url} alt="img for ${quizObject.name}">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">${escape(quizObject.name)}</h5>
+        <p class="card-text">${escape(quizObject.desription)}</p>
+        <a href="http://${document.location.host}/quiz/${quizObject.url}" class="btn btn-primary mt-auto">Take Quiz</a>
+      </div>
+    </div>
+  </div>
+
+    `;
+    return quizCardElement;
+
+  }
+  
   $("#search-form-div").css("display", "none")
 
   // SHOW/HIDE LOGIN FORM
@@ -42,14 +69,17 @@ $(document).ready(function () {
       url: "/search",
       data: queryObj
     }).then((data) => {
-      console.log("post response recvd");
-      console.log(data);
-      $("#search-form-div").css("display", "none")
-      $("#body-container").empty();
 
-      for (quiz of data){
-        $("#body-container").append("<div class='quiz'>").append("<img src=" + quiz.image_url + " />").append("<h2>" + quiz.name + "</h2>")
+      
+      $("#quiz-cards").empty()
+
+
+      for (quizObject of data){
+
+        $("#quiz-cards").append(makeQuizCard(quizObject))
       }
+
+
     })
       .fail(function(error) {
         console.log( "error", error );
@@ -57,3 +87,5 @@ $(document).ready(function () {
   });
 
 }); // document ready
+
+
