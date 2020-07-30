@@ -1,7 +1,11 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #EEE;
+  background-color: #ede7e3;
+
+  .btn {
+    background-color: #fe938c!important;
+  }
 
 
     .list-group{
@@ -21,14 +25,38 @@ body {
 
       .nav-link {
         padding: .5em .5em;
+        color: #EEE;
       }
       .navbar-brand {
         padding: .5em 1em;
       }
+
+      // #navbarNavAltMarkup {
+      //   justify-content: end!important;
+      // }
+    }
+
+    #login-button {
+      background-color: #fe938c;
+    }
+
+    #register-button {
+      background-color: #fe938c;
     }
 
     .partials-container{
       padding: 0.8em 3em;
+      #login-form {
+        margin-top: 6em;
+      }
+
+      #search-form {
+        margin-top: 6em;
+      }
+
+      #register-form {
+        margin-top: 6em;
+      }
     }
 
     #body-container{
@@ -36,6 +64,10 @@ body {
       // flex-direction: column;
       width: 100vw;
       margin: 0;
+
+      .bg-success {
+        background-color: #90be6d!important;
+    }
 
       .card-body {
         margin: 2.5em 0;

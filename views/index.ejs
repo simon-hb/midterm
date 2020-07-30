@@ -39,13 +39,14 @@
 <body>
   <%- include('partials/_header') %>
   <div id="body-container">
-
+    <a href="/quiz">
     <div class="home-feature-img jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-2 text-center text-light">inquizitive</h1>
         <p class="display-3 text-center text-light font-weight-light"><br>for all you wiz's <br> ace our quizzes</p>
       </div>
     </div>
+  </a>
 
     <div class="card-deck" id="quiz-cards">
       <% for (quiz of quizzes) { %>
@@ -66,6 +67,7 @@
 
 
   </div>
+
   <a href="/quiz"><button class="fixed-bottom btn btn-secondary my-1 btn-block rounded" type="button">See All Quizzes</button></a>
 
     <!-- MATERIAL HELPERS - Optional JavaScript -->
