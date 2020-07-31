@@ -11,12 +11,13 @@ const { response } = require('express');
 module.exports = (db) => {
 
   let users = [];
+
   db.query(`SELECT * FROM users;`)
     .then(data => {
       users = data.rows;
     })
     .catch(err => {
-      console.log("Error in Quiz Route getting users:", err)
+      console.log("Error in Quiz Route On Top getting users:", err)
     })
 
   // GET - /quiz/new (for create new quiz page)
@@ -157,9 +158,14 @@ module.exports = (db) => {
   router.post("/new", (req, res) => {
 
     const loggedInUser = req.session.user_id;
+    const checkUser = findUserByCookieID(loggedInUser, users)
     const basicFormData = req.body.serialized;
     let quizLink = "";
 
+    console.log("CU",checkUser); 
+    if (checkUser){ 
+
+      console.log(checkUser)
     queryParams = [];
     queryString = `
       INSERT INTO quizzes (created_by_id, name, image_url, description, is_private, is_published, url, subject_id, level_id, toughness_id, revision, previous_version_id, type)
@@ -293,6 +299,15 @@ module.exports = (db) => {
         res.json(responseObject)
       })
 
+    } else {
+      const err = {
+        code: "401 - Please Log In First"
+      }
+      const quizLink = "";
+      const name = "";
+      const responseObject = { err, quizLink, name }
+      res.json(responseObject)
+    }
     // we'll be adding a new quiz to the quiz table, (steps above), similar process for questions and question option
     // ()
     // then we need add to the quiz questions table
@@ -302,12 +317,17 @@ module.exports = (db) => {
   // POST - /quiz/generated_random_url (to submit answers)
   // on submit
   router.post("/:url", (req, res) => {
+    const userCookie = req.session.user_id;
+    const checkUser = findUserByCookieID(userCookie, users);
 
     const url = req.params.url;
 
     const submissionDetails = req.body.userSubmission;
     let attempts;
     let submissionResult = {};
+
+    if (checkUser){
+
     db.query(`SELECT COUNT(*) FROM quiz_responses
     WHERE taken_by_id = $1
     AND quiz_id = $2;
@@ -322,8 +342,7 @@ module.exports = (db) => {
           VALUES ($1, $2, $3,$4) RETURNING id;
         `;
         const queryParams = [submissionDetails[0].quizId, submissionDetails[0].userId, thisAttempt, testLink]
-        // NOTETOKAUSH : ADD A .then() here for cleaner promise tree and to avoid to nested db requests
-
+       
 
         db.query(queryString, queryParams)
           .then(data => {
@@ -396,13 +415,13 @@ module.exports = (db) => {
       .catch(err => {
         console.log("Error in Quiz Route getting users:", err)
       });
-
-
-
-
-
-
-
+    } else {
+      const err = {
+        code: "401 - Please Log In First"
+      }
+      const responseObject = { err}
+      res.json(responseObject);
+    }
     //create quiz response
     // then create response answer, each time they finish an answer
     //when done, update quiz response, is_complete to true, ended_at = now(), reveal share_link, reveal score, message?

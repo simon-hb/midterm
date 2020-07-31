@@ -104,7 +104,6 @@ app.get("/", (req, res) => {
 
         templateVars.quizzes = expectedResult;
         templateVars.host = req.get('host')
-        console.log(templateVars)
         // Render home with top quizzes
         res.render("index", templateVars);
       })

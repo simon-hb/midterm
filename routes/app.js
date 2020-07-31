@@ -10,7 +10,6 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    console.log("REQ BODY", req.body);
 
     const queryParams = [];
     let queryString = `

@@ -1,5 +1,3 @@
-
-
 $( document ).ready(function() {
   $('#error').css('display', 'none');
   // SHOW/HIDE LOGIN FORM
@@ -33,14 +31,17 @@ $( document ).ready(function() {
       success: function() {
         location.reload();
       }
-    })
-      .then(function() {
-        alert( "second success" );
+    }).then(function(data) {
+        console.log(data);
+        if (!data.error){
+          alert( "registered user" );
+        } else {
+          alert( "⚠️Username and/or Email already Exists⚠️" );
+        
+        }
       })
       .fail(function(error) {
-        alert("⚠️Username and/ or email have already been registered⚠️")
-        $('#error').text("⚠️GET YOUR STUFF TOGETHER!!!!⚠️");
-        $("#error").slideDown(300);
+        console.log("Post request to DB error", error);
       })
 
   });

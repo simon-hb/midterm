@@ -42,7 +42,7 @@ module.exports = (db) => {
     if (req.body.quizName) {
       queryParams.push(`%${req.body.quizName}%`);
       // queryString += `WHERE quizzes.name LIKE %${req.body.quizName}% `;
-      queryString += `AND quizzes.name LIKE $${queryParams.length} `;
+      queryString += `AND quizzes.name LIKE %$${queryParams.length} `;
     }
     //subjects
     if (req.body.subjectSelection) {
@@ -66,7 +66,6 @@ module.exports = (db) => {
       ORDER BY rating DESC;
       `;
 
-      
       db.query(queryString, queryParams)
       .then(result => {
 

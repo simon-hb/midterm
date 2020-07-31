@@ -39,16 +39,15 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text">Logged In As: <%= user.name%></div>
                 </div>
-                <button type="submit" class="btn btn-danger">Logout</button>
-              </div>
-            </form>
-          </li>
-        </ul>
+              </form>
+            </li>
+          </ul>
+        </div>
+        <% } %>
+        <!-- NAV OPTIONS FOR LOGIN/REGISTER/SEARCH -->
       </div>
-      <% } %>
-      <!-- NAV OPTIONS FOR LOGIN/REGISTER/SEARCH -->
-    </div>
-  </nav>
+    </nav>
+  </div>
   <div class="partials-container">
     <%- include('_login') %>
     <%- include('_register') %>
