@@ -14,10 +14,13 @@ const generateFormattedDate = () => {
 
 
 // checks to see if user exists and returns the user object if found or falsy value
-const findUser = (emailID, users) => {
+const findUser = (emailID, username, users) => {
   for (const userID in users) {
     const userEmail = users[userID].email;
+    const userUsername = users[userID].username
     if ( userEmail === emailID) {
+      return users[userID];
+    } else if (userUsername === username) {
       return users[userID];
     }
   }

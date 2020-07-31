@@ -1,5 +1,6 @@
 $(document).ready(function () {
   $("#login-form-div").css("display", "none")
+  $('#error').css('display', 'none');
 
   // SHOW/HIDE LOGIN FORM
   $("#login-button").click(() => {
@@ -34,9 +35,11 @@ $(document).ready(function () {
         if (userValidated && passwordValidated) {
           window.location = '/';
         } else if (!userValidated) {
-          alert("WHO ARE YOU?!")
+          $('#error').text("⚠️Please input a valid email and password⚠️");
+          $("#error").slideDown(300);
         } else if (!passwordValidated) {
-          alert("GET YOUR STUFF TOGETHER!")
+          $('#error').text("⚠️Please input a valid email and password⚠️");
+          $("#error").slideDown(300);
         }
       })
       .fail(function (error) {
