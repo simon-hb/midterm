@@ -23,15 +23,15 @@ $( document ).ready(function() {
     const email = this.email.value;
     const password = this.password.value;
     const name = this.name.value;
-    
+
     const userLoginData = {name, username, email,password};
-    
+
     $.ajax({
       type: "POST",
       url: "/register",
       data: userLoginData,
-      success: function() {   
-        location.reload(); 
+      success: function() {
+        location.reload();
       }
     })
       .then(function() {
@@ -42,7 +42,7 @@ $( document ).ready(function() {
         $('#error').text("⚠️GET YOUR STUFF TOGETHER!!!!⚠️");
         $("#error").slideDown(300);
       })
-    
+
   });
 
 }); // document ready
