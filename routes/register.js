@@ -19,7 +19,7 @@ module.exports = (db) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {
         const users = data.rows;
-        const checkUser = findUser(req.body.email, users);
+        const checkUser = findUser(req.body.email, req.body.username, users);
         req.body.canRegister = false;
         if (!checkUser) {
           req.body.canRegister = true;
