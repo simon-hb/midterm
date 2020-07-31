@@ -9,7 +9,10 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (db) => {
+
   router.post("/", (req, res) => {
+    
+    console.log("trying to logour", req.session.user_id)
     req.session.user_id = null;
     res.redirect("/");
   });
