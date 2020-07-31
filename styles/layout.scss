@@ -1,5 +1,10 @@
+:root {
+  --main-color: #a53860;
+  --bg-color: #e5e5e5;
+}
+
 body {
-  background-color: #e5e5e5;
+  background-color: var(--bg-color);
 
   .expansion-panel-toggler {
     width: 100vw;
@@ -24,11 +29,11 @@ body {
       z-index: 999;
       width: 100%;
 
-      border-bottom: .2em solid #EEE;
+      border-bottom: .2em solid #e5e5e5;
 
       .nav-link {
         padding: .5em .5em;
-        color: #EEE;
+        color: var(--bg-color);
       }
 
       .navbar-brand {
@@ -38,11 +43,11 @@ body {
     }
 
     #login-button {
-      background-color: #a53860;
+      background-color: var(--main-color);
     }
 
     #register-button {
-      background-color: #a53860;
+      background-color: var(--main-color);
     }
 
     .partials-container{
@@ -137,11 +142,11 @@ body {
     }
 
     .custom-control-input:checked~.custom-control-label:after {
-      color: #a53860;
+      color: var(--main-color);
     }
 
     h1.display-4 {
-      color: #a53860;
+      color: var(--main-color);
     }
 
     p.typography-display-1 {
