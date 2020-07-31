@@ -24,26 +24,11 @@ module.exports = (db) => {
   router.get("/new", (req, res) => {
     // when user accesses this page, we need to render
     // createNewQuiz.ejs ??
-
-    // app.get('/', (req, res) => {
-
-    //   if (req.session.user_id) {
-    //     res.redirect('/urls');
-    //   } else {
-    //     res.redirect('login');
-    //   }
-    // });
-
-
     const cookieUserId = req.session.user_id;
     const checkUser = findUserByCookieID(cookieUserId, users);
     const templateVars = {
       user: checkUser
     }
-    // checks if user is logged in
-    // if (!cookieUserId) {
-    //   res.send("sorry, user needs to be logged in to create a quiz!")
-    // } else {
     res.render("makeQuiz", templateVars);
   });
 
@@ -51,12 +36,12 @@ module.exports = (db) => {
   router.get("/:url", (req, res) => {
 
     const templateVars = {
-      userID: req.session.user_id,
       user: false,
       quiz: {},
       questions: {},
       options: {}
     };
+
 
     // check if user signed in
     // check if quiz is published
@@ -162,8 +147,8 @@ module.exports = (db) => {
     const basicFormData = req.body.serialized;
     let quizLink = "";
 
-    console.log("CU",checkUser); 
-    if (checkUser){ 
+    console.log("CU",checkUser);
+    if (checkUser){
 
       console.log(checkUser)
     queryParams = [];
@@ -342,7 +327,7 @@ module.exports = (db) => {
           VALUES ($1, $2, $3,$4) RETURNING id;
         `;
         const queryParams = [submissionDetails[0].quizId, submissionDetails[0].userId, thisAttempt, testLink]
-       
+
 
         db.query(queryString, queryParams)
           .then(data => {
@@ -431,4 +416,3 @@ module.exports = (db) => {
 
   return router;
 } // module exports
-

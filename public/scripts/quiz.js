@@ -1,10 +1,12 @@
 // CALLED ON views>index.ejs and document on ready queries the db and iterates through the object
 $(() => {
+
+
+
   $("#submitQuiz").submit(function (event) {
     event.preventDefault();
 
     // NOTETOKAUSH: get userID and if not logged in, prompt login
-
     const iterate = $("#submitQuiz input:checked");
     const data_array = new Array();
     iterate.each(function () {

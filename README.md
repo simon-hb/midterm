@@ -4,10 +4,13 @@
 An education-themed quiz app, where a user can filter their search by subject, level and/or toughness. In addition, registered users can create quizzes and mark them as public or private, which are only accessible to those users who know the url of that quiz.
 
 
-## Screenshots
+## GIFS
 
-<!-- Use Recordit for gifs?? -->
+!["User is creating a new quiz. Mobile view."](https://recordit.co/LRvJmFPt1P.gif)
 
+!["User is taking a quiz. Desktop view."](https://recordit.co/GT5HUNMNvo.gif)
+
+!["User is searching for a quiz. Desktop view."](https://recordit.co/2Kc0LmNK4q.gif)
 
 ## Installation
 
