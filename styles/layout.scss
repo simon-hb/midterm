@@ -1,34 +1,36 @@
-// See: https://sass-lang.com/
-
 body {
   background-color: #e5e5e5;
+
+  .expansion-panel-toggler {
+    width: 100vw;
+  }
+
+  .jumbotron {
+    width: 100%;
+  }
 
   .btn {
     background-color: #a53860!important;
   }
 
-
     .list-group{
       margin-bottom: 3em;
     }
-    nav {
+
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {
       height: 6em;
       position: fixed;
       top: 0;
       z-index: 999;
       width: 100%;
-    }
 
-    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {
       border-bottom: .2em solid #EEE;
-
-      position: fixed;
-      // padding:  1em 0 0;
 
       .nav-link {
         padding: .5em .5em;
         color: #EEE;
       }
+
       .navbar-brand {
         padding: .5em 1em;
       }
@@ -45,6 +47,7 @@ body {
 
     .partials-container{
       padding: 0.8em 3em;
+
       #login-form {
         margin-top: 6em;
       }
@@ -59,8 +62,13 @@ body {
     }
 
     #body-container{
+      margin-top: 5em;
+
+      .container {
+        margin-top: 5em;
+      }
+
       padding: 2.5 3em;
-      // flex-direction: column;
       width: 100vw;
       margin: 0;
 
@@ -71,14 +79,10 @@ body {
 
       .bg-success {
         background-color: #90be6d!important;
-    }
+      }
 
-    .card-deck {
-      margin-top: 5em;
-    }
-
-      .card-body {
-        margin: 2.5em 0;
+      .card-deck {
+        margin-top: 5em;
       }
 
       #heading {
@@ -95,29 +99,24 @@ body {
         top:2em;
       }
       .individual-card{
+        top: -1.5em;
         margin: 1em;
         opacity: 0.8;
         width: auto;
         border: .2em solid #a53860;
-        height: 90%;
+        height: 95%;
       }
 
       .home-feature-img{
         background-image: url("https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1741&q=80");
-        min-height: 35em;
         background-size:     cover;
         background-repeat:   no-repeat;
         background-position: center center;
         box-shadow: inset 0 0 0 1000px rgba(0,0,0,.48);
-        // margin: 3em 2em;
       }
       .rounded {
         border-radius: 0.5em;
       }
-
-      // #accordion {
-      //   width: 100vw;
-      // }
 
     }
 
@@ -125,11 +124,6 @@ body {
       max-width: 540px;
       max-height: 200px;
       image-resolution:72dpi;
-    }
-
-    #search-form {
-      padding: 1em;
-      width: 95vw;
     }
 
     #login-form {
@@ -145,6 +139,15 @@ body {
     .custom-control-input:checked~.custom-control-label:after {
       color: #a53860;
     }
+
+    h1.display-4 {
+      color: #a53860;
+    }
+
+    p.typography-display-1 {
+      border-bottom: .05em solid #a53860;
+    }
+
 }
 
 @media (min-width: 992px){

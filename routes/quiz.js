@@ -153,7 +153,151 @@ module.exports = (db) => {
 
   }); // GET /
 
+  // POST - /quiz/new (to submit quiz)
+  router.post("/new", (req, res) => {
 
+    const loggedInUser = req.session.user_id;
+    const basicFormData = req.body.serialized;
+    let quizLink = "";
+
+    queryParams = [];
+    queryString = `
+      INSERT INTO quizzes (created_by_id, name, image_url, description, is_private, is_published, url, subject_id, level_id, toughness_id, revision, previous_version_id, type)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id;
+      `
+    const created_by_id = loggedInUser;
+    queryParams.push(created_by_id);
+
+    const name = basicFormData.quizname;
+    queryParams.push(name);
+
+    const image_url = basicFormData.image_url;
+    queryParams.push(image_url);
+
+    const description = basicFormData.quizdescription;
+    queryParams.push(description);
+
+    const is_private = basicFormData.is_private;
+    queryParams.push(is_private);
+
+    const is_published = basicFormData.is_published;
+    queryParams.push(is_published);
+
+    const url = generateRandomString();
+    queryParams.push(url);
+    quizLink = `http://${req.get('host')}/quiz/${url}`
+
+
+    const subject_id = basicFormData.subject;
+    queryParams.push(subject_id);
+
+    const level_id = basicFormData.level
+    queryParams.push(level_id);
+
+    const toughness_id = basicFormData.toughness;
+    queryParams.push(toughness_id);
+
+    const revision = null;
+    queryParams.push(revision);
+
+    const previous_version_id = null;
+    queryParams.push(previous_version_id);
+
+    const type = null;
+    queryParams.push(type);
+
+    db.query(queryString, queryParams)
+      .then(result => {
+        console.log("quiz id", result.rows);
+
+        const quiz_questions = [];
+        let i = 1;
+        for (oneQuestion of req.body.questions) {
+          const question = [];
+
+          const quiz_id = result.rows[0].id;
+          question.push(quiz_id);
+
+          question.push(i); //question number
+
+          const question_name = oneQuestion.title
+          question.push(question_name);  //question
+
+          const questionType = "Multiple Choice"
+          question.push(questionType);
+
+
+          quiz_questions.push(question)
+          i++;
+        }
+        const queryString = format(`INSERT INTO quiz_questions (quiz_id, question_number, question, question_type)
+          Values %L RETURNING id`, quiz_questions);
+
+
+        db.query(queryString).then(result => {
+          console.log("quiz question ids", result.rows)
+          // const questionIds = result.rows;
+
+          const allOptions = [];
+
+          for (question of req.body.questions) {
+
+
+            let j = 0;
+
+            const optionsOrder = [];
+            while (optionsOrder.length < question.options.length) {
+              let r = Math.floor(Math.random() * question.options.length) + 1;
+              if (optionsOrder.indexOf(r) === -1) optionsOrder.push(r);
+            }
+            for (option of question.options) {
+
+              let oneOption = [];
+              const quiz_question_id = result.rows[0].id;
+              oneOption.push(quiz_question_id);
+
+              const answer = option;
+              oneOption.push(answer);
+
+              option_order = optionsOrder[j];
+              oneOption.push(option_order);
+
+              j === 0 ? is_correct = true : is_correct = false;
+              oneOption.push(is_correct);
+
+              allOptions.push(oneOption);
+              j++;
+            }
+          }
+
+          console.log("ALL OPTIONS", allOptions)
+          const queryString = format(`INSERT INTO question_options (quiz_question_id, answer, option_order, is_correct)
+          Values %L RETURNING *`, allOptions);
+
+          db.query(queryString).then(result => {
+            console.log("question options", result.rows);
+
+            const err = false;
+            const responseObject = { err, quizLink, name }
+            res.json(responseObject);
+
+          })
+        })
+
+      }).catch(err => {
+        console.log("Error adding quiz with questions and options to DB", err);
+
+        const quizLink = "";
+        const name = "";
+        const responseObject = { err, quizLink, name }
+        res.json(responseObject)
+      })
+
+    // we'll be adding a new quiz to the quiz table, (steps above), similar process for questions and question option
+    // ()
+    // then we need add to the quiz questions table
+    // then we need to add the the question options table
+  })
 
   // POST - /quiz/generated_random_url (to submit answers)
   // on submit
@@ -162,7 +306,6 @@ module.exports = (db) => {
     const url = req.params.url;
 
     const submissionDetails = req.body.userSubmission;
-
     let attempts;
     let submissionResult = {};
     db.query(`SELECT COUNT(*) FROM quiz_responses
@@ -173,7 +316,7 @@ module.exports = (db) => {
         attempts = Number(data.rows[0].count);
         thisAttempt = attempts + 1;
       }).then(() => {
-        const testLink = `http://${req.get('host')}/user${submissionDetails[0].userId}/quiz${submissionDetails[0].quizId}`;
+        const testLink = `http://${req.get('host')}/user/${submissionDetails[0].username}/quiz/${submissionDetails[0].quizId}`;
         const queryString = `
           INSERT INTO quiz_responses (quiz_id, taken_by_id, attempt_number, share_link)
           VALUES ($1, $2, $3,$4) RETURNING id;
@@ -194,6 +337,7 @@ module.exports = (db) => {
           Values %L RETURNING *`, allSubmissions);
             db.query(queryString)
               .then((data) => {
+
                 const correctAnswers = `
             (SELECT question_options.answer, question_options.id AS qo_id, quiz_questions.id AS q_id
             FROM question_options
@@ -237,9 +381,10 @@ module.exports = (db) => {
 
                     db.query(queryString, queryParams)
                       .then((data) => {
+                        err = false
                         const totalQ = data.rows[0].count;
                         submissionResult.totalQuestions = totalQ;
-                        res.json({ submissionResult, totalQ })
+                        res.json({ submissionResult, totalQ, testLink, err })
                       })
                   })
               })
@@ -261,44 +406,6 @@ module.exports = (db) => {
     //create quiz response
     // then create response answer, each time they finish an answer
     //when done, update quiz response, is_complete to true, ended_at = now(), reveal share_link, reveal score, message?
-  })
-
-
-  // POST - /quiz/new (to submit quiz)
-  router.post("/new", (req, res) => {
-    //extract req.body to get the user object of user logged in
-    const loggedInUser = req.body.loggedInUser;
-    if (loggedInUser) {
-      // extract req.body to get details of new quiz
-      // find out whether user is trying to submit and publish or save as draft
-
-
-      // if submitting
-      // allow them to post using sql query
-      // generaterandomstring using function for their new url
-      // make post request /randomstring
-      // querystring add quiz, all the other steps below
-
-      /*
-      queryParam = [];
-      queryString = `
-      INSERT INTO quizzes (created_by_id, name, image_url, description, is_private, is_published, url, subject_id, level_id, toughness_id, revision, previous_version_id, type)
-      VALUES ($1, $2, 'https://place-hold.it/350x150', '$4', $5, $6, 'generaterandomstring', $7, $8, $9, null, null, null);
-      `
-
-      query param. push ..... all the values using req.body somehow
-
-      db.query (queryString, queryParam)
-      .then(result => {
-        ....
-      })
-      */
-
-      // we'll be adding a new quiz to the quiz table, (steps above), similar process for questions and question option
-      // ()
-      // then we need add to the quiz questions table
-      // then we need to add the the question options table
-    }
   })
 
 

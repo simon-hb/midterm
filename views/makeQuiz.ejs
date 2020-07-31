@@ -1,3 +1,4 @@
+<!-- NOTETOKAUSH: add require tags -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +8,7 @@
 
   <title>Inquizitive - Public Quizzes</title>
 
-  
+
   <!-- CSS -->
   <!-- Add Material font (Roboto) and Material icon as needed -->
   <link
@@ -17,7 +18,7 @@
 
   <!-- Add Material CSS, replace Bootstrap CSS -->
   <link href="/vendor/material-4.1.1/css/material.min.css" rel="stylesheet">
-  
+
   <!-- TEMPLATED CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -26,7 +27,7 @@
 
   <!-- TEMPLATED SCRIPTS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/quiz.js"></script>
+  <script type="text/javascript" src="/scripts/makequiz.js"></script>
 
 
   <!-- CUSTOM SCRIPTS -->
@@ -41,15 +42,154 @@
 <body>
   <%- include('partials/_header') %>
   <div id="body-container" class="body-container row">
-    <div class="jumbotron">
-      <h1 class="display-4">Hello, world!</h1>
-      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <div class="jumbotron" id="jumbotron">
+      <h1 class="display-4">Make and Submit your Quiz</h1>
+      <p class="lead">Please use the form below to submit the questions for your quiz. Test if other inquisitive minds
+        can match your knowledge!</p>
       <hr class="my-4">
-      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-    </div>
-      
+
+      <form id="makequiz">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Quiz Name</span>
+          </div>
+          <input name="quizname" type="text" class="form-control" aria-label="Default"
+            aria-describedby="inputGroup-sizing-default" required >
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Quiz Description</span>
+          </div>
+          <input name="quizdescription" type="text" class="form-control" aria-label="Default"
+            aria-describedby="inputGroup-sizing-default" required>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Select a Subject</label>
+          </div>
+          <div class="form-group">
+            <select name="subject" class="custom-select" required>
+              <option value="">Pick a subject</option>
+              <option value="1">English</option>
+              <option value="2">Math</option>
+              <option value="3">Science</option>
+              <option value="4">General Knowledge</option>
+            </select>
+            <div class="invalid-feedback">Please select a subject</div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect02">Select a Level</label>
+          </div>
+          <div class="form-group">
+            <select name="level" class="custom-select" required>
+              <option value="">Pick a level</option>
+              <option value="1">Elementary School</option>
+              <option value="2">Middle School</option>
+              <option value="3">High School</option>
+              <option value="4">Adult</option>
+            </select>
+            <div class="invalid-feedback">Please select a level</div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect03">Select a Toughness Group</label>
+          </div>
+          <div class="form-group">
+            <select name="toughness" class="custom-select" required>
+              <option value="">Pick a toughness</option>
+              <option value="1">Easy</option>
+              <option value="2">Medium</option>
+              <option value="3">Hard</option>
+            </select>
+            <div class="invalid-feedback">Please select a difficulty level</div>
+          </div>
+        </div>
+
+        <input class="mt-3 form-control" type="text" name="image_url"
+          placeholder="Enter an image url here" value="https://previews.123rf.com/images/microone/microone1611/microone161100331/66410951-quizzes-school-exam-quiz-vector-abstract-background-questionnaire-quiz-study-illustration.jpg" required>
     
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect03">Make Publically Accessible</label>
+            </div>
+            <div class="form-group">
+              <select name="is_private" class="custom-select" required>
+                <option value="">Select</option>
+                <option value="false">Yes</option>
+                <option value="true">No</option>
+              </select>
+              <div class="invalid-feedback">Tell us if you want this to show up on the quizzes page</div>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect03">Publish</label>
+            </div>
+            <div class="form-group">
+              <select name="is_published" class="custom-select" required>
+                <option value="">Select</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+              <div class="invalid-feedback">Tell us if you're done making the quiz</div>
+            </div>
+          </div>
+        <hr>
+
+        <div id="questions">
+
+          <!-- Question Starts Here -->
+          <div>
+            <p class="typography-display-1 font-weight-light font-italic">Don't worry we'll scramble your options before
+              showing it to the user</p>
+          </div>
+
+          <div class="card mb-3">
+            <div class="card-body" id="question-and-options">
+
+              <div id="individual-question">
+                <input class="form-control form-control-lg" type="text"
+                  placeholder="Title for Question 1" required>
+              </div>
+
+
+              <div id="options">
+                <input class="mt-3 form-control custom-success" type="text"
+                  placeholder="Enter your correct answer here" required>
+                <input class="mt-3 form-control" type="text"
+                  placeholder="Enter an incorrect answer here" required>
+                <input class="mt-3 form-control" type="text"
+                  placeholder="Enter an incorrect answer here" required>
+                <input class="mt-3 form-control" type="text"
+                  placeholder="Enter an incorrect answer here" required>
+              </div>
+              </div>
+            </div>
+        </div>
+
+
+
+        <div class="row d-flex justify-content-end">
+
+          <button class="btn btn-float align-self-end btn-primary my-1 mb-4" id="add-question" type="button"><i
+            class="material-icons">add</i></button>
+          
+            <button type="submit" class="btn btn-primary btn-block">Create Quiz</button>
+        </div>
+
+      </form>
+    </div>
+
+
   </div>
 
   <!-- MATERIAL HELPERS - Optional JavaScript -->

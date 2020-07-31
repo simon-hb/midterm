@@ -80,12 +80,11 @@
 
                   <div class="custom-control custom-radio">
                     <input type="radio" data-quizid="<%= quiz[0].id %>" data-optionid="<%= options[j].id %>"
-                      data-userid="<%= user.id %>" data-questionid="<%= questions[i].question_number %>"
+                      data-username="<%= user.username %>" data-userid="<%= user.id %>" data-questionid="<%= questions[i].question_number %>"
                       id="customRadioInline<%= i %><%= j %>" name="customRadio<%= i %>" class="custom-control-input">
                     <label class="custom-control-label"
                       for="customRadioInline<%= i %><%= j %>"><%= options[j].answer %></label>
                   </div>
-
                   <% } %>
 
                   <% } %>

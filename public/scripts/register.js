@@ -1,7 +1,7 @@
 
 
 $( document ).ready(function() {
-
+  $('#error').css('display', 'none');
   // SHOW/HIDE LOGIN FORM
   $("#register-button").click(() => {
 
@@ -38,7 +38,9 @@ $( document ).ready(function() {
         alert( "second success" );
       })
       .fail(function(error) {
-        console.log( "error", error );
+        alert("⚠️Username and/ or email have already been registered⚠️")
+        $('#error').text("⚠️GET YOUR STUFF TOGETHER!!!!⚠️");
+        $("#error").slideDown(300);
       })
     
   });

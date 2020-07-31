@@ -5,8 +5,9 @@
   <meta charset="utf-8">
   <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
 
-  <title>Inquizitive</title>
+  <title>Inquizitive - Quiz Result</title>
 
+  
   <!-- CSS -->
   <!-- Add Material font (Roboto) and Material icon as needed -->
   <link
@@ -22,9 +23,10 @@
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
+
   <!-- TEMPLATED SCRIPTS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/quiz.js"></script>
 
 
   <!-- CUSTOM SCRIPTS -->
@@ -38,45 +40,27 @@
 
 <body>
   <%- include('partials/_header') %>
-  <div id="body-container">
-    <a href="/quiz">
-    <div class="home-feature-img jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-2 text-center text-light">inquizitive</h1>
-        <p class="display-3 text-center text-light font-weight-light"><br>for all you wiz's <br> ace our quizzes</p>
-      </div>
-    </div>
-  </a>
-
-    <div class="card-deck" id="quiz-cards">
-      <% for (quiz of quizzes) { %>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-4 d-flex align-items-stretch">
-        <div class="card individual-card" >
-          <img class="card-img-top" src="<%=quiz.image_url%>" alt="<%= quiz.name %>">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title"><%= quiz.name %></h5>
-            <p class="card-text"> <%= quiz.description %> </p>
-            <a href="http://<%= host %>/quiz/<%= quiz.url %>" class="btn btn-primary mt-auto">Take Quiz</a>
-          </div>
+  <div id="body-container" class="body-container row">
+    <div class="card-deck" id="quiz-cards"></div>
+    <div class="mx-auto sticky-top quiz-header">
+      <div class="card ">
+        <div class="card-body">
+          <h5 class="card-title">Quiz Result for <%= user.name %></h5>
+          <p class="card-text lead"><%= user.name %> answered <%= questionsAnswered%> out of <%= totalQ%> and got <%= correctAnswers %> correct</p>
+          <h5 id="result-header"></h5>
         </div>
       </div>
-
-      <% } %>
-
     </div>
-        <a href="/quiz"><button class="btn btn-secondary my-1 btn-block rounded" type="button">See All
-            Quizzes</button></a>
-
-
+    </div>
   </div>
 
-  <a href="/quiz"><button class="fixed-bottom btn btn-secondary my-1 btn-block rounded" type="button">See All Quizzes</button></a>
+  </div>
 
   <!-- MATERIAL HELPERS - Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
-  <script src="vendor/material-4.1.1/js/material.min.js"></script>
+  <script src="/vendor/material-4.1.1/js/material.min.js"></script>
 </body>
 
 </html>
