@@ -309,8 +309,7 @@ module.exports = (db) => {
           VALUES ($1, $2, $3,$4) RETURNING id;
         `;
         const queryParams = [submissionDetails[0].quizId, submissionDetails[0].userId, thisAttempt, testLink]
-        // NOTETOKAUSH : ADD A .then() here for cleaner promise tree and to avoid to nested db requests
-
+       
 
         db.query(queryString, queryParams)
           .then(data => {

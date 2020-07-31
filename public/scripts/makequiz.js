@@ -1,4 +1,3 @@
-// NOTETOKAUSH: add required tags
 $(() => {
   let optionNumber = 1;
   let questionNumber = 2;
@@ -85,9 +84,7 @@ $(() => {
       url: "/quiz/new",
       data: data
     }).then((response) => {
-      // NOTETOKAUSH: notify user
-      console.log(response);
-
+      
       $("#jumbotron").empty();
 
       if (response.err){

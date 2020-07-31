@@ -50,13 +50,13 @@
     <div class="card-deck" id="quiz-cards">
       <% for (quiz of quizzes) { %>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-4 d-flex align-items-stretch">
+      <div class="col-sm-12 col-lg-4 d-flex align-items-stretch">
         <div class="card individual-card">
           <img class="card-img-top" src="<%=quiz.image_url%>" alt="<%= quiz.name %>">
           <div class="card-body d-flex flex-column">
             <h5 class="card-title"><%= quiz.name %></h5>
             <p class="card-text"> <%= quiz.description %> </p>
-            <a href="http://<%= host %>/quiz/<%= quiz.url %>" class="btn btn-primary mt-auto">Take Quiz</a>
+            <a href="http://<%= host %>/quiz/<%= quiz.url %>" class="btn btn-primary mt-auto img-responsive">Take Quiz</a>
           </div>
         </div>
       </div>

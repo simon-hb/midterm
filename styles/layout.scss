@@ -1,5 +1,4 @@
 // See: https://sass-lang.com/
-
 .custom-success{
   background-color: #6ce8713d;
 }
@@ -16,6 +15,7 @@ body {
       top: 0;
       z-index: 999;
       width: 100%;
+      padding: 0 3em !important;
     }
     h1 {
       color: #244751;
@@ -70,6 +70,10 @@ body {
       width: 95vw;
     }
 }
+img {
+  max-height: 20em;
+  max-width: 40em;
+}
 
 @media (min-width: 992px){
   .navbar-expand-lg .navbar-collapse {
@@ -78,6 +82,7 @@ body {
       display: flex!important;
       flex-basis: auto;
       justify-content: space-between;
-      height: 4em;
+      height: 2em;
+      padding: 0 6em;
     }
   }

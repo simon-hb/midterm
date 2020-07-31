@@ -81,6 +81,7 @@ app.get("/", (req, res) => {
     const users = data.rows;
     return  user = findUserByCookieID(req.session.user_id, users);
   }).then((user)=> {
+    console.log(user)
     templateVars.user = user;
 
     const queryParams = [];
