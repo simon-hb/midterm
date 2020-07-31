@@ -33,16 +33,11 @@ $(() => {
 
 
       if (data.err) {
-
-
-
         $("#result-header").append("<h1 class='display-4'>Oops... something went wrong</h1>") // h5 sorry
 
         $("#result-header").append('<p class="lead">Unfortunately, we could not add your quiz to our database, try again and if the problem persists you can reach out to an admin with the following error code</p>') // paragraph text
 
-        $("#result-header").append(`<p class="lead">${response.err.code}</p>`);
-
-
+        $("#result-header").append(`<p class="lead">${data.err.code}</p>`);
       } else {
         let questionsAnswered = 0;
         let correctAnswers = 0;

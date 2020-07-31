@@ -14,13 +14,20 @@ const generateFormattedDate = () => {
 
 
 // checks to see if user exists and returns the user object if found or falsy value
-const findUser = (emailID, username, users) => {
+const findUser = (emailID, users) => {
   for (const userID in users) {
     const userEmail = users[userID].email;
-    const userUsername = users[userID].username
     if ( userEmail === emailID) {
       return users[userID];
-    } else if (userUsername === username) {
+    }
+  }
+  return false;
+}
+
+const findUserName = (username, users) => {
+  for (const userID in users) {
+    const userEmail = users[userID].username;
+    if ( userEmail === username) {
       return users[userID];
     }
   }
@@ -82,6 +89,7 @@ function htmlDecode(str) {
 
 module.exports = {
   findUser,
+  findUserName,
   findUserByCookieID,
   findURLSByUser,
   generateFormattedDate,

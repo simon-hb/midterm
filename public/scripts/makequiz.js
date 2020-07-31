@@ -41,7 +41,6 @@ $(() => {
     const basicFormData = {};
 
     const formdata = $("#makequiz").serializeArray();
-    console.log(formdata)
 
     $(formdata).each(function (index, obj) {
       basicFormData[obj.name] = obj.value;
@@ -60,7 +59,6 @@ $(() => {
 
       const optsDiv = $(':nth-child(2)', this);
       const optsInputs = optsDiv.children();
-      console.log(optsInputs);
       const optsVals = [];
 
       optsInputs.each((j, inp) => {
@@ -76,8 +74,6 @@ $(() => {
     });
 
     data.questions = questions;
-
-    console.log(data)
 
     $.ajax({
       type: "POST",

@@ -10,7 +10,7 @@ const router = express.Router();
 
 const bcrypt = require("bcrypt");
 
-const { findUser } = require("../helpers");
+const { findUser, findUserName } = require("../helpers");
 const { response } = require('express');
 
 module.exports = (db) => {
@@ -19,9 +19,14 @@ module.exports = (db) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {
         const users = data.rows;
-        const checkUser = findUser(req.body.email, req.body.username, users);
+
+        const checkUser = findUser(req.body.email, users);
+        const checkUserName = findUserName(req.body.username, users)
+
         req.body.canRegister = false;
-        if (!checkUser) {
+
+        console.log("CU", checkUser, "CUNAME",checkUserName)
+        if (!checkUser && !checkUserName) {
           req.body.canRegister = true;
         } 
 
@@ -40,8 +45,16 @@ module.exports = (db) => {
             .then(response => {
               const user = response.rows[0];
               req.session.user_id = user.id;
-              res.redirect("/");
+              const data = {
+                error: false
+              }
+              res.json(data)
             })
+          }else {
+            const data = {
+              error: true
+            }
+            res.json(data)
           }
       })
       .catch(err => {

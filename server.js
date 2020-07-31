@@ -81,7 +81,6 @@ app.get("/", (req, res) => {
     const users = data.rows;
     return  user = findUserByCookieID(req.session.user_id, users);
   }).then((user)=> {
-    console.log(user)
     templateVars.user = user;
 
     const queryParams = [];
@@ -105,7 +104,6 @@ app.get("/", (req, res) => {
 
         templateVars.quizzes = expectedResult;
         templateVars.host = req.get('host')
-        console.log(templateVars)
         // Render home with top quizzes
         res.render("index", templateVars);
       })

@@ -22,8 +22,6 @@ module.exports = (db) => {
           passwordValidated: false
         };
         const users = data.rows;
-        console.log(users);
-        console.log(req.body.email)
         const checkUser = findUser(req.body.email, users);
         if (checkUser) {
           resultObject.userValidated = true;
@@ -33,7 +31,6 @@ module.exports = (db) => {
             resultObject.passwordValidated = true
           }
         }
-        console.log(resultObject)
         res.json(resultObject);
       })
       .catch(err => {
