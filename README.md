@@ -10,7 +10,7 @@ An education-themed quiz app, where a user can filter their search by subject, l
 
 !["User is taking a quiz. Desktop view."](https://recordit.co/GT5HUNMNvo.gif)
 
-!["User is searching for a quiz. Desktop view."](https://recordit.co/2Kc0LmNK4q.gif)
+!["User is searching for a quiz. Desktop view."](https://recordit.co/UqSqO4gUBJ.gif)
 
 ## Installation
 

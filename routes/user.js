@@ -53,7 +53,7 @@ module.exports = (db) => {
         const queryString = `
             SELECT sa.*, ca.qo_id
             FROM ${selectedAnswers} sa
-            LEFT JOIN ${correctAnswers} ca
+            JOIN ${correctAnswers} ca
             ON sa.id=ca.q_id
             `
 
@@ -78,15 +78,20 @@ module.exports = (db) => {
                 submissionResult;
                 let i =0;
                 for (result of submissionResult){
-                  if (result.is_correct=true) i++
+                  console.log("RESULT",result);
+                  if (result.is_correct === true){ 
+                    i++
+                  }
                 }
                 const questionsAnswered = submissionResult.length;
                 const correctAnswers = i;
+                console.log(i)
                 // submissionResult.totalQuestions = totalQ;
                  user = {
                   name: user.name
                 }
                 const templateVars = {user, questionsAnswered, correctAnswers, totalQ, err }
+                console.log(templateVars)
                 res.render("quizresult", templateVars)
               })
           })
