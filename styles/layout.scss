@@ -1,10 +1,10 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #ede7e3;
+  background-color: #e5e5e5;
 
   .btn {
-    background-color: #ff6b6b!important;
+    background-color: #a53860!important;
   }
 
 
@@ -20,6 +20,8 @@ body {
     }
 
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {
+      border-bottom: .2em solid #EEE;
+
       position: fixed;
       // padding:  1em 0 0;
 
@@ -31,17 +33,14 @@ body {
         padding: .5em 1em;
       }
 
-      // #navbarNavAltMarkup {
-      //   justify-content: end!important;
-      // }
     }
 
     #login-button {
-      background-color: #ff6b6b;
+      background-color: #a53860;
     }
 
     #register-button {
-      background-color: #ff6b6b;
+      background-color: #a53860;
     }
 
     .partials-container{
@@ -60,13 +59,22 @@ body {
     }
 
     #body-container{
-      padding: 5em 2.5em;
+      padding: 2.5 3em;
       // flex-direction: column;
       width: 100vw;
-      margin: 0;
+      margin-top: 3em;
+
+      a {
+        text-decoration: none;
+        margin: 4em, 3em;
+      }
 
       .bg-success {
         background-color: #90be6d!important;
+    }
+
+    .card-deck {
+      margin-top: 5em;
     }
 
       .card-body {
@@ -88,6 +96,10 @@ body {
       }
       .individual-card{
         margin: 1em;
+        opacity: 0.8;
+        width: auto;
+        border: .2em solid #a53860;
+        height: 90%;
       }
 
       .home-feature-img{
@@ -110,7 +122,7 @@ body {
     }
 
     .card-img-top {
-      max-width: 510px;
+      max-width: 540px;
       max-height: 200px;
       image-resolution:72dpi;
     }
@@ -128,6 +140,10 @@ body {
     #registration-form {
       padding: 1em;
       width: 95vw;
+    }
+
+    .custom-control-input:checked~.custom-control-label:after {
+      color: #a53860;
     }
 }
 
