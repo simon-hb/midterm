@@ -1,4 +1,4 @@
-# Inquisitive
+# Inquizitive
 =========
 
 An education-themed quiz app, where a user can filter their search by subject, level and/or toughness. In addition, registered users can create quizzes and mark them as public or private, which are only accessible to those users who know the url of that quiz.
